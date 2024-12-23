@@ -6,6 +6,7 @@ void Player::Render()
 
 	glPushMatrix();
 	glColor4f(this->GetColor().GetRed(), this->GetColor().GetGreen(), this->GetColor().GetBlue(), this->GetColor().GetAlpha());
+
     glTranslatef(this->GetPosition().GetX(), this->GetPosition().GetY(), this->GetPosition().GetZ());
     if (model3D) {
         model3D->Render();

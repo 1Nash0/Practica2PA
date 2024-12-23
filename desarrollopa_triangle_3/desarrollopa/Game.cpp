@@ -105,7 +105,7 @@ void Game::ProcessKeyPressed(unsigned char key, int px, int py)
 	{
 		this->activeScene = this->scenes[index];
 	}
-	float delta = 0.1f;  // Ajusta el valor según tu necesidad
+	float delta = 0.05f;  // Ajusta el valor según tu necesidad
 
 	if (key == 'w' && player1 != nullptr) {  // Tecla para mover hacia arriba
 		player1->Move(0.0f, delta);

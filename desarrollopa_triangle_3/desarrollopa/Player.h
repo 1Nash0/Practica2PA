@@ -20,7 +20,7 @@ public:
     Player()
         : size(1.0), health(5), batteryCount(3), score(0), model3D(nullptr), Solid() {}
 
-    Player(Vector3D initialPosition) {};
+  
 
     void Move(float deltaX, float deltaY, float deltaZ = 0.0f)
     {
@@ -103,20 +103,20 @@ public:
       return (GetAsyncKeyState(key) & 0x8000) != 0;
     }
     void Update() {
-        Vector3D currentPosition = this->GetPosition();
-        if (isKeyPressed('W')) {
-            this->SetPosition(Vector3D(currentPosition.GetX(), currentPosition.GetY() + 1.0f, currentPosition.GetZ()));  // Mover hacia arriba
-        }
-        if (isKeyPressed('S')) {
-            this->SetPosition(Vector3D(currentPosition.GetX(), currentPosition.GetY() - 1.0f, currentPosition.GetZ()));  // Mover hacia abajo
-        }
-        if (isKeyPressed('A')) {
-            this->SetPosition(Vector3D(currentPosition.GetX() - 1.0f, currentPosition.GetY(), currentPosition.GetZ()));  // Mover hacia la izquierda
-        }
-        if (isKeyPressed('D')) {
-            this->SetPosition(Vector3D(currentPosition.GetX() + 1.0f, currentPosition.GetY(), currentPosition.GetZ()));  // Mover hacia la derecha
-        }
-    }
+           Vector3D currentPosition = this->GetPosition();
+           if (isKeyPressed('W')) {
+               this->SetPosition(Vector3D(currentPosition.GetX(), currentPosition.GetY() + 0.05f, currentPosition.GetZ()));  // Mover hacia arriba
+           }
+           if (isKeyPressed('S')) {
+               this->SetPosition(Vector3D(currentPosition.GetX(), currentPosition.GetY() - 0.05f, currentPosition.GetZ()));  // Mover hacia abajo
+           }
+           if (isKeyPressed('A')) {
+               this->SetPosition(Vector3D(currentPosition.GetX() - 0.05f, currentPosition.GetY(), currentPosition.GetZ()));  // Mover hacia la izquierda
+           }
+           if (isKeyPressed('D')) {
+               this->SetPosition(Vector3D(currentPosition.GetX() + 0.05f, currentPosition.GetY(), currentPosition.GetZ()));  // Mover hacia la derecha
+           }
+       }
 
 
     void Render();
