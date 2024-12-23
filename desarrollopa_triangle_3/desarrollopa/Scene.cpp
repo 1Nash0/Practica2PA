@@ -27,6 +27,7 @@ void Scene::Update()
 	}
 	this->checkBoundary();
 
+
 }
 
 void Scene::ProcessKeyPressed(unsigned char key, int px, int py) {}

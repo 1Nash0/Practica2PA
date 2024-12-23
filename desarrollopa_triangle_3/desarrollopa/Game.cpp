@@ -95,6 +95,7 @@ void Game::Update()
 	this->activeScene->Update();
 }
 
+
 void Game::ProcessKeyPressed(unsigned char key, int px, int py)
 {
 	cout << "tecla pulsada: " << key << endl;
@@ -104,20 +105,20 @@ void Game::ProcessKeyPressed(unsigned char key, int px, int py)
 	{
 		this->activeScene = this->scenes[index];
 	}
-	//float delta = 0.1f;  // Ajusta el valor según tu necesidad
+	float delta = 0.1f;  // Ajusta el valor según tu necesidad
 
-	//if (key == 'w') {  // Tecla para mover hacia arriba
-	//	player1->Move(0.0f, delta);
-	//}
-	//else if (key == 's') {  // Tecla para mover hacia abajo
-	//	player1->Move(0.0f, -delta);
-	//}
-	//else if (key == 'a') {  // Tecla para mover hacia la izquierda
-	//	player1->Move(-delta, 0.0f);
-	//}
-	//else if (key == 'd') {  // Tecla para mover hacia la derecha
-	//	player1->Move(delta, 0.0f);
-	//}
+	if (key == 'w' && player1 != nullptr) {  // Tecla para mover hacia arriba
+		player1->Move(0.0f, delta);
+	}
+	else if (key == 's' && player1 != nullptr) {  // Tecla para mover hacia abajo
+		player1->Move(0.0f, -delta);
+	}
+	else if (key == 'a' && player1 != nullptr) {  // Tecla para mover hacia la izquierda
+		player1->Move(-delta, 0.0f);
+	}
+	else if (key == 'd' && player1 != nullptr) {  // Tecla para mover hacia la derecha
+		player1->Move(delta, 0.0f);
+	}
 }
 
 void Game::ProcessMouseClicked(int button, int state, int x, int y)

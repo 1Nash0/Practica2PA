@@ -34,6 +34,9 @@ public:
 	inline Color GetColor() { return this->color; }
 	inline bool GetWired() const { return this->wired; }
 
+
+	//void SetPosition(const Vector3D& newPosition) { position = newPosition; }
+
 	inline void SetPosition(Vector3D coordsToSet) { this->position = coordsToSet; }
 	inline void SetSpeed(const Vector3D& speedToSet) { this->speed = speedToSet; }
 	inline void SetOrientation(Vector3D orientationToSet) { this->orientation = orientationToSet; }
@@ -41,11 +44,10 @@ public:
 	virtual void SetColor(Color colorToSet) { this->color = colorToSet; }
 	inline void SetWired(const bool wiredToSet) { this->wired = wiredToSet; }
 
-	void Move(float deltaX, float deltaY, float deltaZ = 0.0f) {
-		// Modificar la posición del objeto según los cambios en los ejes X, Y y Z
-		this->position.SetX(this->position.GetX() + deltaX);
-		this->position.SetY(this->position.GetY() + deltaY);
-		this->position.SetZ(this->position.GetZ() + deltaZ);
+	void Move(float deltaX, float deltaY, float deltaZ = 0.0f)
+	{
+		
+		position.Move(deltaX, deltaY, deltaZ);
 	}
 
 	virtual void Render() = 0;

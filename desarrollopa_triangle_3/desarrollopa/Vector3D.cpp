@@ -2,10 +2,9 @@
 
 Vector3D Vector3D::Add(Vector3D& other)
 {
-	return Vector3D(
-		this->GetX() + other.GetX(),
-		this->GetY() + other.GetY(),
-		this->GetZ() + other.GetZ());
+	
+		return Vector3D(this->x + other.x, this->y + other.y, this->z + other.z);
+	
 }
 
 Vector3D Vector3D::operator+(Vector3D& other)
@@ -32,4 +31,8 @@ Vector3D Vector3D::operator-(Vector3D& other)
 		this->GetX() - other.GetX(),
 		this->GetY() - other.GetY(),
 		this->GetZ() - other.GetZ());
+
+	
+
+
 }
