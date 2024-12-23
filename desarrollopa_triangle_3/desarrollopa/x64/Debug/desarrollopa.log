@@ -1,0 +1,41 @@
+﻿  Game.cpp
+C:\Users\nas20\OneDrive\Escritorio\Practica2PA1\desarrollopa_triangle_3\desarrollopa\Color.h(11,15): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  (compilando archivo de origen "Game.cpp")
+  
+C:\Users\nas20\OneDrive\Escritorio\Practica2PA1\desarrollopa_triangle_3\desarrollopa\Color.h(11,27): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  (compilando archivo de origen "Game.cpp")
+  
+C:\Users\nas20\OneDrive\Escritorio\Practica2PA1\desarrollopa_triangle_3\desarrollopa\Color.h(11,38): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  (compilando archivo de origen "Game.cpp")
+  
+C:\Users\nas20\OneDrive\Escritorio\Practica2PA1\desarrollopa_triangle_3\desarrollopa\Teapot.h(12,17): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  (compilando archivo de origen "Game.cpp")
+  
+C:\Users\nas20\OneDrive\Escritorio\Practica2PA1\desarrollopa_triangle_3\desarrollopa\Cuboid.h(15,28): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  (compilando archivo de origen "Game.cpp")
+  
+C:\Users\nas20\OneDrive\Escritorio\Practica2PA1\desarrollopa_triangle_3\desarrollopa\Cuboid.h(15,41): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  (compilando archivo de origen "Game.cpp")
+  
+C:\Users\nas20\OneDrive\Escritorio\Practica2PA1\desarrollopa_triangle_3\desarrollopa\Torus.h(14,24): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  (compilando archivo de origen "Game.cpp")
+  
+C:\Users\nas20\OneDrive\Escritorio\Practica2PA1\desarrollopa_triangle_3\desarrollopa\Torus.h(14,45): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  (compilando archivo de origen "Game.cpp")
+  
+C:\Users\nas20\OneDrive\Escritorio\Practica2PA1\desarrollopa_triangle_3\desarrollopa\Cylinder.h(14,57): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+  (compilando archivo de origen "Game.cpp")
+  
+C:\Users\nas20\OneDrive\Escritorio\Practica2PA1\desarrollopa_triangle_3\desarrollopa\Scene.h(27,95): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+  (compilando archivo de origen "Game.cpp")
+  
+C:\Users\nas20\OneDrive\Escritorio\Practica2PA1\desarrollopa_triangle_3\desarrollopa\Game.cpp(16,42): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+C:\Users\nas20\OneDrive\Escritorio\Practica2PA1\desarrollopa_triangle_3\desarrollopa\Game.cpp(16,36): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+C:\Users\nas20\OneDrive\Escritorio\Practica2PA1\desarrollopa_triangle_3\desarrollopa\Game.cpp(16,29): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+C:\Users\nas20\OneDrive\Escritorio\Practica2PA1\desarrollopa_triangle_3\desarrollopa\Game.cpp(23,39): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+C:\Users\nas20\OneDrive\Escritorio\Practica2PA1\desarrollopa_triangle_3\desarrollopa\Game.cpp(23,33): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+C:\Users\nas20\OneDrive\Escritorio\Practica2PA1\desarrollopa_triangle_3\desarrollopa\Game.cpp(23,27): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+C:\Users\nas20\OneDrive\Escritorio\Practica2PA1\desarrollopa_triangle_3\desarrollopa\Game.cpp(29,41): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+C:\Users\nas20\OneDrive\Escritorio\Practica2PA1\desarrollopa_triangle_3\desarrollopa\Game.cpp(29,35): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+C:\Users\nas20\OneDrive\Escritorio\Practica2PA1\desarrollopa_triangle_3\desarrollopa\Game.cpp(29,29): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+  desarrollopa.vcxproj -> C:\Users\nas20\OneDrive\Escritorio\Practica2PA1\desarrollopa_triangle_3\x64\Debug\desarrollopa.exe

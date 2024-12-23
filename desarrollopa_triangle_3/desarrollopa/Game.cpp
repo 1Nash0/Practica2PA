@@ -40,25 +40,38 @@ void Game::Init()
 	cylinder1->SetColor(Color(0.6f, 0.1f, 0.7f, 1.0f));
 	scene1->AddGameObject(cylinder1);
 
+	Player* player1 = new Player();
+	player1->SetPosition(Vector3D(3.0, 2.0, 0.0));
+	player1->SetColor(Color(0.8f, 0.7f, 0.6f, 0.4f));
+	scene2->AddGameObject(player1);
+
+
 
 	//Instanciamos un loader para leer el archivo obj
+	//ModelLoader* loader = new ModelLoader();
+	////fijamos la escala a 2 para que el objeto sea de un tama�o mayor
+	//loader->SetScale(1.0);
+	//loader->LoadModel("..\\3dModels\\heart.obj");
+	////una vez cargado el modelo, instanciamos un Model usando memoria din�mica
+	//Model* heart = new Model();
+	////Asignamos el modelo del loader a lo apuntado por el puntero llamado bolt
+	//*heart = loader->GetModel();
+	////lo colocamos m�s cerca del centro de la escena
+	//heart->SetPosition(Vector3D(4, 4, 0));
+	////le damos velocidad de orientaci�n...
+	//heart->SetOrientationSpeed(Vector3D(0, 0.2, 0));
+
+	//heart->SetColor(Color(1.0, 0.0, 0.0, 1.0));
+
+	////aqu� a�adimos el modelo a la escena
+	//scene2->AddGameObject(heart);
+
 	ModelLoader* loader = new ModelLoader();
-	//fijamos la escala a 2 para que el objeto sea de un tama�o mayor
-	loader->SetScale(1.0);
-	loader->LoadModel("..\\3dModels\\heart.obj");
-	//una vez cargado el modelo, instanciamos un Model usando memoria din�mica
-	Model* heart = new Model();
-	//Asignamos el modelo del loader a lo apuntado por el puntero llamado bolt
-	*heart = loader->GetModel();
-	//lo colocamos m�s cerca del centro de la escena
-	heart->SetPosition(Vector3D(4, 4, 0));
-	//le damos velocidad de orientaci�n...
-	heart->SetOrientationSpeed(Vector3D(0, 0.2, 0));
-
-	heart->SetColor(Color(1.0, 0.0, 0.0, 1.0));
-
-	//aqu� a�adimos el modelo a la escena
-	scene2->AddGameObject(heart);
+	loader->SetScale(1.0f);
+	loader->LoadModel("..\\3dModels\\Star.obj");
+	Model* playerModel = new Model();
+	*playerModel = loader->GetModel();
+	player1->SetModel3D(playerModel);
 
 	//Sobre el resultado:
 	// �por qu� no gira sobre s� mismo sino con un desplazamiento?
