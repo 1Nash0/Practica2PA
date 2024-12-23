@@ -41,7 +41,15 @@ public:
 	virtual void SetColor(Color colorToSet) { this->color = colorToSet; }
 	inline void SetWired(const bool wiredToSet) { this->wired = wiredToSet; }
 
+	void Move(float deltaX, float deltaY, float deltaZ = 0.0f) {
+		// Modificar la posición del objeto según los cambios en los ejes X, Y y Z
+		this->position.SetX(this->position.GetX() + deltaX);
+		this->position.SetY(this->position.GetY() + deltaY);
+		this->position.SetZ(this->position.GetZ() + deltaZ);
+	}
+
 	virtual void Render() = 0;
 	virtual void Update();
 };
+
 

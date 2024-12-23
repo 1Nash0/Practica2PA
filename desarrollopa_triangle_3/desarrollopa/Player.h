@@ -18,7 +18,7 @@ private:
 public:
     // Constructor
     Player()
-        : size(1.0), health(5), batteryCount(3), score(0), model3D(nullptr) {}
+        : size(1.0), health(5), batteryCount(3), score(0), model3D(nullptr), Solid() {}
 
     // Destructor
     ~Player() {
@@ -40,6 +40,11 @@ public:
         else {
             std::cerr << "[Player::SetModel3D] Modelo nulo pasado como argumento." << std::endl;
         }
+    }
+
+    void Move(float deltaX, float deltaY) {
+        // Llamar al método Move de Solid que actualiza la posición
+        Solid::Move(deltaX, deltaY);
     }
 
     // Métodos de juego
@@ -76,24 +81,44 @@ public:
     }
 
     // Renderizado
-    void Render() {
-        glPushMatrix();
-        glTranslatef(this->GetPosition().GetX(), this->GetPosition().GetY(), this->GetPosition().GetZ());
-        glColor4f(this->GetColor().GetRed(), this->GetColor().GetGreen(), this->GetColor().GetBlue(), this->GetColor().GetAlpha());
+    //void Render() {
+    //    glPushMatrix();
+    //    glTranslatef(this->GetPosition().GetX(), this->GetPosition().GetY(), this->GetPosition().GetZ());
+    //    glColor4f(this->GetColor().GetRed(), this->GetColor().GetGreen(), this->GetColor().GetBlue(), this->GetColor().GetAlpha());
 
-        if (model3D) {
-            model3D->Render(); // Renderiza el modelo 3D
-        }
-        else {
-            // Si no hay modelo, renderiza un cubo básico
-            if (!this->GetWired()) {
-                glutSolidCube(this->GetSize());
-            }
-            else {
-                glutWireCube(this->GetSize());
-            }
-        }
+    //    if (model3D) {
+    //        model3D->Render(); // Renderiza el modelo 3D
+    //    }
+    //    else {
+    //        // Si no hay modelo, renderiza un cubo básico
+    //        if (!this->GetWired()) {
+    //            glutSolidCube(this->GetSize());
+    //        }
+    //        else {
+    //            glutWireCube(this->GetSize());
+    //        }
+    //    }
 
-        glPopMatrix();
-    }
+    //    glPopMatrix();
+    //}
+    //bool isKeyPressed(char key) {
+    //    return (GetAsyncKeyState(key) & 0x8000) != 0;
+    //}
+    //void Update() {
+    //    if (isKeyPressed('W')) {
+    //        this->GetPosition().Move(0.0f, 1.0f);  // Mover hacia arriba
+    //    }
+    //    if (isKeyPressed('S')) {
+    //        this->GetPosition().Move(0.0f, -1.0f);  // Mover hacia abajo
+    //    }
+    //    if (isKeyPressed('A')) {
+    //        this->GetPosition().Move(-1.0f, 0.0f);  // Mover hacia la izquierda
+    //    }
+    //    if (isKeyPressed('D')) {
+    //        this->GetPosition().Move(1.0f, 0.0f);  // Mover hacia la derecha
+    //    }
+    //}
+
+
+    void Render();
 };

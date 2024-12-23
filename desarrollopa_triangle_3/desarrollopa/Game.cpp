@@ -4,6 +4,7 @@
 
 void Game::Init()
 {
+
 	cout << "[GAME] Init..." << endl;
 	Scene* scene1 = new Scene();
 	Scene* scene2 = new Scene();
@@ -42,7 +43,8 @@ void Game::Init()
 
 	Player* player1 = new Player();
 	player1->SetPosition(Vector3D(3.0, 2.0, 0.0));
-	player1->SetColor(Color(0.8f, 0.7f, 0.6f, 0.4f));
+	player1->SetColor(Color(0.4f, 0.4f, 0.9f, 0.8f));
+	player1->SetOrientationSpeed(Vector3D(0.0, 0.0, 0.1));
 	scene2->AddGameObject(player1);
 
 
@@ -68,7 +70,7 @@ void Game::Init()
 
 	ModelLoader* loader = new ModelLoader();
 	loader->SetScale(1.0f);
-	loader->LoadModel("..\\3dModels\\Star.obj");
+	loader->LoadModel("..\\3dModels\\Spaceship4.obj");
 	Model* playerModel = new Model();
 	*playerModel = loader->GetModel();
 	player1->SetModel3D(playerModel);
@@ -102,6 +104,20 @@ void Game::ProcessKeyPressed(unsigned char key, int px, int py)
 	{
 		this->activeScene = this->scenes[index];
 	}
+	//float delta = 0.1f;  // Ajusta el valor según tu necesidad
+
+	//if (key == 'w') {  // Tecla para mover hacia arriba
+	//	player1->Move(0.0f, delta);
+	//}
+	//else if (key == 's') {  // Tecla para mover hacia abajo
+	//	player1->Move(0.0f, -delta);
+	//}
+	//else if (key == 'a') {  // Tecla para mover hacia la izquierda
+	//	player1->Move(-delta, 0.0f);
+	//}
+	//else if (key == 'd') {  // Tecla para mover hacia la derecha
+	//	player1->Move(delta, 0.0f);
+	//}
 }
 
 void Game::ProcessMouseClicked(int button, int state, int x, int y)

@@ -16,7 +16,7 @@ using namespace std;
 class Game
 {
 private:
-
+	Player* player1; 
 	vector<Scene*> scenes;
 	Scene* activeScene;
 
