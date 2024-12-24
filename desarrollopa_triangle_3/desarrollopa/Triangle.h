@@ -61,7 +61,13 @@ public:
 	inline Color GetColor2() const { return this->color2; }
 	inline void SetColor2(const Color& colorToSet) { this->color2 = colorToSet; }
 
+	Solid* Clone() const override {
+		return new Triangle(*this);  // Constructor copia para clonar
+	}
+
 	void Render() override;
+
+
 	Solid* Clone();
 
 };

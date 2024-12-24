@@ -23,7 +23,9 @@ public:
 
     // Obtiene el texto actual
    
-
+    Solid* Clone() const override {
+        return new Text(*this);  // Constructor copia para clonar
+    }
     // Sobrescribe el método Render
     void Render();
 };

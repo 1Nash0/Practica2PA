@@ -7,6 +7,10 @@ private:
 public:
 	Camera() {}
 
+	Camera* Clone() const override {
+		return new Camera(*this);
+	}
+
 	void Render();
 };
 

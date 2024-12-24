@@ -23,6 +23,10 @@ public:
 	void SetHeight(float heightToSet) { this->height = heightToSet; }
 	void SetWidth(float widthToSet) { this->width = widthToSet; }
 
+	Solid* Clone() const override {
+		return new Cuboid(*this);  // Constructor copia para clonar
+	}
+
 	void Render();
 
 };

@@ -1,5 +1,8 @@
 #include "Game.h"
+#include "Emmiter.h"
+#include "EmmiterConfiguration.h"
 #include <iostream>
+#include <ctime> 
 
 
 void Game::Init()
@@ -9,6 +12,15 @@ void Game::Init()
 	Scene* scene1 = new Scene();
 	Scene* scene2 = new Scene();
 
+	// Configuramos el emisor
+	int numParticulas = 1000;
+	int tiempoEmision = 10;
+	Solid* particulaRef = new Cube();
+
+
+	EmmiterConfiguration Config(numParticulas, tiempoEmision, particulaRef);
+	Emmiter* emisor = new Emmiter(Config);
+	scene2->AddGameObject(emisor);
 
 	Cube* cube1 = new Cube();
 	cube1->SetPosition(Vector3D(3.0, 2.0, 0.0));

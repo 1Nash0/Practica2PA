@@ -24,5 +24,9 @@ public:
     inline int GetSlacks() const { return this->slacks; }
     inline void SetSlacks(const int& slacksToSet) { this->slacks = slacksToSet; }
 
+    Solid* Clone() const override {
+        return new Cylinder(*this);  // Constructor copia para clonar
+    }
+
     void Render();
 };

@@ -21,5 +21,8 @@ public:
 
 	void SetColor(Color colorToSet) override;
 
+	Solid* Clone() const override {
+		return new Model(*this);  // Constructor copia para clonar
+	}
 };
 

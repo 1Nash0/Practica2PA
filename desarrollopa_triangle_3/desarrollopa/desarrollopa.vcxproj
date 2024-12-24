@@ -137,6 +137,8 @@
     <ClCompile Include="desarrollopa.cpp" />
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="Emmiter.cpp" />
+    <ClCompile Include="EmmiterConfiguration.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Heart.cpp" />
     <ClCompile Include="Meteorite.cpp" />
@@ -164,6 +166,8 @@
     <ClInclude Include="Cylinder.h" />
     <ClInclude Include="Display.h" />
     <ClInclude Include="Background.h" />
+    <ClInclude Include="Emmiter.h" />
+    <ClInclude Include="EmmiterConfiguration.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Heart.h" />
     <ClInclude Include="Meteorite.h" />

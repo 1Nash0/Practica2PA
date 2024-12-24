@@ -122,6 +122,9 @@ public:
            }
        }
 
+    Solid* Clone() const override {
+        return new Player(*this);  // Constructor copia para clonar
+    }
 
     void Render();
 };

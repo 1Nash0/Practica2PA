@@ -24,6 +24,10 @@ public:
 	void SetSlices(int slicesToSet) { this->slices = slicesToSet; }
 	void SetSlacks(int slacksToSet) { this->slacks = slacksToSet; }
 
+	Solid* Clone() const override {
+		return new Sphere(*this);  // Constructor copia para clonar
+	}
+
 	void Render();
 
 };

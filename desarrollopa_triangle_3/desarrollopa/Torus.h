@@ -25,6 +25,10 @@ public:
 	inline int GetRings() const { return this->rings; }
 	inline void SetRings(const int& ringsToSet) { this->rings = ringsToSet; }
 
+	Solid* Clone() const override {
+		return new Torus(*this);  // Constructor copia para clonar
+	}
+
 	void Render();
 };
 

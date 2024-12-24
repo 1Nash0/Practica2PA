@@ -39,6 +39,9 @@ public:
             std::cerr << "[Player::SetModel3D] Modelo nulo pasado como argumento." << std::endl;
         }
     }
+    Solid* Clone() const override {
+        return new Heart(*this);  // Constructor copia para clonar
+    }
 
     void Render();
 };

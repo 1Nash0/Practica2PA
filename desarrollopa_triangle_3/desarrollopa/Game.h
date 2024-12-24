@@ -11,6 +11,7 @@
 #include "Player.h"
 #include "Heart.h"
 #include "Text.h"
+#include "Emmiter.h"
 
 using namespace std;
 
