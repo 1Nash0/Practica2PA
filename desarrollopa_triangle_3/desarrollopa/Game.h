@@ -9,7 +9,8 @@
 #include "Model.h"
 #include "ModelLoader.h"
 #include "Player.h"
-#include "Hearts.h"
+#include "Heart.h"
+#include "Text.h"
 
 using namespace std;
 
@@ -19,7 +20,7 @@ private:
 	Player* player1; 
 	vector<Scene*> scenes;
 	Scene* activeScene;
-	Hearts* heart1; // en class game private
+	// en class game private
 	//Model* player1;
 
 public:

@@ -138,7 +138,7 @@
     <ClCompile Include="Display.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Hearts.cpp" />
+    <ClCompile Include="Heart.cpp" />
     <ClCompile Include="Meteorite.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelLoader.cpp" />
@@ -165,7 +165,7 @@
     <ClInclude Include="Display.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Hearts.h" />
+    <ClInclude Include="Heart.h" />
     <ClInclude Include="Meteorite.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelLoader.h" />

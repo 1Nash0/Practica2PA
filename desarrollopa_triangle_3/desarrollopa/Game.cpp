@@ -39,9 +39,21 @@ void Game::Init()
 	player1->SetOrientationSpeed(Vector3D(0.0, 0.0, 0.1));
 	scene2->AddGameObject(player1);
 
+	Text* text1 = new Text();
+	text1->SetText("Nas > 2024");
+	text1->SetPosition(Vector3D(5.0, 5.0, -6.0));
+	text1->SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f)); // Amarillo
+	scene2->AddGameObject(text1);
 
-	Hearts* heart1 = new Hearts();
+	Heart* heart1 = new Heart();
+	heart1->SetPosition(Vector3D(2.0, 5.0, 0.0));
+	heart1->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
 	scene2->AddGameObject(heart1);
+
+	Heart* heart2 = new Heart();
+	heart2->SetPosition(Vector3D(3.0, 5.0, 0.0));
+	heart2->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
+	scene2->AddGameObject(heart2);
 
 	//Instanciamos un loader para leer el archivo obj
 	//ModelLoader* loader = new ModelLoader();
@@ -75,13 +87,18 @@ void Game::Init()
 	playerModel->SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f)); // Cambia a rojo // Asegúrate de incluir el valor alfa
 
 	ModelLoader* loader2 = new ModelLoader();
-	loader2->SetScale(1.0f);
+	loader2->SetScale(0.5f);
 	loader2->LoadModel("..\\3dModels\\heart.obj");
 	Model* heartModel = new Model();
+	Model* heartModel2 = new Model();
 	*heartModel = loader2->GetModel();
+	*heartModel2 = loader2->GetModel();
 	heart1->SetModel3D(heartModel);
+	heart2->SetModel3D(heartModel);
 	heartModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	heartModel->SetColor(Color(1.0, 0.0, 0.0, 1.0));
+
+
 	//Sobre el resultado:
 	// �por qu� no gira sobre s� mismo sino con un desplazamiento?
 	// �qu� pasa con el color?

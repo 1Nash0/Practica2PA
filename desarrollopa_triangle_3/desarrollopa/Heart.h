@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class Hearts : public Solid {
+class Heart : public Solid {
 private:
 
     int vidas; // Número de vidas asociadas al corazón
@@ -16,11 +16,11 @@ private:
 
 public:
     // Constructor por defecto
-    Hearts()
+    Heart()
         : size(1.0), model3D(nullptr), Solid() {}
 
     // Constructor parametrizado
-    Hearts(int inicialVidas);
+    Heart(int inicialVidas);
 
     // Getter para obtener el número de vidas
     int getVidas() const;
