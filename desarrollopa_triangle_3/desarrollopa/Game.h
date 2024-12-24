@@ -19,10 +19,11 @@ private:
 	Player* player1; 
 	vector<Scene*> scenes;
 	Scene* activeScene;
+	//Model* player1;
 
 public:
 
-	Game():activeScene(nullptr) {}
+	Game():activeScene(nullptr), player1(nullptr) {}
 
 	void Init();
 	void Render();

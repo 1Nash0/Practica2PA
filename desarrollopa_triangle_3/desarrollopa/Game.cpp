@@ -42,8 +42,8 @@ void Game::Init()
 	scene1->AddGameObject(cylinder1);
 
 	Player* player1 = new Player();
+    player1->SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f)); // Cambiando el color a rojo
 	player1->SetPosition(Vector3D(3.0, 2.0, 0.0));
-	player1->SetColor(Color(0.4f, 0.4f, 0.9f, 0.8f));
 	player1->SetOrientationSpeed(Vector3D(0.0, 0.0, 0.1));
 	scene2->AddGameObject(player1);
 
@@ -74,7 +74,18 @@ void Game::Init()
 	Model* playerModel = new Model();
 	*playerModel = loader->GetModel();
 	player1->SetModel3D(playerModel);
+	player1->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	//player1->PaintColor(Color(0.8, 0.8, 0.9));
 
+	/*this->player1 = new Model();
+	loader->LoadModel("..\\3dModels\\Spaceship4.obj");
+	*this->player1 = loader->GetModel();
+	this->player1->SetPosition(Vector3D(0, 0, 1));
+	this->player1->SetOrientation(Vector3D(15, 180, 0));
+	this->player1->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	scene2->AddGameObject(this->player1);*/
+	/*loader->Clear();*/
+	//this->player1->PaintColor(Color(0.8, 0.8, 0.9));
 	//Sobre el resultado:
 	// �por qu� no gira sobre s� mismo sino con un desplazamiento?
 	// �qu� pasa con el color?
@@ -105,7 +116,7 @@ void Game::ProcessKeyPressed(unsigned char key, int px, int py)
 	{
 		this->activeScene = this->scenes[index];
 	}
-	float delta = 0.05f;  // Ajusta el valor según tu necesidad
+	float delta = 0.005f;  // Ajusta el valor según tu necesidad
 
 	if (key == 'w' && player1 != nullptr) {  // Tecla para mover hacia arriba
 		player1->Move(0.0f, delta);

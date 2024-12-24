@@ -1,6 +1,7 @@
 #pragma once
 #include "Solid.h"
 #include "Model.h"
+#include "Color.h"
 #include <GL/glut.h>
 #include <string>
 #include <iostream>
@@ -9,6 +10,7 @@ using namespace std;
 
 class Player : public Solid {
 private:
+
     float size;                 // Tamaño del jugador
     int health;                 // Vida restante
     int batteryCount;           // Baterías disponibles
@@ -105,16 +107,16 @@ public:
     void Update() {
            Vector3D currentPosition = this->GetPosition();
            if (isKeyPressed('W')) {
-               this->SetPosition(Vector3D(currentPosition.GetX(), currentPosition.GetY() + 0.05f, currentPosition.GetZ()));  // Mover hacia arriba
+               this->SetPosition(Vector3D(currentPosition.GetX(), currentPosition.GetY() + 0.005f, currentPosition.GetZ()));  // Mover hacia arriba
            }
            if (isKeyPressed('S')) {
-               this->SetPosition(Vector3D(currentPosition.GetX(), currentPosition.GetY() - 0.05f, currentPosition.GetZ()));  // Mover hacia abajo
+               this->SetPosition(Vector3D(currentPosition.GetX(), currentPosition.GetY() - 0.005f, currentPosition.GetZ()));  // Mover hacia abajo
            }
            if (isKeyPressed('A')) {
-               this->SetPosition(Vector3D(currentPosition.GetX() - 0.05f, currentPosition.GetY(), currentPosition.GetZ()));  // Mover hacia la izquierda
+               this->SetPosition(Vector3D(currentPosition.GetX() - 0.005f, currentPosition.GetY(), currentPosition.GetZ()));  // Mover hacia la izquierda
            }
            if (isKeyPressed('D')) {
-               this->SetPosition(Vector3D(currentPosition.GetX() + 0.05f, currentPosition.GetY(), currentPosition.GetZ()));  // Mover hacia la derecha
+               this->SetPosition(Vector3D(currentPosition.GetX() + 0.005f, currentPosition.GetY(), currentPosition.GetZ()));  // Mover hacia la derecha
            }
        }
 
