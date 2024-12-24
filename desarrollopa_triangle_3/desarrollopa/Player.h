@@ -78,7 +78,9 @@ public:
         else if (resourceType == "Battery") {
             if (batteryCount < 3) batteryCount++;
         }
+        
     }
+    
 
     // Renderizado
     //void Render() {

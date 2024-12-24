@@ -1,5 +1,4 @@
 #pragma once
-#include "Teapot.h"
 #include "Cube.h"
 #include "Sphere.h"
 #include "Display.h"
@@ -10,6 +9,7 @@
 #include "Model.h"
 #include "ModelLoader.h"
 #include "Player.h"
+#include "Hearts.h"
 
 using namespace std;
 
@@ -19,6 +19,7 @@ private:
 	Player* player1; 
 	vector<Scene*> scenes;
 	Scene* activeScene;
+	Hearts* heart1; // en class game private
 	//Model* player1;
 
 public:

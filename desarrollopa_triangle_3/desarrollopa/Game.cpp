@@ -10,13 +10,6 @@ void Game::Init()
 	Scene* scene2 = new Scene();
 
 
-	Teapot* teapot1 = new Teapot();
-	teapot1->SetPosition(Vector3D(4.0, 0.0,0.0));
-	teapot1->SetColor(Color(0.2f, 0.4f, 0.6f, 1.0f));
-	teapot1->SetOrientationSpeed(Vector3D(0.0, 2.0, 2.0));
-	teapot1->SetSpeed(Vector3D(0.01, -0.02, 0.03));
-	scene1->AddGameObject(teapot1);
-
 	Cube* cube1 = new Cube();
 	cube1->SetPosition(Vector3D(3.0, 2.0, 0.0));
 	cube1->SetColor(Color(0.8f, 0.7f, 0.6f, 0.4f));
@@ -41,13 +34,14 @@ void Game::Init()
 	cylinder1->SetColor(Color(0.6f, 0.1f, 0.7f, 1.0f));
 	scene1->AddGameObject(cylinder1);
 
-	Player* player1 = new Player();
-    player1->SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f)); // Cambiando el color a rojo
-	player1->SetPosition(Vector3D(3.0, 2.0, 0.0));
+	Player* player1 = new Player(); 
+	player1->SetPosition(Vector3D(3.0, 2.0, -1.0));
 	player1->SetOrientationSpeed(Vector3D(0.0, 0.0, 0.1));
 	scene2->AddGameObject(player1);
 
 
+	Hearts* heart1 = new Hearts();
+	scene2->AddGameObject(heart1);
 
 	//Instanciamos un loader para leer el archivo obj
 	//ModelLoader* loader = new ModelLoader();
@@ -69,23 +63,25 @@ void Game::Init()
 	//scene2->AddGameObject(heart);
 
 	ModelLoader* loader = new ModelLoader();
-	loader->SetScale(1.0f);
+    // Asegúrate de que el color se esté aplicando correctamente al modelo 3D
+ // Cambia a rojo
+ // Asegúrate de que el modelo se haya asignado antes de cambiar el color
+	loader->SetScale(0.8f);
 	loader->LoadModel("..\\3dModels\\Spaceship4.obj");
 	Model* playerModel = new Model();
 	*playerModel = loader->GetModel();
 	player1->SetModel3D(playerModel);
-	player1->SetSpeed(Vector3D(0.0, 0.0, 0.0));
-	//player1->PaintColor(Color(0.8, 0.8, 0.9));
+	playerModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	playerModel->SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f)); // Cambia a rojo // Asegúrate de incluir el valor alfa
 
-	/*this->player1 = new Model();
-	loader->LoadModel("..\\3dModels\\Spaceship4.obj");
-	*this->player1 = loader->GetModel();
-	this->player1->SetPosition(Vector3D(0, 0, 1));
-	this->player1->SetOrientation(Vector3D(15, 180, 0));
-	this->player1->SetSpeed(Vector3D(0.0, 0.0, 0.0));
-	scene2->AddGameObject(this->player1);*/
-	/*loader->Clear();*/
-	//this->player1->PaintColor(Color(0.8, 0.8, 0.9));
+	ModelLoader* loader2 = new ModelLoader();
+	loader2->SetScale(1.0f);
+	loader2->LoadModel("..\\3dModels\\heart.obj");
+	Model* heartModel = new Model();
+	*heartModel = loader2->GetModel();
+	heart1->SetModel3D(heartModel);
+	heartModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	heartModel->SetColor(Color(1.0, 0.0, 0.0, 1.0));
 	//Sobre el resultado:
 	// �por qu� no gira sobre s� mismo sino con un desplazamiento?
 	// �qu� pasa con el color?
@@ -135,7 +131,16 @@ void Game::ProcessKeyPressed(unsigned char key, int px, int py)
 void Game::ProcessMouseClicked(int button, int state, int x, int y)
 {
 	cout << "[GAME] Click:" << button << endl;
+
+	if (button == 0 && player1 != nullptr) {
+		player1->Shoot();
+	}
+	else if (button == 2 && player1 != nullptr)
+	{
+		player1->LaunchBomb();
+	}
 }
+
 
 void Game::ProcessMouseMovement(int x, int y)
 {
