@@ -49,12 +49,6 @@ public:
 	virtual void SetColor(Color colorToSet) { this->color = colorToSet; }
 	inline void SetWired(const bool wiredToSet) { this->wired = wiredToSet; }
 
-	void Move(float deltaX, float deltaY, float deltaZ = 0.0f)
-	{
-		
-		position.Move(deltaX, deltaY, deltaZ);
-	}
-
 	virtual void Render() = 0;
 	virtual void Update();
 

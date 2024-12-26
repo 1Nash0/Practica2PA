@@ -3,24 +3,50 @@
 
 
 
-// Constructor parametrizado
-Heart::Heart(int inicialVidas) : vidas(inicialVidas) {}
+#include "Heart.h"
+#include <iostream>
 
-// Getter para obtener el número de vidas
+
+
+
 int Heart::getVidas() const {
     return vidas;
 }
 
-// Método para sumar vidas
 void Heart::sumarVidas(int cantidad) {
-    if (cantidad > 0) {
-        vidas += cantidad;
+    vidas += cantidad;
+}
+
+void Heart::mostrarVidas() const {
+    std::cout << "Vidas: " << vidas << std::endl;
+}
+
+void Heart::SetModel3D(Model* model) {
+    if (model) {
+        model3D = model;
+    }
+    else {
+        std::cerr << "[Heart::SetModel3D] Modelo nulo pasado como argumento." << std::endl;
     }
 }
 
-// Método para mostrar la cantidad de vidas
-void Heart::mostrarVidas() const {
-    std::cout << "Vidas: " << vidas << std::endl;
+Solid* Heart::Clone() const {
+    return new Heart(*this);
+}
+
+//bool Heart::getIsVisible() const {
+//    return isVisible;
+//}
+
+//void Heart::setIsVisible(bool visible) {
+//    isVisible = visible;
+//}
+
+void Heart::HandleCollision() {
+    if (isVisible) {
+        isVisible = false;
+        std::cout << "El jugador ha recogido el corazón. Ahora es invisible." << std::endl;
+    }
 }
 
 void Heart::Render()
@@ -45,5 +71,20 @@ void Heart::Render()
     }
     glPopMatrix();
 
+    if (isVisible) {
+        if (model3D) {
+            model3D->Render(); // Renderizar modelo 3D
+        }
+        else {
+            glColor3f(1.0f, 0.0f, 0.0f); // Color rojo
+            glutSolidSphere(size, 50, 50); // Esfera como placeholder
+        }
+    }
+
+
 }
+
+
+
+
 

@@ -12,6 +12,7 @@
 #include "Heart.h"
 #include "Text.h"
 #include "Emmiter.h"
+#include "Meteorite.h"
 
 using namespace std;
 

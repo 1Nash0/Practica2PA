@@ -21,16 +21,6 @@ public:
     inline void SetZ(const float& zToSet) { this->z = zToSet; }
 
 
-    // Método para mover el vector por un desplazamiento dado
-   
-    void Move(float deltaX, float deltaY, float deltaZ = 0.0f) {
-        if (this != nullptr) {
-            this->x += deltaX;
-            this->y += deltaY;
-            this->z += deltaZ;
-        }
-    }
-
     // Operadores existentes para sumar, restar, y multiplicar
     Vector3D Add(Vector3D& other);
     Vector3D operator+(Vector3D& other);

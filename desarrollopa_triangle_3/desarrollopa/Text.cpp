@@ -14,3 +14,7 @@ void Text::Render() {
     glPopMatrix();
 
 }
+
+void Text::SetText(const string& newText) {
+    text = newText;
+}

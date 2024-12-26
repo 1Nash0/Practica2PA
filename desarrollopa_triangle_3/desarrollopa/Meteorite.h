@@ -1,5 +1,31 @@
 #pragma once
-class Meteorite
-{
-};
+#include <GL/glut.h>
+#include "Model.h"
+#include "Solid.h"
 
+class Meteorite : public Solid
+{
+private:
+
+	float size;
+	Model* model3D;
+
+public:
+
+	Meteorite() : model3D(nullptr), Solid()
+	{
+		this->size = 1.0;
+	}
+
+	inline float GetSize() { return this->size; }
+	void SetSize(float sizeToSet) { this->size = sizeToSet; }
+
+	void SetModel3D(Model* model);
+
+	Solid* Clone() const override {
+		return new Meteorite(*this);  // Constructor copia para clonar
+	}
+
+	void Render();
+
+};

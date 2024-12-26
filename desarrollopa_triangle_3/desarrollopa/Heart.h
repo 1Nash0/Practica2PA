@@ -5,46 +5,46 @@
 #include <string>
 #include <iostream>
 
+#ifndef HEART_H
+#define HEART_H
+
+
 using namespace std;
 
 class Heart : public Solid {
 private:
 
-    int vidas; // Número de vidas asociadas al corazón
+    int vidas;
     float size;
     Model* model3D;
+    bool isVisible;
 
 public:
-    // Constructor por defecto
+
     Heart()
-        : size(1.0), model3D(nullptr), Solid() {}
+        : size(1.0), vidas(5), model3D(nullptr), isVisible(true), Solid() {}
 
-    // Constructor parametrizado
-    Heart(int inicialVidas);
-
-    // Getter para obtener el número de vidas
     int getVidas() const;
 
-    // Método para sumar vidas
     void sumarVidas(int cantidad);
 
-    // Método para mostrar la cantidad de vidas
+    //bool getIsVisible() const { return isVisible; }
+
+    //void setIsVisible(bool visible) { isVisible = visible; }
+
     void mostrarVidas() const;
 
-    void SetModel3D(Model* model) {
-        if (model) {
-            this->model3D = model;
-        }
-        else {
-            std::cerr << "[Player::SetModel3D] Modelo nulo pasado como argumento." << std::endl;
-        }
-    }
-    Solid* Clone() const override {
-        return new Heart(*this);  // Constructor copia para clonar
-    }
+    Solid* Clone() const override;
 
-    void Render();
+    void HandleCollision();
+
+    void SetModel3D(Model* model);
+
+    void Render() override;
 };
+
+#endif // HEART_H
+
 
 
 

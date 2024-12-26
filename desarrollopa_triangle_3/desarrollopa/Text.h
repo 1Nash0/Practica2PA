@@ -10,18 +10,23 @@
 using namespace std;
 class Text : public Solid {
 private:
-    string text; // Atributo que contiene el texto a mostrar
+    string text;
+    // Atributo que contiene el texto a mostrar
 public:
     // Constructor por defecto
-    Text() : text(""), Solid() {}
+    Text() : text("") {}
+
+    // Constructor con texto inicial
+    Text(const string& initialText, float initialScale)
+        : text(initialText) {}
 
     // Establece el texto
-    void SetText(const string& newText)
-    {
-        text = newText;
-    };
+    void SetText(const string& newText);
 
-    // Obtiene el texto actual
+    // Obtener texto
+    const string& GetText() const {
+        return text;
+    }
    
     Solid* Clone() const override {
         return new Text(*this);  // Constructor copia para clonar

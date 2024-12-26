@@ -1,6 +1,9 @@
 #include "Game.h"
 #include "Emmiter.h"
 #include "EmmiterConfiguration.h"
+#include "Heart.h"
+#include "Player.h"
+#include <vector>
 #include <iostream>
 #include <ctime> 
 
@@ -20,7 +23,7 @@ void Game::Init()
 
 	EmmiterConfiguration Config(numParticulas, tiempoEmision, particulaRef);
 	Emmiter* emisor = new Emmiter(Config);
-	scene2->AddGameObject(emisor);
+	scene1->AddGameObject(emisor);
 
 	Cube* cube1 = new Cube();
 	cube1->SetPosition(Vector3D(3.0, 2.0, 0.0));
@@ -54,7 +57,7 @@ void Game::Init()
 	Text* text1 = new Text();
 	text1->SetText("Nas > 2024");
 	text1->SetPosition(Vector3D(5.0, 5.0, -6.0));
-	text1->SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f)); // Amarillo
+	text1->SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f));
 	scene2->AddGameObject(text1);
 
 	Heart* heart1 = new Heart();
@@ -66,6 +69,12 @@ void Game::Init()
 	heart2->SetPosition(Vector3D(3.0, 5.0, 0.0));
 	heart2->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
 	scene2->AddGameObject(heart2);
+
+	Meteorite* Meteorite1 = new Meteorite();
+	Meteorite1->SetPosition(Vector3D(7.0, 2.0, 0.0));
+	Meteorite1->SetOrientationSpeed(Vector3D(1.0, 0.0, 3.0));
+	Meteorite1->SetSpeed(Vector3D(0.01, 0.02, 0.01));
+	scene2->AddGameObject(Meteorite1);
 
 	//Instanciamos un loader para leer el archivo obj
 	//ModelLoader* loader = new ModelLoader();
@@ -87,9 +96,6 @@ void Game::Init()
 	//scene2->AddGameObject(heart);
 
 	ModelLoader* loader = new ModelLoader();
-    // Asegúrate de que el color se esté aplicando correctamente al modelo 3D
- // Cambia a rojo
- // Asegúrate de que el modelo se haya asignado antes de cambiar el color
 	loader->SetScale(0.8f);
 	loader->LoadModel("..\\3dModels\\Spaceship4.obj");
 	Model* playerModel = new Model();
@@ -111,6 +117,15 @@ void Game::Init()
 	heartModel->SetColor(Color(1.0, 0.0, 0.0, 1.0));
 
 
+
+	ModelLoader* loader3 = new ModelLoader();
+	loader3->SetScale(0.5f);
+	loader3->LoadModel("..\\3dModels\\Cop_v1.obj");
+	Model* meteoriteModel = new Model();
+	*meteoriteModel = loader3->GetModel();
+	Meteorite1->SetModel3D(meteoriteModel);
+	meteoriteModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	meteoriteModel->SetColor(Color(1.0, 1.0, 1.0, 1.0));
 	//Sobre el resultado:
 	// �por qu� no gira sobre s� mismo sino con un desplazamiento?
 	// �qu� pasa con el color?
@@ -119,6 +134,28 @@ void Game::Init()
 	this->scenes.push_back(scene2);
 	this->activeScene = scene2;
 }
+
+
+//
+//bool CheckCollision(float playerX, float playerY, float playerZ, float heartX, float heartY, float heartZ, float radius) {
+//	float distanceSquared = (playerX - heartX) * (playerX - heartX) +
+//		(playerY - heartY) * (playerY - heartY) +
+//		(playerZ - heartZ) * (playerZ - heartZ);
+//	return distanceSquared <= radius * radius;
+//}
+
+//void UpdateGame(Player& player, std::vector<Heart>& hearts) {
+//	for (Heart& heart : hearts) {
+//		if (CheckCollision(player.getX(), player.getY(), player.getZ(),
+//			heart.getX(), heart.getY(), heart.getZ(), 1.0f)) {
+//			heart.HandleCollision();
+//		}
+//	}
+//}
+//
+//
+//
+//}
 
 void Game::Render()
 {
@@ -141,20 +178,7 @@ void Game::ProcessKeyPressed(unsigned char key, int px, int py)
 	{
 		this->activeScene = this->scenes[index];
 	}
-	float delta = 0.005f;  // Ajusta el valor según tu necesidad
-
-	if (key == 'w' && player1 != nullptr) {  // Tecla para mover hacia arriba
-		player1->Move(0.0f, delta);
-	}
-	else if (key == 's' && player1 != nullptr) {  // Tecla para mover hacia abajo
-		player1->Move(0.0f, -delta);
-	}
-	else if (key == 'a' && player1 != nullptr) {  // Tecla para mover hacia la izquierda
-		player1->Move(-delta, 0.0f);
-	}
-	else if (key == 'd' && player1 != nullptr) {  // Tecla para mover hacia la derecha
-		player1->Move(delta, 0.0f);
-	}
+	
 }
 
 void Game::ProcessMouseClicked(int button, int state, int x, int y)
