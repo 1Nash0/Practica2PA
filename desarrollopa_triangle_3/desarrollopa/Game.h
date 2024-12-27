@@ -12,6 +12,7 @@
 #include "Text.h"
 #include "Emmiter.h"
 #include "Meteorite.h"
+#include "Satellite.h"
 #include <chrono>
 
 using namespace std::chrono;

@@ -63,6 +63,12 @@ void Game::Init()
 	Meteorite2->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	scene2->AddGameObject(Meteorite2);
 
+	Satellite* Satellite1 = new Satellite();
+	Satellite1->SetPosition(Vector3D(9.0, 4.0, 0.0));
+	Satellite1->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
+	Satellite1->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	scene2->AddGameObject(Satellite1);
+
 	//Instanciamos un loader para leer el archivo obj
 	//ModelLoader* loader = new ModelLoader();
 	////fijamos la escala a 2 para que el objeto sea de un tama�o mayor
@@ -109,7 +115,6 @@ void Game::Init()
 	heartModel3->SetColor(Color(1.0, 6.0, 4.0, 1.0));
 
 
-
 	ModelLoader* loader3 = new ModelLoader();
 	ModelLoader* loader4 = new ModelLoader();
 	loader3->SetScale(0.5f);
@@ -126,6 +131,16 @@ void Game::Init()
 	Meteorite2->SetModel3D(meteoriteModel2);
 	meteoriteModel2->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	meteoriteModel2->SetColor(Color(0.0, 0.0, 0.5, 1.0));
+
+
+	ModelLoader* loader5 = new ModelLoader();
+	loader5->SetScale(1.0f);
+	loader5->LoadModel("..\\3dModels\\Bolt.obj");
+	Model* satelliteModel = new Model();
+	*satelliteModel = loader5->GetModel();
+	Satellite1->SetModel3D(satelliteModel);
+	satelliteModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	satelliteModel->SetColor(Color(1.0f, 5.0f, 0.0f, 1.0f));
 
 	//Sobre el resultado:
 	// �por qu� no gira sobre s� mismo sino con un desplazamiento?
