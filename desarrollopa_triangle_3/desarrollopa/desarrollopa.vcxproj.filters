@@ -72,9 +72,6 @@
     <ClCompile Include="Game.cpp">
       <Filter>Archivos de origen\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Display.cpp">
-      <Filter>Archivos de origen\Elements</Filter>
-    </ClCompile>
     <ClCompile Include="Vector3D.cpp">
       <Filter>Archivos de origen\Utils</Filter>
     </ClCompile>
@@ -166,9 +163,6 @@
     </ClInclude>
     <ClInclude Include="Solid.h">
       <Filter>Archivos de encabezado\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Display.h">
-      <Filter>Archivos de encabezado\Elements</Filter>
     </ClInclude>
     <ClInclude Include="Color.h">
       <Filter>Archivos de encabezado\Utils</Filter>

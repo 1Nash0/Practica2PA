@@ -18,19 +18,19 @@ void Player::Render()
     glPopMatrix();
 }
 
-void Player:: Update() {
+void Player:: Update(const float& time) {
     Vector3D currentPosition = this->GetPosition();
     if (isKeyPressed('W')) {
-        this->SetPosition(Vector3D(currentPosition.GetX(), currentPosition.GetY() + 0.05f, currentPosition.GetZ()));  // Mover hacia arriba
+        this->SetPosition(Vector3D(currentPosition.GetX(), currentPosition.GetY() + 0.1f * time, currentPosition.GetZ()));  // Mover hacia arriba
     }
     if (isKeyPressed('S')) {
-        this->SetPosition(Vector3D(currentPosition.GetX(), currentPosition.GetY() - 0.05f, currentPosition.GetZ()));  // Mover hacia abajo
+        this->SetPosition(Vector3D(currentPosition.GetX(), currentPosition.GetY() - 0.1f * time, currentPosition.GetZ()));  // Mover hacia abajo
     }
     if (isKeyPressed('A')) {
-        this->SetPosition(Vector3D(currentPosition.GetX() - 0.05f, currentPosition.GetY(), currentPosition.GetZ()));  // Mover hacia la izquierda
+        this->SetPosition(Vector3D(currentPosition.GetX() - 0.1f * time, currentPosition.GetY(), currentPosition.GetZ()));  // Mover hacia la izquierda
     }
     if (isKeyPressed('D')) {
-        this->SetPosition(Vector3D(currentPosition.GetX() + 0.05f, currentPosition.GetY(), currentPosition.GetZ()));  // Mover hacia la derecha
+        this->SetPosition(Vector3D(currentPosition.GetX() + 0.1f * time, currentPosition.GetY(), currentPosition.GetZ()));  // Mover hacia la derecha
     }
 }
 void Player::SetModel3D(Model* model) {
@@ -41,6 +41,15 @@ void Player::SetModel3D(Model* model) {
         std::cerr << "[Player::SetModel3D] Modelo nulo pasado como argumento." << std::endl;
     }
 }
+
+
+//void Player::SetProjectile() {
+//    Vector3D pos = this->GetPosition();
+//    Vector3D updater = Vector3D(0.0, 2.0, 0.0);
+//    pos = pos + updater;
+//    proyectil.SetPosition(pos);
+//}
+
 
 // Métodos de juego
 void Player:: Shoot() {
@@ -75,9 +84,17 @@ void Player::CollectResource(const std::string& resourceType) {
     }
 
 }
+
+//bool CheckCollision(const Solid& other)  {
+//    // Lógica específica para la colisión con corazones
+//    return false; // Ejemplo
+//}
+
 bool Player::isKeyPressed(char key) {
     return (GetAsyncKeyState(key) & 0x8000) != 0;
 }
+
+
 
 //void SetModel3D(Model* model);
 

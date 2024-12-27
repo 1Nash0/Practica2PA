@@ -18,36 +18,12 @@ void Game::Init()
 	// Configuramos el emisor
 	int numParticulas = 1000;
 	int tiempoEmision = 10;
-	Solid* particulaRef = new Cube();
+	Solid* particulaRef = new Meteorite();
 
 
 	EmmiterConfiguration Config(numParticulas, tiempoEmision, particulaRef);
 	Emmiter* emisor = new Emmiter(Config);
 	scene1->AddGameObject(emisor);
-
-	Cube* cube1 = new Cube();
-	cube1->SetPosition(Vector3D(3.0, 2.0, 0.0));
-	cube1->SetColor(Color(0.8f, 0.7f, 0.6f, 0.4f));
-	cube1->SetOrientationSpeed(Vector3D(1.0, 0.0, 3.0));
-	cube1->SetSpeed(Vector3D(0.01, 0.02, 0.01));
-	scene1->AddGameObject(cube1);
-
-	Sphere* sphere1 = new Sphere();
-	sphere1->SetPosition(Vector3D(0.0, 4.0, 0.0));
-	sphere1->SetColor(Color(0.4f, 0.4f, 0.9f, 0.8f));
-	sphere1->SetSpeed(Vector3D(0.01, 0.01, 0.01));
-	scene1->AddGameObject(sphere1);
-
-	Torus* torus1 = new Torus();
-	torus1->SetPosition(Vector3D(1.0, 2.0, 0.0));
-	torus1->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
-	scene2->AddGameObject(torus1);
-
-	Cylinder* cylinder1 = new Cylinder();
-	cylinder1->SetPosition(Vector3D(7.0, 1.0, 0.0));
-	cylinder1->SetOrientation(Vector3D(90.0, 0.0, 0.0));
-	cylinder1->SetColor(Color(0.6f, 0.1f, 0.7f, 1.0f));
-	scene1->AddGameObject(cylinder1);
 
 	Player* player1 = new Player(); 
 	player1->SetPosition(Vector3D(3.0, 2.0, -1.0));
@@ -70,11 +46,22 @@ void Game::Init()
 	heart2->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
 	scene2->AddGameObject(heart2);
 
+	Heart* heart3 = new Heart();
+	heart3->SetPosition(Vector3D(4.0, 5.0, 0.0));
+	heart3->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
+	scene2->AddGameObject(heart3);
+
 	Meteorite* Meteorite1 = new Meteorite();
 	Meteorite1->SetPosition(Vector3D(7.0, 2.0, 0.0));
-	Meteorite1->SetOrientationSpeed(Vector3D(1.0, 0.0, 3.0));
-	Meteorite1->SetSpeed(Vector3D(0.01, 0.02, 0.01));
+	Meteorite1->SetOrientationSpeed(Vector3D(1.0, 0.0, 0.0));
+	Meteorite1->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	scene2->AddGameObject(Meteorite1);
+
+	Meteorite* Meteorite2 = new Meteorite();
+	Meteorite2->SetPosition(Vector3D(7.0, 4.0, 0.0));
+	Meteorite2->SetOrientationSpeed(Vector3D(1.0, 0.0, 0.0));
+	Meteorite2->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	scene2->AddGameObject(Meteorite2);
 
 	//Instanciamos un loader para leer el archivo obj
 	//ModelLoader* loader = new ModelLoader();
@@ -102,30 +89,44 @@ void Game::Init()
 	*playerModel = loader->GetModel();
 	player1->SetModel3D(playerModel);
 	playerModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
-	playerModel->SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f)); // Cambia a rojo // Asegúrate de incluir el valor alfa
+	playerModel->SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f)); 
 
 	ModelLoader* loader2 = new ModelLoader();
 	loader2->SetScale(0.5f);
 	loader2->LoadModel("..\\3dModels\\heart.obj");
 	Model* heartModel = new Model();
 	Model* heartModel2 = new Model();
+	Model* heartModel3 = new Model();
 	*heartModel = loader2->GetModel();
 	*heartModel2 = loader2->GetModel();
+	*heartModel3 = loader2->GetModel();
 	heart1->SetModel3D(heartModel);
-	heart2->SetModel3D(heartModel);
+	heart2->SetModel3D(heartModel2);
+	heart3->SetModel3D(heartModel3);
 	heartModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	heartModel->SetColor(Color(1.0, 0.0, 0.0, 1.0));
+	heartModel2->SetColor(Color(1.0, 1.0, 4.0, 1.0));
+	heartModel3->SetColor(Color(1.0, 6.0, 4.0, 1.0));
 
 
 
 	ModelLoader* loader3 = new ModelLoader();
+	ModelLoader* loader4 = new ModelLoader();
 	loader3->SetScale(0.5f);
-	loader3->LoadModel("..\\3dModels\\Cop_v1.obj");
+	loader3->LoadModel("..\\3dModels\\rock_005.obj");
+	loader4->SetScale(0.5f);
+	loader4->LoadModel("..\\3dModels\\rock_001.obj");
 	Model* meteoriteModel = new Model();
 	*meteoriteModel = loader3->GetModel();
 	Meteorite1->SetModel3D(meteoriteModel);
 	meteoriteModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	meteoriteModel->SetColor(Color(1.0, 1.0, 1.0, 1.0));
+	Model* meteoriteModel2 = new Model();
+	*meteoriteModel2 = loader4->GetModel();
+	Meteorite2->SetModel3D(meteoriteModel2);
+	meteoriteModel2->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	meteoriteModel2->SetColor(Color(0.0, 0.0, 0.5, 1.0));
+
 	//Sobre el resultado:
 	// �por qu� no gira sobre s� mismo sino con un desplazamiento?
 	// �qu� pasa con el color?
@@ -162,12 +163,70 @@ void Game::Render()
 	this->activeScene->Render();
 }
 
-void Game::Update()
+void Game::Update(const float&  time)
 {
-	//cout << "[GAME] Update..." << endl;
-	this->activeScene->Update();
-}
+	milliseconds currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
 
+	if ((currentTime.count() - this->initialMilliseconds.count()) - this->lastUpdateTime > UPDATE_PERIOD)
+	{
+		this->activeScene->Update(TIME_INCREMENT);
+		this->lastUpdateTime = currentTime.count() - this->initialMilliseconds.count();
+	}
+	//cout << "[GAME] Update..." << endl;
+	this->activeScene->Update(time);
+
+	//for (auto& obj : this->activeScene->GetGameObjects()) {  // Asegúrate de usar el contenedor correcto de objetos
+	//	if (player1->CheckCollision(*obj)) {
+	//		std::cout << "¡Colisión detectada!" << std::endl;
+
+	//		// Aquí puedes agregar la lógica para manejar la colisión.
+	//		// Por ejemplo, si el jugador colide con un meteorito o un corazón, realizar una acción:
+	//		if (dynamic_cast<Meteorite*>(obj)) {
+	//			// Si el objeto es un meteorito, puedes restar vida o destruir el meteorito
+	//			std::cout << "¡El jugador chocó con un meteorito!" << std::endl;
+	//			// Puedes destruir el meteorito o restar vida al jugador
+	//			// player1->DecreaseLife();
+	//			// delete obj; // Si el meteorito debe ser destruido
+	//		}
+	//		else if (dynamic_cast<Heart*>(obj)) {
+	//			// Si el objeto es un corazón, puede restaurar vida al jugador
+	//			std::cout << "¡El jugador recogió un corazón!" << std::endl;
+	//			// player1->IncreaseLife();
+	//			// delete obj; // Si el corazón debe desaparecer al ser recogido
+	//		}
+	//	}
+	//}
+	
+
+	// Detectar colisiones entre todos los objetos
+	//CheckCollisions();
+}
+//void Game::CheckCollisions() {
+//	if (player1 == nullptr) {
+//		std::cout << "Error: player1 no está inicializado." << std::endl;
+//		return;
+//	}
+//
+//	for (auto& obj : activeScene->GetGameObjects()) {
+//		if (obj == nullptr) {
+//			continue;  // Si el objeto es nulo, saltamos a la siguiente iteración
+//		}
+//
+//		if (player1->CheckCollision(*obj)) {
+//			std::cout << "¡Colisión detectada!" << std::endl;
+//
+//			if (dynamic_cast<Meteorite*>(obj)) {
+//				std::cout << "¡El jugador chocó con un meteorito!" << std::endl;
+//				// Decremento de vida o lo que sea necesario
+//			}
+//			else if (dynamic_cast<Heart*>(obj)) {
+//				std::cout << "¡El jugador recogió un corazón!" << std::endl;
+//				// Incremento de vida o lo que sea necesario
+//			}
+
+//	//}	
+//}
+//}
 
 void Game::ProcessKeyPressed(unsigned char key, int px, int py)
 {

@@ -22,7 +22,8 @@ private:
 public:
     // Constructor
     Player()
-        : size(1.0), health(5), batteryCount(3), score(0), model3D(nullptr), Solid() {}
+        : size(1.0), health(5), batteryCount(3), score(0), model3D(nullptr), proyectil(nullptr),
+        Solid(Color(), Vector3D(0.0f, 0.0f, 0.0f), Vector3D(), Vector3D(), Vector3D(), 1.0f) { }
 
 
     // Getters y Setters
@@ -31,21 +32,25 @@ public:
 
     // Asignar modelo 3D
     void SetModel3D(Model* model);
+
+    // Asignar generador de projectiles
+    void SetProjectile();
    
     // Métodos de juego
     void Shoot();
 
     void LaunchBomb();
 
-    void TakeDamage(int damage) {
-        health--;
-    }
+    void TakeDamage(int damage);
 
     void CollectResource(const std::string& resourceType);
 
     bool isKeyPressed(char key);
 
-    void Update();
+    void Update(const float& time);
+
+
+   // bool CheckCollision(Solid& other);
 
     Solid* Clone() const override {
         return new Player(*this);  // Constructor copia para clonar

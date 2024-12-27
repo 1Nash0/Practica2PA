@@ -11,10 +11,11 @@ private:
 	Model* model3D;
 
 public:
+	/*bool CheckCollision(const Solid& other);*/
 
 	Meteorite() : model3D(nullptr), Solid()
 	{
-		this->size = 1.0;
+		this->size = 0.5;
 	}
 
 	inline float GetSize() { return this->size; }

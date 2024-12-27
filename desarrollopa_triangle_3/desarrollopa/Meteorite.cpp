@@ -27,3 +27,9 @@ void Meteorite::SetModel3D(Model* model) {
 		std::cerr << "[Meteorite::SetModel3D] Modelo nulo pasado como argumento." << std::endl;
 	}
 }
+//
+//bool CheckCollision(const Solid& other) {
+//	// Lógica específica para la colisión con meteoritos
+//	// Devuelve true si hay colisión con otro objeto
+//	return false; // Ejemplo
+//}

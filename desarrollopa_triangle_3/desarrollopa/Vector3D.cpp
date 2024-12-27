@@ -1,18 +1,20 @@
 #include "Vector3D.h"
+#include <cmath>
 
-Vector3D Vector3D::Add(Vector3D& other)
+// Método para sumar dos vectores
+Vector3D Vector3D::Add(const Vector3D& other)
 {
-	
-		return Vector3D(this->x + other.x, this->y + other.y, this->z + other.z);
-	
+	return Vector3D(this->x + other.x, this->y + other.y, this->z + other.z);
 }
 
-Vector3D Vector3D::operator+(Vector3D& other)
+// Sobrecarga del operador + utilizando el método Add
+Vector3D Vector3D::operator+(const Vector3D& other)
 {
 	return this->Add(other);
 }
 
-Vector3D Vector3D::Product(float a)
+// Método para multiplicar un vector por un escalar
+Vector3D Vector3D::Product(const float a)
 {
 	return Vector3D(
 		this->GetX() * a,
@@ -20,19 +22,23 @@ Vector3D Vector3D::Product(float a)
 		this->GetZ() * a);
 }
 
-Vector3D Vector3D::operator*(float a)
+// Sobrecarga del operador * utilizando el método Product
+Vector3D Vector3D::operator*(const float a)
 {
 	return this->Product(a);
 }
 
-Vector3D Vector3D::operator-(Vector3D& other)
+// Sobrecarga del operador - para restar vectores
+Vector3D Vector3D::operator-(const Vector3D& other)
 {
 	return Vector3D(
 		this->GetX() - other.GetX(),
 		this->GetY() - other.GetY(),
 		this->GetZ() - other.GetZ());
+}
 
-	
-
-
+// Método para calcular la longitud del vector
+float Vector3D::Length() const
+{
+	return std::sqrt(x * x + y * y + z * z);
 }

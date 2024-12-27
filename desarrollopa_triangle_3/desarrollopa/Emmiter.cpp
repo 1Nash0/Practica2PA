@@ -1,4 +1,6 @@
 #include "Emmiter.h"
+#include "Solid.h"
+#include "Scene.h"
 #include <ctime>
 #include <cstdlib>
 #include <cmath>
@@ -21,7 +23,7 @@ void Emmiter::Render() {
 
 // Implementación del método Update() que controla la frecuencia de emisión y crea nuevas partículas
 
-void Emmiter::Update() {
+void Emmiter::Update(const float& time) {
 
     milliseconds currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
 
@@ -73,7 +75,7 @@ void Emmiter::Update() {
         p->SetVelocity(velocity);  // Actualizar la velocidad
 
         // Actualizar la partícula (como lo harías normalmente en el método Update)
-        p->Update();
+        p->Update(time);
     }
 }
 

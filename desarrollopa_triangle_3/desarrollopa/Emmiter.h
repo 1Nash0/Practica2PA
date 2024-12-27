@@ -25,7 +25,7 @@ public:
 
     // Métodos
     void Render();  // Renderiza todas las partículas
-    void Update();  // Controla la frecuencia de emisión y crea nuevas partículas
+    void Update(const float& time);  // Controla la frecuencia de emisión y crea nuevas partículas
 };
 
 

@@ -1,7 +1,6 @@
 #pragma once
 #include "Cube.h"
 #include "Sphere.h"
-#include "Display.h"
 #include "Torus.h"
 #include "Cylinder.h"
 #include "Scene.h"
@@ -13,25 +12,32 @@
 #include "Text.h"
 #include "Emmiter.h"
 #include "Meteorite.h"
+#include <chrono>
 
-using namespace std;
+using namespace std::chrono;
 
 class Game
 {
 private:
-	Player* player1; 
-	vector<Scene*> scenes;
+	const double TIME_INCREMENT = 1.0; //ms tiempo en el juego
+	const long UPDATE_PERIOD = 10;  //ms timepo real en la partida
+
+	milliseconds initialMilliseconds;
+	long lastUpdateTime;
+
+	Player* player1;
+	Meteorite* meteorite1;
+	Heart* heart1;
 	Scene* activeScene;
-	// en class game private
-	//Model* player1;
+	vector<Scene*> scenes;
 
 public:
 
-	Game():activeScene(nullptr), player1(nullptr) {}
-
+	Game():activeScene(nullptr), player1(nullptr), initialMilliseconds(duration_cast<milliseconds>(system_clock::now().time_since_epoch())), lastUpdateTime(0) {}
+	//void CheckCollisions();
 	void Init();
 	void Render();
-	void Update();
+	void Update(const float& time);
 	void ProcessKeyPressed(unsigned char key, int px, int py);
 	void ProcessMouseMovement(int x, int y);
 	void ProcessMouseClicked(int button, int state, int x, int y);

@@ -135,7 +135,6 @@
     <ClCompile Include="Cuboid.cpp" />
     <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="desarrollopa.cpp" />
-    <ClCompile Include="Display.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Emmiter.cpp" />
     <ClCompile Include="EmmiterConfiguration.cpp" />
@@ -164,7 +163,6 @@
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Cuboid.h" />
     <ClInclude Include="Cylinder.h" />
-    <ClInclude Include="Display.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="Emmiter.h" />
     <ClInclude Include="EmmiterConfiguration.h" />

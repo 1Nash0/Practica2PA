@@ -2,6 +2,7 @@
 #include <string>
 #include <GL/glut.h>
 #include "Game.h"
+#include "Game.h"
 
 using namespace std;
 
@@ -64,12 +65,22 @@ void reshape(GLsizei width, GLsizei height)
     glMatrixMode(GL_MODELVIEW);
 }
 
-void idle()
-{
-    game.Update();
-    glutPostRedisplay();
-}
 
+    #include <ctime> // Asegúrate de incluir esta cabecera
+
+    // ...
+
+    void idle()
+    {
+        static time_t lastTime = time(nullptr); // Guardar el tiempo de la última actualización
+        time_t currentTime = time(nullptr); // Obtener el tiempo actual
+        float deltaTime = static_cast<float>(currentTime - lastTime); // Calcular el tiempo transcurrido
+        lastTime = currentTime; // Actualizar el tiempo de la última actualización
+
+        game.Update(deltaTime); // Pasar el tiempo transcurrido a la función Update
+        glutPostRedisplay();
+    }
+   
 void keyPressed(unsigned char key, int px, int py)
 {
     game.ProcessKeyPressed(key,px,py);

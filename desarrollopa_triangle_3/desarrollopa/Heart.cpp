@@ -1,10 +1,7 @@
 #include "Heart.h"
 #include <iostream>
-
-
-
-#include "Heart.h"
-#include <iostream>
+#include "Solid.h"
+#include "Color.h"
 
 
 
@@ -34,6 +31,11 @@ Solid* Heart::Clone() const {
     return new Heart(*this);
 }
 
+//bool CheckCollision(const Solid& other)  {
+//    // Lógica específica para la colisión con corazones
+//    return false; // Ejemplo
+//}
+
 //bool Heart::getIsVisible() const {
 //    return isVisible;
 //}
@@ -62,14 +64,6 @@ void Heart::Render()
     glRotatef(this->GetOrientation().GetY(), 0.0, 1.0, 0.0);
     glRotatef(this->GetOrientation().GetZ(), 0.0, 0.0, 1.0);
 
-    if (model3D) {
-        model3D->Render();
-    }
-    else {
-        // Si no hay modelo, dibuja una representación básica o lanza un error
-        std::cout << "[Player] No model set for rendering!" << std::endl;
-    }
-    glPopMatrix();
 
     if (isVisible) {
         if (model3D) {
@@ -80,6 +74,7 @@ void Heart::Render()
             glutSolidSphere(size, 50, 50); // Esfera como placeholder
         }
     }
+    glPopMatrix();
 
 
 }

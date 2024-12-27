@@ -38,6 +38,8 @@ public:
 
     void HandleCollision();
 
+   /* bool CheckCollision(const Solid& other);*/
+
     void SetModel3D(Model* model);
 
     void Render() override;
