@@ -12,8 +12,8 @@ private:
 
 public:
 	void SetBullet(int posx, int posy, int posz) {
-		int numParticulas = 1000;
-		int tiempoEmision = 10;
+		int numParticulas = 10;
+		int tiempoEmision = 1000;
 		Solid* particulaRef = new Cylinder();
 
 		EmmiterConfiguration Config(numParticulas, tiempoEmision, particulaRef);
@@ -22,8 +22,8 @@ public:
 	}
 
 	void SetBomb(int posx, int posy, int posz) {
-		int numParticulas = 1000;
-		int tiempoEmision = 10;
+		int numParticulas = 10;
+		int tiempoEmision = 1000;
 		Solid* particulaRef = new Sphere();
 
 		EmmiterConfiguration Config(numParticulas, tiempoEmision, particulaRef);

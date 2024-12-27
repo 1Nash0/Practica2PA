@@ -17,6 +17,7 @@ private:
     int batteryCount;           // Baterías disponibles
     int score;                  // Puntos acumulados
     Model* model3D;             // Modelo 3D del jugador
+    Projectile* proyectil;      // Generador de projectiles
 
 public:
     // Constructor
@@ -36,7 +37,9 @@ public:
 
     void LaunchBomb();
 
-    void TakeDamage(int damage);
+    void TakeDamage(int damage) {
+        health--;
+    }
 
     void CollectResource(const std::string& resourceType);
 
