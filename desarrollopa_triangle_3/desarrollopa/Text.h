@@ -27,6 +27,7 @@ public:
     const string& GetText() const {
         return text;
     }
+
    
     Solid* Clone() const override {
         return new Text(*this);  // Constructor copia para clonar

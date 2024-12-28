@@ -1,42 +1,38 @@
-//#include "Menu.h"
-//#include <time.h>
-//
-//
-//void Menu::Init() {
-//	camara2->SetPosition(Vector3D(0, 0, 0));
-//	AddGameObject(camara2);
-//	//TEXTO
-//	Text* text = new Text();
-//	text->SetPosition(Vector3D(this->camara2->GetCoordinates().GetCoordinateX() -
-//		0.08, this->camara2->GetCoordinates().GetCoordinateY(),
-//		this->camara2->GetCoordinates().GetCoordinateZ() - 1));
-//	text->setTexto("INICIO");
-//	text->SetColors(Color(0.8, 0.2, 0.6));
-//	textos.push_back(text);
-//	AddGameObject(text);
-//	Text* textoNextScene = new Text();
-//	textoNextScene->SetPosition(Vector3D(this->camara2->SetPosition().SetPositionX() - 0.3, this->camara2->SetPosition().SetPositionY() - 0.2,
-//		this->camara2->SetPosition().SetPositionZ() - 1));
-//	textoNextScene->setTexto("Presiona 'P' para iniciar el juego");
-//	textoNextScene->SetColors(Color(0.8, 0.2, 0.6));
-//	textos.push_back(textoNextScene);
-//	AddGameObject(textoNextScene);
-//}
-//void Menu::SetCameraPosition(Vector3D position)
-//{
-//	this->camara2->SetCoordinates(position);
-//}
-//void Menu::ProcessKeyPressed(unsigned char key, int px, int py)
-//{
-//}
-//void Menu::Update()
-//{
-//	float rSecret, gSecret, bSecret;
-//	srand(time(NULL));
-//	rSecret = (rand() % 10 + 1) * 0.10;
-//	gSecret = (rand() % 10 + 1) * 0.10;
-//	bSecret = (rand() % 10 + 1) * 0.10;
-//	rSecret = (rand() % 10 + 1) * 0.10;
-//	gSecret = (rand() % 10 + 1) * 0.10;
-//	bSecret = (rand() % 10 + 1) * 0.10;
-//}
+#include "Menu.h"
+#include "Text.h"
+#include <ctime> // Para srand y rand
+
+void Menu::Init() {
+    // Configura la cámara
+    if (!camara) {
+        camara = new Camera(); // Suponemos que Camera tiene un constructor por defecto
+        camara->SetPosition(Vector3D(0, 0, 5)); // Establece una posición inicial
+        AddGameObject(camara); // Registra la cámara como un GameObject
+    }
+
+    // Texto del título del menú
+    Text* titleText = new Text();
+    titleText->SetPosition(Vector3D(7, 7, -1)); // Posición relativa
+    titleText->SetText("INICIO");
+    titleText->SetColor(Color(1.0f, 0.0f, 5.0f, 1.0f));
+    textos.push_back(titleText);
+    AddGameObject(titleText);
+
+    // Texto de instrucciones
+    Text* instructionText = new Text();
+    instructionText->SetPosition(Vector3D(3, -0.2, -1)); // Posición relativa
+    instructionText->SetText("Presiona 'P' para iniciar el juego");
+    instructionText->SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f));
+    textos.push_back(instructionText);
+    AddGameObject(instructionText);
+}
+
+void Menu::SetCameraPosition(Vector3D position) {
+    if (camara) {
+        camara->SetPosition(position);
+    }
+}
+
+
+
+

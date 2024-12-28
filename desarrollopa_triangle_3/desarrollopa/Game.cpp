@@ -11,6 +11,11 @@
 void Game::Init()
 {
 
+	menuScene = new Menu();
+	menuScene->Init();
+
+	activeScene = menuScene;
+
 	cout << "[GAME] Init..." << endl;
 	Scene* scene1 = new Scene();
 	Scene* scene2 = new Scene();
@@ -18,7 +23,7 @@ void Game::Init()
 	// Configuramos el emisor
 	int numParticulas = 1000;
 	int tiempoEmision = 10;
-	Solid* particulaRef = new Meteorite();
+	Solid* particulaRef = new Cube();
 
 
 	EmmiterConfiguration Config(numParticulas, tiempoEmision, particulaRef);
@@ -148,7 +153,7 @@ void Game::Init()
 
 	this->scenes.push_back(scene1);
 	this->scenes.push_back(scene2);
-	this->activeScene = scene2;
+	this->activeScene = menuScene;
 }
 
 
@@ -175,7 +180,10 @@ void Game::Init()
 
 void Game::Render()
 {
-	this->activeScene->Render();
+	//this->activeScene->Render();
+	if (activeScene) {
+		activeScene->Render();  // Renderiza la escena activa (ya sea el menú o la escena 2)
+	}
 }
 
 void Game::Update(const float&  time)
@@ -188,8 +196,10 @@ void Game::Update(const float&  time)
 		this->lastUpdateTime = currentTime.count() - this->initialMilliseconds.count();
 	}
 	//cout << "[GAME] Update..." << endl;
-	this->activeScene->Update(time);
-
+	//this->activeScene->Update(time);
+	if (activeScene) {
+		activeScene->Update(time);
+	}
 	//for (auto& obj : this->activeScene->GetGameObjects()) {  // Asegúrate de usar el contenedor correcto de objetos
 	//	if (player1->CheckCollision(*obj)) {
 	//		std::cout << "¡Colisión detectada!" << std::endl;
@@ -251,6 +261,17 @@ void Game::ProcessKeyPressed(unsigned char key, int px, int py)
 	if (index < this->scenes.size())
 	{
 		this->activeScene = this->scenes[index];
+	}
+	cout << "tecla pulsada: " << key << endl;
+
+	if (activeScene) {
+		activeScene->ProcessKeyPressed(key, px, py);
+
+		// Cambiar de la escena del menú a la escena 2 al presionar 'P'
+		if (activeScene == menuScene && (key == 'P' || key == 'p')) {
+			std::cout << "Iniciando el juego jeje..." << std::endl;
+			activeScene = scenes[1];  // Cambia a la escena 2
+		}
 	}
 	
 }

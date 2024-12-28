@@ -11,6 +11,7 @@ class Scene
 private:
 	vector<Solid*> gameObjects;
 	Camera camera;
+	
 	Vector3D boundary;
 	Vector3D gravity;
 	bool drawBoundary;

@@ -3,9 +3,11 @@
 class Camera : public Solid
 {
 private:
-
+	Vector3D position;
 public:
-	Camera() {}
+	Camera() : position(0, 0, 0) {} // Constructor por defecto
+	void SetPosition(const Vector3D& newPosition) { position = newPosition; }
+	Vector3D GetPosition() const { return position; }
 
 	Camera* Clone() const override {
 		return new Camera(*this);

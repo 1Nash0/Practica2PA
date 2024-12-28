@@ -13,6 +13,7 @@
 #include "Emmiter.h"
 #include "Meteorite.h"
 #include "Satellite.h"
+#include "Menu.h"
 #include <chrono>
 
 using namespace std::chrono;
@@ -30,11 +31,12 @@ private:
 	Meteorite* meteorite1;
 	Heart* heart1;
 	Scene* activeScene;
+	Menu* menuScene;
 	vector<Scene*> scenes;
 
 public:
 
-	Game():activeScene(nullptr), player1(nullptr), initialMilliseconds(duration_cast<milliseconds>(system_clock::now().time_since_epoch())), lastUpdateTime(0) {}
+	Game():activeScene(nullptr), player1(nullptr), menuScene(nullptr), initialMilliseconds(duration_cast<milliseconds>(system_clock::now().time_since_epoch())), lastUpdateTime(0) {}
 	//void CheckCollisions();
 	void Init();
 	void Render();
