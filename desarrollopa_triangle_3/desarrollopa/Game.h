@@ -30,19 +30,19 @@ private:
 	vector<Solid*> gameObjects;
 
 	Player* player1;
-	/*Meteorite* meteorite1;
-	Heart* heart1;*/
+	Meteorite* meteorite1;
+	Heart* heart1;
 	Scene* activeScene;
 	Menu* menuScene;
 	vector<Scene*> scenes;
 
 public:
 
-	Game():activeScene(nullptr), player1(nullptr), menuScene(nullptr), initialMilliseconds(duration_cast<milliseconds>(system_clock::now().time_since_epoch())), lastUpdateTime(0) {}
-	//void CheckCollisions();
+	Game():activeScene(nullptr), player1(nullptr), heart1(nullptr), menuScene(nullptr), initialMilliseconds(duration_cast<milliseconds>(system_clock::now().time_since_epoch())), lastUpdateTime(0) {}
+	
 	void Init();
 	void Render();
-	//void OnCollision(Solid* a, Solid* b);
+	void OnCollision(Solid* a, Solid* b);
 	void AddGameObject(Solid* object);
 	void Update(const float& time);
 	void ProcessKeyPressed(unsigned char key, int px, int py);

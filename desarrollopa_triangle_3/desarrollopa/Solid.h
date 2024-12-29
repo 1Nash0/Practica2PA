@@ -57,10 +57,10 @@ public:
     inline void SetCollisionRadius(float collisionRadiusToSet) { collisionRadius = collisionRadiusToSet; }
 
     // Métodos para detección de colisiones
-    bool CheckCollision(const Solid* other) const;
+    virtual bool CheckCollision(const Solid* other) const;
 
 
-    bool CheckBoundingBoxCollision(const Solid* other) const;
+   // bool CheckBoundingBoxCollision(const Solid* other) const;
     // Métodos virtuales para sobrecargar
     virtual void Render() = 0;
     virtual void Update(const float& deltaTime);

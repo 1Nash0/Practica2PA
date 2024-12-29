@@ -19,11 +19,12 @@ private:
 	void renderBoundary();
 
 protected:
+
 	void checkBoundary(Solid*);
 
 public:
 
-	std::vector<Solid*>& GetGameObjects() {
+	vector<Solid*>& GetGameObjects() {
 		return gameObjects;
 	}
 

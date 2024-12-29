@@ -54,21 +54,11 @@ void Heart::Render()
 
 
 }
-bool Heart::CheckCollision(const Solid& other) {
-    // Verifica que el objeto no sea nulo
-    if (&other == nullptr) return false; 
-
-    // Calcula la distancia entre el centro del corazón y el otro objeto
-    Vector3D otherPosition = other.GetPosition();
-    float dx = this->GetPosition().GetX() - otherPosition.GetX();
-    float dy = this->GetPosition().GetY() - otherPosition.GetY();
-    float dz = this->GetPosition().GetZ() - otherPosition.GetZ();
-
-    float distanceSquared = dx * dx + dy * dy + dz * dz;
-
-    // Compara con el radio de colisión combinado
-    float combinedRadius = this->GetCollisionRadius() + other.GetCollisionRadius();
-    return distanceSquared <= (combinedRadius * combinedRadius);
+bool Heart::CheckCollision(Solid* other) {
+    if (other == nullptr) { // Validar puntero nulo
+        return false;
+    }
+    return Solid::CheckCollision(other); // Usar el método base
 }
 
 int Heart::getVidas() const {

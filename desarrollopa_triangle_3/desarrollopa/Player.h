@@ -12,29 +12,25 @@ using namespace std;
 class Player : public Solid {
 private:
     float size;                 // Tamaño del jugador
-    Vector3D position;
     int health;                 // Vida restante
     int batteryCount;           // Baterías disponibles
     int score;                  // Puntos acumulados
     Model* model3D;             // Modelo 3D del jugador
     Projectile* proyectil;      // Generador de projectiles
-    float collisionRadius;
+
 
 public:
     // Constructor
-    Player(Vector3D positionArgument = Vector3D(), float collisionRadiusArgument = 1.0f)
-        : position(positionArgument), size(1.0), health(5), batteryCount(3), score(0),
-        model3D(nullptr), proyectil(nullptr), collisionRadius(collisionRadiusArgument) { }
+    Player()
+        :  size(1.0), health(5), batteryCount(3), score(0),
+        model3D(nullptr), proyectil(nullptr) { }
 
-    inline Vector3D GetPosition() const { return position; }
-    inline void SetPosition(const Vector3D& coordsToSet) { position = coordsToSet; }
 
     // Getters y Setters
     inline float GetSize() const { return this->size; }
     void SetSize(float sizeToSet) { this->size = sizeToSet; }
 
-    inline float GetCollisionRadius() const { return collisionRadius; }
-    inline void SetCollisionRadius(float collisionRadiusToSet) { collisionRadius = collisionRadiusToSet; }
+  
 
     // Asignar modelo 3D
     void SetModel3D(Model* model);

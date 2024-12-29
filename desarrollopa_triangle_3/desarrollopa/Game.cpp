@@ -11,6 +11,7 @@
 void Game::Init()
 {
 
+	Game game;
 	menuScene = new Menu();
 	menuScene->Init();
 
@@ -19,6 +20,7 @@ void Game::Init()
 	cout << "[GAME] Init..." << endl;
 	Scene* scene1 = new Scene();
 	Scene* scene2 = new Scene();
+
 
 	// Configuramos el emisor
 	int numParticulas = 1000;
@@ -31,10 +33,11 @@ void Game::Init()
 	scene1->AddGameObject(emisor);
 
 	Player* player1 = new Player(); 
-	player1->SetCollisionRadius(5.0f);
+	player1->SetCollisionRadius(0.8f);
 	player1->SetPosition(Vector3D(3.0, 2.0, 0.0));
 	player1->SetOrientationSpeed(Vector3D(0.0, 0.0, 0.1));
 	scene2->AddGameObject(player1);
+	
 
 	Text* text1 = new Text();
 	text1->SetText("Nas > 2024");
@@ -43,18 +46,20 @@ void Game::Init()
 	scene2->AddGameObject(text1);
 
 	Heart* heart1 = new Heart();
-	heart1->SetCollisionRadius(5.5f);
+	heart1->SetCollisionRadius(0.4f);
 	heart1->SetPosition(Vector3D(2.0, 5.0, 0.0));
 	heart1->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
 	scene2->AddGameObject(heart1);
 
 	Heart* heart2 = new Heart();
-	heart2->SetPosition(Vector3D(3.0, 5.0, 0.0));
+	heart2->SetPosition(Vector3D(9.0, 5.0, 0.0));
+	heart2->SetCollisionRadius(0.4f);
 	heart2->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
 	scene2->AddGameObject(heart2);
 
 	Heart* heart3 = new Heart();
 	heart3->SetPosition(Vector3D(4.0, 5.0, 0.0));
+	heart3->SetCollisionRadius(0.4f);
 	heart3->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
 	scene2->AddGameObject(heart3);
 
@@ -118,8 +123,8 @@ void Game::Init()
 	heart3->SetModel3D(heartModel3);
 	heartModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	heartModel->SetColor(Color(1.0, 0.0, 0.0, 1.0));
-	heartModel2->SetColor(Color(1.0, 1.0, 4.0, 1.0));
-	heartModel3->SetColor(Color(1.0, 6.0, 4.0, 1.0));
+	heartModel2->SetColor(Color(1.0, 1.0, 1.0, 1.0));
+	heartModel3->SetColor(Color(1.0, 0.0, 0.8, 1.0));
 
 
 	ModelLoader* loader3 = new ModelLoader();
@@ -147,8 +152,13 @@ void Game::Init()
 	*satelliteModel = loader5->GetModel();
 	Satellite1->SetModel3D(satelliteModel);
 	satelliteModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
-	satelliteModel->SetColor(Color(1.0f, 5.0f, 0.0f, 1.0f));
+	satelliteModel->SetColor(Color(1.0f, 1.0f, 0.0f, 1.0f));
 
+
+	AddGameObject(player1);
+	AddGameObject(heart1);
+	AddGameObject(heart2);
+	AddGameObject(heart3);
 	//Sobre el resultado:
 	// �por qu� no gira sobre s� mismo sino con un desplazamiento?
 	// �qu� pasa con el color?
@@ -156,72 +166,56 @@ void Game::Init()
 	this->scenes.push_back(scene1);
 	this->scenes.push_back(scene2);
 	this->activeScene = menuScene;
+
+
 }
 
 
-//
-//bool CheckCollision(float playerX, float playerY, float playerZ, float heartX, float heartY, float heartZ, float radius) {
-//	float distanceSquared = (playerX - heartX) * (playerX - heartX) +
-//		(playerY - heartY) * (playerY - heartY) +
-//		(playerZ - heartZ) * (playerZ - heartZ);
-//	return distanceSquared <= radius * radius;
-//}
-
-//void UpdateGame(Player& player, std::vector<Heart>& hearts) {
-//	for (Heart& heart : hearts) {
-//		if (CheckCollision(player.getX(), player.getY(), player.getZ(),
-//			heart.getX(), heart.getY(), heart.getZ(), 1.0f)) {
-//			heart.HandleCollision();
-//		}
-//	}
-//}
-//
-//
-//
-//}
 
 void Game::Render()
 {
-	//this->activeScene->Render();
 	if (activeScene) {
 		activeScene->Render();  // Renderiza la escena activa (ya sea el menú o la escena 2)
 	}
+
 }
 
-void Game::Update(const float&  time)
-{
+void Game::Update(const float& time) {
 	milliseconds currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
 
-	if ((currentTime.count() - this->initialMilliseconds.count()) - this->lastUpdateTime > UPDATE_PERIOD)
-	{
-		this->activeScene->Update(TIME_INCREMENT);
+	if ((currentTime.count() - this->initialMilliseconds.count()) - this->lastUpdateTime > UPDATE_PERIOD) {
+		if (activeScene) {
+			activeScene->Update(TIME_INCREMENT);
+		}
 		this->lastUpdateTime = currentTime.count() - this->initialMilliseconds.count();
 	}
 
+	// Actualizar todos los objetos
 	for (auto* object : gameObjects) {
 		object->Update(time);
 	}
-	//cout << "[GAME] Update..." << endl;
-	//this->activeScene->Update(time);
-	if (activeScene) {
-		activeScene->Update(time);
-	}
-	for (size_t i = 0; i < gameObjects.size(); ++i) {
+	
+	// Comprobar colisiones entre objetos
+	for (size_t i = 0; i <= 0; ++i) {
 		for (size_t j = i + 1; j < gameObjects.size(); ++j) {
 			if (gameObjects[i]->CheckCollision(gameObjects[j])) {
 				std::cout << "Colisión detectada entre objetos " << i << " y " << j << std::endl;
+				OnCollision(gameObjects[i], gameObjects[j]);
 			}
 		}
 	}
-	
-	//void Game::OnCollision(Solid * a, Solid * b) {
-	//	if (a && b) {
-	//		// Procesar la colisión aquí, por ejemplo:
-	//		a->HandleCollision(b);
-	//		b->HandleCollision(a);
-	//		std::cout << "Colisión procesada entre " << a << " y " << b << std::endl;
-	//	}
+
+}
+
+	void Game::OnCollision(Solid * a, Solid * b) {
+		if (a && b) {
+			// Procesar la colisión aquí, por ejemplo:
+			/*a->HandleCollision(b);
+			b->HandleCollision(a);*/
+			std::cout << "Colisión procesada entre " << a << " y " << b << std::endl;
+		}
 	}
+
 
 	void Game::AddGameObject(Solid * object) {
 		gameObjects.push_back(object);
