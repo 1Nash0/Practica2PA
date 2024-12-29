@@ -31,7 +31,8 @@ void Game::Init()
 	scene1->AddGameObject(emisor);
 
 	Player* player1 = new Player(); 
-	player1->SetPosition(Vector3D(3.0, 2.0, -1.0));
+	player1->SetCollisionRadius(5.0f);
+	player1->SetPosition(Vector3D(3.0, 2.0, 0.0));
 	player1->SetOrientationSpeed(Vector3D(0.0, 0.0, 0.1));
 	scene2->AddGameObject(player1);
 
@@ -42,6 +43,7 @@ void Game::Init()
 	scene2->AddGameObject(text1);
 
 	Heart* heart1 = new Heart();
+	heart1->SetCollisionRadius(5.5f);
 	heart1->SetPosition(Vector3D(2.0, 5.0, 0.0));
 	heart1->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
 	scene2->AddGameObject(heart1);
@@ -195,63 +197,35 @@ void Game::Update(const float&  time)
 		this->activeScene->Update(TIME_INCREMENT);
 		this->lastUpdateTime = currentTime.count() - this->initialMilliseconds.count();
 	}
+
+	for (auto* object : gameObjects) {
+		object->Update(time);
+	}
 	//cout << "[GAME] Update..." << endl;
 	//this->activeScene->Update(time);
 	if (activeScene) {
 		activeScene->Update(time);
 	}
-	//for (auto& obj : this->activeScene->GetGameObjects()) {  // Asegúrate de usar el contenedor correcto de objetos
-	//	if (player1->CheckCollision(*obj)) {
-	//		std::cout << "¡Colisión detectada!" << std::endl;
-
-	//		// Aquí puedes agregar la lógica para manejar la colisión.
-	//		// Por ejemplo, si el jugador colide con un meteorito o un corazón, realizar una acción:
-	//		if (dynamic_cast<Meteorite*>(obj)) {
-	//			// Si el objeto es un meteorito, puedes restar vida o destruir el meteorito
-	//			std::cout << "¡El jugador chocó con un meteorito!" << std::endl;
-	//			// Puedes destruir el meteorito o restar vida al jugador
-	//			// player1->DecreaseLife();
-	//			// delete obj; // Si el meteorito debe ser destruido
-	//		}
-	//		else if (dynamic_cast<Heart*>(obj)) {
-	//			// Si el objeto es un corazón, puede restaurar vida al jugador
-	//			std::cout << "¡El jugador recogió un corazón!" << std::endl;
-	//			// player1->IncreaseLife();
-	//			// delete obj; // Si el corazón debe desaparecer al ser recogido
-	//		}
-	//	}
-	//}
+	for (size_t i = 0; i < gameObjects.size(); ++i) {
+		for (size_t j = i + 1; j < gameObjects.size(); ++j) {
+			if (gameObjects[i]->CheckCollision(gameObjects[j])) {
+				std::cout << "Colisión detectada entre objetos " << i << " y " << j << std::endl;
+			}
+		}
+	}
 	
+	//void Game::OnCollision(Solid * a, Solid * b) {
+	//	if (a && b) {
+	//		// Procesar la colisión aquí, por ejemplo:
+	//		a->HandleCollision(b);
+	//		b->HandleCollision(a);
+	//		std::cout << "Colisión procesada entre " << a << " y " << b << std::endl;
+	//	}
+	}
 
-	// Detectar colisiones entre todos los objetos
-	//CheckCollisions();
-}
-//void Game::CheckCollisions() {
-//	if (player1 == nullptr) {
-//		std::cout << "Error: player1 no está inicializado." << std::endl;
-//		return;
-//	}
-//
-//	for (auto& obj : activeScene->GetGameObjects()) {
-//		if (obj == nullptr) {
-//			continue;  // Si el objeto es nulo, saltamos a la siguiente iteración
-//		}
-//
-//		if (player1->CheckCollision(*obj)) {
-//			std::cout << "¡Colisión detectada!" << std::endl;
-//
-//			if (dynamic_cast<Meteorite*>(obj)) {
-//				std::cout << "¡El jugador chocó con un meteorito!" << std::endl;
-//				// Decremento de vida o lo que sea necesario
-//			}
-//			else if (dynamic_cast<Heart*>(obj)) {
-//				std::cout << "¡El jugador recogió un corazón!" << std::endl;
-//				// Incremento de vida o lo que sea necesario
-//			}
-
-//	//}	
-//}
-//}
+	void Game::AddGameObject(Solid * object) {
+		gameObjects.push_back(object);
+	}
 
 void Game::ProcessKeyPressed(unsigned char key, int px, int py)
 {

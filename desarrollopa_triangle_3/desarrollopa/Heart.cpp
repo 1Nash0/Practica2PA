@@ -6,30 +6,6 @@
 
 
 
-int Heart::getVidas() const {
-    return vidas;
-}
-
-void Heart::sumarVidas(int cantidad) {
-    vidas += cantidad;
-}
-
-void Heart::mostrarVidas() const {
-    std::cout << "Vidas: " << vidas << std::endl;
-}
-
-void Heart::SetModel3D(Model* model) {
-    if (model) {
-        model3D = model;
-    }
-    else {
-        std::cerr << "[Heart::SetModel3D] Modelo nulo pasado como argumento." << std::endl;
-    }
-}
-
-Solid* Heart::Clone() const {
-    return new Heart(*this);
-}
 
 //bool CheckCollision(const Solid& other)  {
 //    // Lógica específica para la colisión con corazones
@@ -44,12 +20,12 @@ Solid* Heart::Clone() const {
 //    isVisible = visible;
 //}
 
-void Heart::HandleCollision() {
-    if (isVisible) {
-        isVisible = false;
-        std::cout << "El jugador ha recogido el corazón. Ahora es invisible." << std::endl;
-    }
-}
+//void Heart::HandleCollision() {
+//    if (isVisible) {
+//        isVisible = false;
+//        std::cout << "El jugador ha recogido el corazón. Ahora es invisible." << std::endl;
+//    }
+//}
 
 void Heart::Render()
 {
@@ -77,6 +53,47 @@ void Heart::Render()
     glPopMatrix();
 
 
+}
+bool Heart::CheckCollision(const Solid& other) {
+    // Verifica que el objeto no sea nulo
+    if (&other == nullptr) return false; 
+
+    // Calcula la distancia entre el centro del corazón y el otro objeto
+    Vector3D otherPosition = other.GetPosition();
+    float dx = this->GetPosition().GetX() - otherPosition.GetX();
+    float dy = this->GetPosition().GetY() - otherPosition.GetY();
+    float dz = this->GetPosition().GetZ() - otherPosition.GetZ();
+
+    float distanceSquared = dx * dx + dy * dy + dz * dz;
+
+    // Compara con el radio de colisión combinado
+    float combinedRadius = this->GetCollisionRadius() + other.GetCollisionRadius();
+    return distanceSquared <= (combinedRadius * combinedRadius);
+}
+
+int Heart::getVidas() const {
+    return vidas;
+}
+
+void Heart::sumarVidas(int cantidad) {
+    vidas += cantidad;
+}
+
+void Heart::mostrarVidas() const {
+    std::cout << "Vidas: " << vidas << std::endl;
+}
+
+void Heart::SetModel3D(Model* model) {
+    if (model) {
+        model3D = model;
+    }
+    else {
+        std::cerr << "[Heart::SetModel3D] Modelo nulo pasado como argumento." << std::endl;
+    }
+}
+
+Solid* Heart::Clone() const {
+    return new Heart(*this);
 }
 
 

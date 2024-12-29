@@ -27,9 +27,11 @@ private:
 	milliseconds initialMilliseconds;
 	long lastUpdateTime;
 
+	vector<Solid*> gameObjects;
+
 	Player* player1;
-	Meteorite* meteorite1;
-	Heart* heart1;
+	/*Meteorite* meteorite1;
+	Heart* heart1;*/
 	Scene* activeScene;
 	Menu* menuScene;
 	vector<Scene*> scenes;
@@ -40,6 +42,8 @@ public:
 	//void CheckCollisions();
 	void Init();
 	void Render();
+	//void OnCollision(Solid* a, Solid* b);
+	void AddGameObject(Solid* object);
 	void Update(const float& time);
 	void ProcessKeyPressed(unsigned char key, int px, int py);
 	void ProcessMouseMovement(int x, int y);

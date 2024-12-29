@@ -19,7 +19,7 @@ public:
 	void AddTriangle(Triangle triangle);
 	void Clear();
 
-	void SetColor(Color colorToSet) override;
+	void SetColor(Color colorToSet);
 
 	Solid* Clone() const override {
 		return new Model(*this);  // Constructor copia para clonar

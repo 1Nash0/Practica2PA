@@ -11,49 +11,54 @@ using namespace std;
 
 class Player : public Solid {
 private:
-
     float size;                 // Tamaño del jugador
+    Vector3D position;
     int health;                 // Vida restante
     int batteryCount;           // Baterías disponibles
     int score;                  // Puntos acumulados
     Model* model3D;             // Modelo 3D del jugador
     Projectile* proyectil;      // Generador de projectiles
+    float collisionRadius;
 
 public:
     // Constructor
-    Player()
-        : size(1.0), health(5), batteryCount(3), score(0), model3D(nullptr), proyectil(nullptr),
-        Solid(Color(), Vector3D(0.0f, 0.0f, 0.0f), Vector3D(), Vector3D(), Vector3D(), 1.0f) { }
+    Player(Vector3D positionArgument = Vector3D(), float collisionRadiusArgument = 1.0f)
+        : position(positionArgument), size(1.0), health(5), batteryCount(3), score(0),
+        model3D(nullptr), proyectil(nullptr), collisionRadius(collisionRadiusArgument) { }
 
+    inline Vector3D GetPosition() const { return position; }
+    inline void SetPosition(const Vector3D& coordsToSet) { position = coordsToSet; }
 
     // Getters y Setters
     inline float GetSize() const { return this->size; }
     void SetSize(float sizeToSet) { this->size = sizeToSet; }
 
+    inline float GetCollisionRadius() const { return collisionRadius; }
+    inline void SetCollisionRadius(float collisionRadiusToSet) { collisionRadius = collisionRadiusToSet; }
+
     // Asignar modelo 3D
     void SetModel3D(Model* model);
 
-    // Asignar generador de projectiles
+    // Asignar generador de proyectiles
     void SetProjectile();
-   
+
     // Métodos de juego
     void Shoot();
-
     void LaunchBomb();
-
     void TakeDamage(int damage);
-
     void CollectResource(const std::string& resourceType);
 
     bool isKeyPressed(char key);
 
     void Update(const float& time);
 
-
-   // bool CheckCollision(Solid& other);
+    bool CheckCollision(Solid* other);
 
     Solid* Clone() const override {
-        return new Player(*this);  // Constructor copia para clonar
+        Player* clone = new Player(*this);
+        if (this->model3D) clone->model3D = new Model(*this->model3D); // Copia profunda
+        if (this->proyectil) clone->proyectil = new Projectile(*this->proyectil); // Copia profunda
+        return clone;
     }
 
     void Render();

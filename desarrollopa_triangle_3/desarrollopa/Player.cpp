@@ -93,7 +93,21 @@ void Player::CollectResource(const std::string& resourceType) {
 bool Player::isKeyPressed(char key) {
     return (GetAsyncKeyState(key) & 0x8000) != 0;
 }
+bool Player::CheckCollision(Solid* other) {
+    if (other == nullptr) return false; // Verifica que el objeto no sea nulo
 
+    // Calcula la distancia entre el centro del jugador y el otro objeto
+    Vector3D otherPosition = other->GetPosition();
+    float dx = this->GetPosition().GetX() - otherPosition.GetX();
+    float dy = this->GetPosition().GetY() - otherPosition.GetY();
+    float dz = this->GetPosition().GetZ() - otherPosition.GetZ();
+
+    float distanceSquared = dx * dx + dy * dy + dz * dz;
+
+    // Compara con el radio de colisión combinado
+    float combinedRadius = this->GetCollisionRadius() + other->GetCollisionRadius();
+    return distanceSquared <= (combinedRadius * combinedRadius);
+}
 
 
 //void SetModel3D(Model* model);
