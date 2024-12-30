@@ -14,6 +14,7 @@
 #include "Meteorite.h"
 #include "Satellite.h"
 #include "Menu.h"
+#include "Battery.h"
 #include <chrono>
 
 using namespace std::chrono;

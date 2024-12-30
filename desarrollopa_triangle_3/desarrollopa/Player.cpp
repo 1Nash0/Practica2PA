@@ -17,7 +17,6 @@ void Player::Render()
     }
     glPopMatrix();
 }
-
 void Player:: Update(const float& time) {
     Vector3D currentPosition = this->GetPosition();
     if (isKeyPressed('W')) {
@@ -42,14 +41,12 @@ void Player::SetModel3D(Model* model) {
     }
 }
 
-
 //void Player::SetProjectile() {
 //    Vector3D pos = this->GetPosition();
 //    Vector3D updater = Vector3D(0.0, 2.0, 0.0);
 //    pos = pos + updater;
 //    proyectil.SetPosition(pos);
 //}
-
 
 // Métodos de juego
 void Player:: Shoot() {
@@ -100,9 +97,6 @@ bool Player::isKeyPressed(char key) {
         }
         return Solid::CheckCollision(other); // Usar el método base
     }
-
-
-
 
 //void SetModel3D(Model* model);
 

@@ -11,7 +11,6 @@
 void Game::Init()
 {
 
-	Game game;
 	menuScene = new Menu();
 	menuScene->Init();
 
@@ -41,7 +40,7 @@ void Game::Init()
 
 	Text* text1 = new Text();
 	text1->SetText("Nas > 2024");
-	text1->SetPosition(Vector3D(5.0, 5.0, -6.0));
+	text1->SetPosition(Vector3D(-15.0, 15.0, -6.0));
 	text1->SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f));
 	scene2->AddGameObject(text1);
 
@@ -80,6 +79,12 @@ void Game::Init()
 	Satellite1->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
 	Satellite1->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	scene2->AddGameObject(Satellite1);
+
+	Battery* Battery1 = new Battery();
+	Battery1->SetPosition(Vector3D(9.0, 6.0, 0.0));
+	Battery1->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
+	Battery1->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	scene2->AddGameObject(Battery1);
 
 	//Instanciamos un loader para leer el archivo obj
 	//ModelLoader* loader = new ModelLoader();
@@ -147,12 +152,21 @@ void Game::Init()
 
 	ModelLoader* loader5 = new ModelLoader();
 	loader5->SetScale(1.0f);
-	loader5->LoadModel("..\\3dModels\\Bolt.obj");
+	loader5->LoadModel("..\\3dModels\\CopV1.obj");
 	Model* satelliteModel = new Model();
 	*satelliteModel = loader5->GetModel();
 	Satellite1->SetModel3D(satelliteModel);
 	satelliteModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	satelliteModel->SetColor(Color(1.0f, 1.0f, 0.0f, 1.0f));
+
+	ModelLoader* loader6 = new ModelLoader();
+	loader6->SetScale(1.0f);
+	loader6->LoadModel("..\\3dModels\\Bolt.obj");
+	Model* baterryModel = new Model();
+	*baterryModel = loader6->GetModel();
+	Battery1->SetModel3D(baterryModel);
+	baterryModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	baterryModel->SetColor(Color(1.0f, 1.0f, 0.0f, 1.0f));
 
 
 	AddGameObject(player1);
