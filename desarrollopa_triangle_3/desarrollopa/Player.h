@@ -21,6 +21,7 @@ private:
     Text healthText;
 
 
+
 public:
     // Constructor
     Player()
@@ -33,7 +34,6 @@ public:
     inline float GetSize() const { return this->size; }
     void SetSize(float sizeToSet) { this->size = sizeToSet; }
 
-  
 
     // Asignar modelo 3D
     void SetModel3D(Model* model);

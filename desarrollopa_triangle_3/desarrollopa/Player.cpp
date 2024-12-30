@@ -15,9 +15,15 @@ void Player::Render() {
     else {
         std::cout << "[Player] No model set for rendering!" << std::endl;
     }
+    glPopMatrix();
+    glPushMatrix();
+    healthText.SetText("Vidas: " + std::to_string(health));
+    healthText.SetPosition(Vector3D(3.0f, 12.0f, 0.0f)); // Posición fija
+    healthText.SetColor(Color(1.0f, 0.5f, 0.5f, 1.0f));
     healthText.Render();
     glPopMatrix();
 }
+
 
 void Player::Update(const float& time) {
     Vector3D currentPosition = this->GetPosition();
@@ -35,9 +41,6 @@ void Player::Update(const float& time) {
     }
 
 
-
-    healthText.SetText("Vida: " + to_string(health));
-    healthText.SetPosition(this->GetPosition() + Vector3D(0, 1.0f, 0)); // Posicionar el texto sobre el jugador
 }
 
 void Player::SetModel3D(Model* model) {
@@ -78,25 +81,6 @@ void Player::CollectResource(const std::string& resourceType) {
     bool Player::CheckCollision(Solid * other) {
         if (other == nullptr) { // Validar puntero nulo
             return false;
-        }
-
-        if (Solid::CheckCollision(other)) {
-            // Aquí determinamos el tipo de objeto con el que colisionó.
-            if (other->GetType() == "Heart") {
-                // Aumentar vida al colisionar con un corazón
-                CollectResource("Heart");
-                std::cout << "Vida aumentada. Vida actual: " << health << std::endl;
-            }
-            else if (other->GetType() == "Meteorite") {
-                // Reducir vida al colisionar con un meteorito
-                TakeDamage(1);
-                std::cout << "Daño recibido por meteorito. Vida restante: " << health << std::endl;
-            }
-            else if (other->GetType() == "Battery") {
-                // Aquí agregas lo que quieras hacer con las baterías
-                CollectResource("Battery");
-            }
-            return true;
         }
         return false;
     }

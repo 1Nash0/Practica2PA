@@ -34,13 +34,14 @@ private:
 	Player* player1;
 	Meteorite* meteorite1;
 	Heart* heart1;
+	Text* text1;
 	Scene* activeScene;
 	Menu* menuScene;
 	vector<Scene*> scenes;
 
 public:
 
-	Game():activeScene(nullptr), player1(nullptr), heart1(nullptr), menuScene(nullptr), initialMilliseconds(duration_cast<milliseconds>(system_clock::now().time_since_epoch())), lastUpdateTime(0) {}
+	Game():activeScene(nullptr), player1(new Player()), heart1(nullptr), menuScene(nullptr),text1(nullptr), initialMilliseconds(duration_cast<milliseconds>(system_clock::now().time_since_epoch())), lastUpdateTime(0) {}
 	
 	void Init();
 	void Render();
