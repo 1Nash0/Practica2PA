@@ -20,9 +20,9 @@ public:
 
 	inline float GetSize() { return this->size; }
 	void SetSize(float sizeToSet) { this->size = sizeToSet; }
-
+	string GetType() const override { return "Meteorite"; }
 	void SetModel3D(Model* model);
-
+	bool CheckCollision(Solid* other);
 	Solid* Clone() const override {
 		return new Meteorite(*this);  // Constructor copia para clonar
 	}

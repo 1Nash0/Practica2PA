@@ -27,9 +27,9 @@ void Battery::SetModel3D(Model* model) {
 		std::cerr << "[Meteorite::SetModel3D] Modelo nulo pasado como argumento." << std::endl;
 	}
 }
-//
-//bool CheckCollision(const Solid& other) {
-//	// Lógica específica para la colisión con meteoritos
-//	// Devuelve true si hay colisión con otro objeto
-//	return false; // Ejemplo
-//}
+bool Battery::CheckCollision(Solid* other) {
+	if (other == nullptr) { // Validar puntero nulo
+		return false;
+	}
+	return Solid::CheckCollision(other); // Usar el método base
+}

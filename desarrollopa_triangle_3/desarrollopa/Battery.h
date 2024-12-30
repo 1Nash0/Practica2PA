@@ -22,7 +22,8 @@ public:
 	void SetSize(float sizeToSet) { this->size = sizeToSet; }
 
 	void SetModel3D(Model* model);
-
+	bool CheckCollision(Solid* other);
+	string GetType() const override { return "Battery"; }
 	Solid* Clone() const override {
 		return new Battery(*this);  // Constructor copia para clonar
 	}

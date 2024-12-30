@@ -1,5 +1,6 @@
 #include "Solid.h"
 #include "Model.h"
+#include "Player.h"
 #include "Color.h"
 #include <GL/glut.h>
 #include <string>
@@ -27,7 +28,7 @@ public:
 
     int getVidas() const;
 
-    
+    string GetType() const override { return "Heart"; }
 
     // Getters y Setters
     inline float GetSize() const { return this->size; }
@@ -36,9 +37,9 @@ public:
     
     void sumarVidas(int cantidad);
 
-    //bool getIsVisible() const { return isVisible; }
+    bool getIsVisible() const;
 
-    //void setIsVisible(bool visible) { isVisible = visible; }
+    void setIsVisible(bool visible);
 
     void mostrarVidas() const;
 

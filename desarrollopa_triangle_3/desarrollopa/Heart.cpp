@@ -3,29 +3,13 @@
 #include "Solid.h"
 #include "Color.h"
 
+bool Heart::getIsVisible() const {
+    return isVisible;
+}
 
-
-
-
-//bool CheckCollision(const Solid& other)  {
-//    // Lógica específica para la colisión con corazones
-//    return false; // Ejemplo
-//}
-
-//bool Heart::getIsVisible() const {
-//    return isVisible;
-//}
-
-//void Heart::setIsVisible(bool visible) {
-//    isVisible = visible;
-//}
-
-//void Heart::HandleCollision() {
-//    if (isVisible) {
-//        isVisible = false;
-//        std::cout << "El jugador ha recogido el corazón. Ahora es invisible." << std::endl;
-//    }
-//}
+void Heart::setIsVisible(bool visible) {
+    isVisible = visible;
+}
 
 void Heart::Render()
 {
@@ -40,25 +24,32 @@ void Heart::Render()
     glRotatef(this->GetOrientation().GetY(), 0.0, 1.0, 0.0);
     glRotatef(this->GetOrientation().GetZ(), 0.0, 0.0, 1.0);
 
-
     if (isVisible) {
         if (model3D) {
             model3D->Render(); // Renderizar modelo 3D
         }
         else {
-            glColor3f(1.0f, 0.0f, 0.0f); // Color rojo
+            glColor3f(1.0f, 1.0f, 0.0f); // Color rojo
             glutSolidSphere(size, 50, 50); // Esfera como placeholder
         }
     }
     glPopMatrix();
-
-
 }
+
 bool Heart::CheckCollision(Solid* other) {
     if (other == nullptr) { // Validar puntero nulo
         return false;
     }
     return Solid::CheckCollision(other); // Usar el método base
+    if (Solid::CheckCollision(other)) { // Verificar la colisión usando el método base
+        // Verificar si el objeto con el que ha colisionado es un jugador
+        if (other->GetType() == "Player") {
+            setIsVisible(false); // Hacer invisible el corazón
+            std::cout << "El corazón ha sido recogido por el jugador." << std::endl;
+            return true;
+        }
+    }
+    return false;
 }
 
 int Heart::getVidas() const {
@@ -85,8 +76,3 @@ void Heart::SetModel3D(Model* model) {
 Solid* Heart::Clone() const {
     return new Heart(*this);
 }
-
-
-
-
-

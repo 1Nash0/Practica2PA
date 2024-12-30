@@ -15,6 +15,7 @@
 #include "Satellite.h"
 #include "Menu.h"
 #include "Battery.h"
+#include "Star.h"
 #include <chrono>
 
 using namespace std::chrono;

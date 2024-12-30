@@ -2,6 +2,7 @@
 #include "Solid.h"
 #include "Model.h"
 #include "Color.h"
+#include "Text.h"
 #include "Projectile.h"
 #include <GL/glut.h>
 #include <string>
@@ -17,13 +18,15 @@ private:
     int score;                  // Puntos acumulados
     Model* model3D;             // Modelo 3D del jugador
     Projectile* proyectil;      // Generador de projectiles
+    Text healthText;
 
 
 public:
     // Constructor
     Player()
         :  size(1.0), health(5), batteryCount(3), score(0),
-        model3D(nullptr), proyectil(nullptr) { }
+        model3D(nullptr), proyectil(nullptr) {
+        healthText.SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f)); }
 
 
     // Getters y Setters
@@ -34,13 +37,11 @@ public:
 
     // Asignar modelo 3D
     void SetModel3D(Model* model);
-
+    int GetHealth() const;
     // Asignar generador de proyectiles
     void SetProjectile();
-
+    string GetType() const override { return "Player"; }
     // Métodos de juego
-    void Shoot();
-    void LaunchBomb();
     void TakeDamage(int damage);
     void CollectResource(const std::string& resourceType);
 

@@ -2,6 +2,8 @@
 #include "Vector3D.h"
 #include "Color.h"
 #include <iostream>
+#include <string>
+#include <iostream>
 #include <cmath>
 
 class Solid {
@@ -64,8 +66,12 @@ public:
     // Métodos virtuales para sobrecargar
     virtual void Render() = 0;
     virtual void Update(const float& deltaTime);
+  
 
+    // Cambia 'string' a 'std::string' para evitar el error de especificador de invalidación desconocido
+    virtual std::string GetType() const { return "Unknown"; }
     virtual Solid* Clone() const = 0;
+
 };
 
 

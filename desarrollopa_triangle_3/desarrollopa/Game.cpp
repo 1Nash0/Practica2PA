@@ -20,16 +20,14 @@ void Game::Init()
 	Scene* scene1 = new Scene();
 	Scene* scene2 = new Scene();
 
+	
 
 	// Configuramos el emisor
 	int numParticulas = 1000;
 	int tiempoEmision = 10;
 	Solid* particulaRef = new Cube();
 
-
-	EmmiterConfiguration Config(numParticulas, tiempoEmision, particulaRef);
-	Emmiter* emisor = new Emmiter(Config);
-	scene1->AddGameObject(emisor);
+	
 
 	Player* player1 = new Player(); 
 	player1->SetCollisionRadius(0.8f);
@@ -64,12 +62,14 @@ void Game::Init()
 
 	Meteorite* Meteorite1 = new Meteorite();
 	Meteorite1->SetPosition(Vector3D(7.0, 2.0, 0.0));
+	Meteorite1->SetCollisionRadius(1.0f);
 	Meteorite1->SetOrientationSpeed(Vector3D(1.0, 0.0, 0.0));
 	Meteorite1->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	scene2->AddGameObject(Meteorite1);
 
 	Meteorite* Meteorite2 = new Meteorite();
-	Meteorite2->SetPosition(Vector3D(7.0, 4.0, 0.0));
+	Meteorite2->SetPosition(Vector3D(9.0, 4.0, 0.0));
+	Meteorite2->SetCollisionRadius(1.0f);
 	Meteorite2->SetOrientationSpeed(Vector3D(1.0, 0.0, 0.0));
 	Meteorite2->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	scene2->AddGameObject(Meteorite2);
@@ -82,6 +82,7 @@ void Game::Init()
 
 	Battery* Battery1 = new Battery();
 	Battery1->SetPosition(Vector3D(9.0, 6.0, 0.0));
+	Battery1->SetCollisionRadius(0.7f);
 	Battery1->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
 	Battery1->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	scene2->AddGameObject(Battery1);
@@ -133,26 +134,20 @@ void Game::Init()
 
 
 	ModelLoader* loader3 = new ModelLoader();
-	ModelLoader* loader4 = new ModelLoader();
 	loader3->SetScale(0.5f);
-	loader3->LoadModel("..\\3dModels\\rock_005.obj");
-	loader4->SetScale(0.5f);
-	loader4->LoadModel("..\\3dModels\\rock_001.obj");
+	loader3->LoadModel("..\\3dModels\\rock_001.obj");
 	Model* meteoriteModel = new Model();
 	*meteoriteModel = loader3->GetModel();
 	Meteorite1->SetModel3D(meteoriteModel);
 	meteoriteModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	meteoriteModel->SetColor(Color(1.0, 1.0, 1.0, 1.0));
-	Model* meteoriteModel2 = new Model();
-	*meteoriteModel2 = loader4->GetModel();
-	Meteorite2->SetModel3D(meteoriteModel2);
-	meteoriteModel2->SetSpeed(Vector3D(0.0, 0.0, 0.0));
-	meteoriteModel2->SetColor(Color(0.0, 0.0, 0.5, 1.0));
+	Meteorite2->SetModel3D(meteoriteModel);
+	
 
 
 	ModelLoader* loader5 = new ModelLoader();
 	loader5->SetScale(1.0f);
-	loader5->LoadModel("..\\3dModels\\CopV1.obj");
+	loader5->LoadModel("..\\3dModels\\Bolt.obj");
 	Model* satelliteModel = new Model();
 	*satelliteModel = loader5->GetModel();
 	Satellite1->SetModel3D(satelliteModel);
@@ -168,11 +163,31 @@ void Game::Init()
 	baterryModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	baterryModel->SetColor(Color(1.0f, 1.0f, 0.0f, 1.0f));
 
+	Star* star1 = new Star();
+	ModelLoader* loader7 = new ModelLoader();
+	loader7->SetScale(0.5f);
+	loader7->LoadModel("..\\3dModels\\star.obj");
+	Model* starModel = new Model();
+	*starModel = loader7->GetModel();
+	star1->SetModel3D(starModel);
+	starModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
+	starModel->SetColor(Color(0.9f, 0.9f, 0.0f, 1.0f));
+
+
+	
+	EmmiterConfiguration Config(numParticulas, tiempoEmision, starModel);
+	Emmiter* emisor = new Emmiter(Config);
+	menuScene->AddGameObject(emisor);
+	scene1->AddGameObject(emisor);
+
 
 	AddGameObject(player1);
 	AddGameObject(heart1);
 	AddGameObject(heart2);
 	AddGameObject(heart3);
+	AddGameObject(Meteorite1);
+	AddGameObject(Meteorite2);
+	AddGameObject(Battery1);
 	//Sobre el resultado:
 	// �por qu� no gira sobre s� mismo sino con un desplazamiento?
 	// �qu� pasa con el color?
@@ -221,14 +236,22 @@ void Game::Update(const float& time) {
 
 }
 
-	void Game::OnCollision(Solid * a, Solid * b) {
-		if (a && b) {
-			// Procesar la colisión aquí, por ejemplo:
-			/*a->HandleCollision(b);
-			b->HandleCollision(a);*/
-			std::cout << "Colisión procesada entre " << a << " y " << b << std::endl;
+void Game::OnCollision(Solid* a, Solid* b) {
+	if (a && b) {
+		if (a->GetType() == "Player" && b->GetType() == "Meteorite") {
+			static_cast<Player*>(a)->TakeDamage(1);  // Reduce vida del jugador por meteorito
+			std::cout << "Daño recibido por el jugador. Vida restante: " << static_cast<Player*>(a)->GetHealth() << std::endl;
+		}
+		else if (a->GetType() == "Player" && b->GetType() == "Heart") {
+			static_cast<Player*>(a)->CollectResource("Heart");  // Aumenta vida del jugador con el corazón
+			std::cout << "Vida aumentada. Vida restante: " << static_cast<Player*>(a)->GetHealth() << std::endl;
+		}
+		else if (a->GetType() == "Heart" && b->GetType() == "Player") {
+			static_cast<Player*>(b)->CollectResource("Heart");  // Aumenta vida del jugador con el corazón
+			std::cout << "Vida aumentada. Vida restante: " << static_cast<Player*>(b)->GetHealth() << std::endl;
 		}
 	}
+}
 
 
 	void Game::AddGameObject(Solid * object) {
@@ -262,13 +285,7 @@ void Game::ProcessMouseClicked(int button, int state, int x, int y)
 {
 	cout << "[GAME] Click:" << button << endl;
 
-	if (button == 0 && player1 != nullptr) {
-		player1->Shoot();
-	}
-	else if (button == 2 && player1 != nullptr)
-	{
-		player1->LaunchBomb();
-	}
+	
 }
 
 

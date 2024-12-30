@@ -34,18 +34,22 @@ void Emmiter::Update(const float& time) {
         Solid* newParticula = config.GetParticula()->Clone();
 
 
-        newParticula->SetPosition(Vector3D(0.0, 0.0, -10.0));
-        newParticula->SetColor(Color((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX, 1.0f));  // Color aleatorio
-        newParticula->SetOrientation(Vector3D(rand() % 360, rand() % 360, rand() % 360));  // Orientación aleatoria
+        newParticula->SetPosition(Vector3D(
+            (rand() % 100 - 25),  
+            (rand() % 100 - 25),
+            -20.0f               // Fijo en Z (puedes ajustarlo según tu necesidad)
+        ));
+        //newParticula->SetColor(Color((float)rand() / RAND_MAX, (float)rand() / RAND_MAX, (float)rand() / RAND_MAX, 1.0f));  // Color aleatorio
+        newParticula->SetOrientation(Vector3D(1.0, 0.0, 0.0));  // Orientación aleatoria
         newParticula->SetOrientationSpeed(Vector3D(
-            (rand() % 10 - 5) / 10.0f,
-            (rand() % 10 - 5) / 10.0f,
-            (rand() % 10 - 5) / 10.0f));
+            (rand() % 10 - 5) / 2.0f,
+            (rand() % 10 - 5) / 2.0f,
+            (rand() % 10 - 5) / 2.0f));
 
-        Vector3D velocity((rand() % 100 - 50) / 10000.0f,
-            (rand() % 100 - 50) / 10000.0f,
-            (rand() % 100 - 50) / 10000.0f);
-        newParticula->SetVelocity(velocity);  // Asignar la velocidad a la partícula
+        //Vector3D velocity((rand() % 100 - 50) / 10000.0f,
+        //    (rand() % 100 - 50) / 10000.0f,
+        //    (rand() % 100 - 50) / 10000.0f);
+        //newParticula->SetVelocity(velocity);  // Asignar la velocidad a la partícula
 
         // Añadir la nueva partícula al vector
 
@@ -62,7 +66,7 @@ void Emmiter::Update(const float& time) {
 
         Vector3D position = p->GetPosition();
         Vector3D velocity = p->GetVelocity();
-        position = position + velocity;  // Desplazar la partícula
+       /* position = position + velocity; */ // Desplazar la partícula
 
         // Rebote cuando la partícula se sale de los límites 
 
