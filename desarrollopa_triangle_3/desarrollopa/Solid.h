@@ -17,6 +17,7 @@ private:
     float collisionRadius; // Radio para detección de colisiones esféricas
     bool wired;
     bool isAffectedByGravity;
+    bool isMarkedForDeletion = false;
 
 public:
     Solid(
@@ -35,7 +36,10 @@ public:
         collisionRadius(collisionRadiusArgument),
         wired(false),
         isAffectedByGravity(false) {}
+    virtual ~Solid() {}
 
+    void MarkForDeletion() { isMarkedForDeletion = true; }
+    bool IsMarkedForDeletion() const { return isMarkedForDeletion; }
     // Métodos Getter
     inline Vector3D GetPosition() const { return position; }
     inline Vector3D GetSpeed() const { return speed; }

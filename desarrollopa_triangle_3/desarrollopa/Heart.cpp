@@ -11,40 +11,35 @@ void Heart::setIsVisible(bool visible) {
     isVisible = visible;
 }
 
-void Heart::Render()
-{
+void Heart::Render() {
+    if (!isVisible) return; // Salir inmediatamente si no es visible
+
     glPushMatrix();
-    glTranslatef(this->GetPosition().GetX(), this->GetPosition().GetY(),
-        this->GetPosition().GetZ());
-    glColor4f(this->GetColor().GetRed(),
-        this->GetColor().GetGreen(),
-        this->GetColor().GetBlue(),
-        this->GetColor().GetAlpha());
+    glTranslatef(this->GetPosition().GetX(), this->GetPosition().GetY(), this->GetPosition().GetZ());
+    glColor4f(this->GetColor().GetRed(), this->GetColor().GetGreen(), this->GetColor().GetBlue(), this->GetColor().GetAlpha());
     glRotatef(this->GetOrientation().GetX(), 1.0, 0.0, 0.0);
     glRotatef(this->GetOrientation().GetY(), 0.0, 1.0, 0.0);
     glRotatef(this->GetOrientation().GetZ(), 0.0, 0.0, 1.0);
 
-    if (isVisible) {
-        if (model3D) {
-            model3D->Render(); // Renderizar modelo 3D
-        }
-        else {
-            glColor3f(1.0f, 1.0f, 0.0f); // Color rojo
-            glutSolidSphere(size, 50, 50); // Esfera como placeholder
-        }
+    if (model3D) {
+        model3D->Render(); // Renderizar modelo 3D
+    }
+    else {
+        glColor3f(1.0f, 0.0f, 0.0f); // Color rojo
+        glutSolidSphere(size, 50, 50); // Esfera como placeholder
     }
     glPopMatrix();
 }
+
 
 bool Heart::CheckCollision(Solid* other) {
     if (other == nullptr) { // Validar puntero nulo
         return false;
     }
-    return Solid::CheckCollision(other); // Usar el método base
-    if (Solid::CheckCollision(other)) { // Verificar la colisión usando el método base
-        // Verificar si el objeto con el que ha colisionado es un jugador
+ 
+    if (Solid::CheckCollision(other)) {
         if (other->GetType() == "Player") {
-            setIsVisible(false); // Hacer invisible el corazón
+            setIsVisible(false); // Cambiar visibilidad
             std::cout << "El corazón ha sido recogido por el jugador." << std::endl;
             return true;
         }

@@ -221,41 +221,53 @@ void Game::Update(const float& time) {
 
 	// Actualizar todos los objetos
 	for (auto* object : gameObjects) {
-		object->Update(time);
+		if (object) {
+			object->Update(time);
+		}
 	}
-	
-	// Comprobar colisiones entre objetos
-	for (size_t i = 0; i <= 0; ++i) {
+
+	// Procesar colisiones
+	for (size_t i = 0; i < gameObjects.size(); i++) {
 		for (size_t j = i + 1; j < gameObjects.size(); ++j) {
 			if (gameObjects[i]->CheckCollision(gameObjects[j])) {
-				std::cout << "Colisión detectada entre objetos " << i << " y " << j << std::endl;
 				OnCollision(gameObjects[i], gameObjects[j]);
 			}
 		}
 	}
 
+	// Eliminar objetos marcados
+	for (auto it = gameObjects.begin(); it != gameObjects.end(); ) {
+		if ((*it)->IsMarkedForDeletion()) {
+			delete* it;
+			it = gameObjects.erase(it);
+		}
+		else {
+			++it;
+		}
+	}
 }
+
 
 void Game::OnCollision(Solid* a, Solid* b) {
 	if (a && b) {
 		if (a->GetType() == "Player" && b->GetType() == "Meteorite") {
 			static_cast<Player*>(a)->TakeDamage(1);  // Reduce vida del jugador por meteorito
-			std::cout << "Daño recibido por el jugador. Vida restante: " << static_cast<Player*>(a)->GetHealth() << std::endl;
+			b->MarkForDeletion();
 		}
 		else if (a->GetType() == "Player" && b->GetType() == "Heart") {
-			static_cast<Player*>(a)->CollectResource("Heart");  // Aumenta vida del jugador con el corazón
-			std::cout << "Vida aumentada. Vida restante: " << static_cast<Player*>(a)->GetHealth() << std::endl;
+			Heart* heart = static_cast<Heart*>(b);
+			if (static_cast<Player*>(a)->GetHealth() < 5) {
+				static_cast<Player*>(a)->CollectResource("Heart");  // Aumenta vida del jugador
+				heart->MarkForDeletion();
+			}
 		}
 		else if (a->GetType() == "Player" && b->GetType() == "Battery") {
-			static_cast<Player*>(a)->CollectResource("Battery");  // Aumenta vida del jugador con el corazón
-			std::cout << "Energía aumentada. Energía disponible: " << static_cast<Player*>(a)->GetEnergy() << std::endl;
-		}
-		else if (a->GetType() == "Heart" && b->GetType() == "Player") {
-			static_cast<Player*>(b)->CollectResource("Heart");  // Aumenta vida del jugador con el corazón
-			std::cout << "Vida aumentada. Vida restante: " << static_cast<Player*>(b)->GetHealth() << std::endl;
+			static_cast<Player*>(a)->CollectResource("Battery");  // Incrementar energía
+			b->MarkForDeletion();
 		}
 	}
 }
+
 
 
 	void Game::AddGameObject(Solid * object) {

@@ -11,27 +11,26 @@ void Scene::Init()
 
 
 
-void Scene::Render() 
-{
+void Scene::Render() {
 	this->camera.Render();
 	if (this->GetDrawBoundary()) { this->renderBoundary(); }
-	for (int idx = 0; idx < this->gameObjects.size(); idx++)
-	{
-		this->gameObjects[idx]->Render();
+
+	for (auto* object : gameObjects) {
+		if (object && !object->IsMarkedForDeletion()) {
+			object->Render();
+		}
 	}
 }
 
-void Scene::Update(const float& time)
-{
-	for (int idx = 0; idx < this->gameObjects.size(); idx++)
-	{
-		this->gameObjects[idx]->Update(time);
+void Scene::Update(const float& time) {
+	for (auto* object : gameObjects) {
+		if (object && !object->IsMarkedForDeletion()) {
+			object->Update(time);
+		}
 	}
 	this->checkBoundary();
-	
-
-
 }
+
 
 void Scene::ProcessKeyPressed(unsigned char key, int px, int py) {}
 

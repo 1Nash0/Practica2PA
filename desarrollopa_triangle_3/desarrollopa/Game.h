@@ -24,7 +24,7 @@ class Game
 {
 private:
 	const double TIME_INCREMENT = 1.0; //ms tiempo en el juego
-	const long UPDATE_PERIOD = 10;  //ms timepo real en la partida
+	const long UPDATE_PERIOD = 10.0;  //ms timepo real en la partida
 
 	milliseconds initialMilliseconds;
 	long lastUpdateTime;
