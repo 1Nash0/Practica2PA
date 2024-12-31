@@ -19,15 +19,15 @@ private:
     Model* model3D;             // Modelo 3D del jugador
     Projectile* proyectil;      // Generador de projectiles
     Text healthText;
+    Text batteryText;
 
 
 
 public:
     // Constructor
     Player()
-        :  size(1.0), health(5), batteryCount(3), score(0),
-        model3D(nullptr), proyectil(nullptr) {
-        healthText.SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f)); }
+        :  size(1.0), health(5), batteryCount(0), score(0),
+        model3D(nullptr), proyectil(nullptr) {}
 
 
     // Getters y Setters
@@ -38,8 +38,8 @@ public:
     // Asignar modelo 3D
     void SetModel3D(Model* model);
     int GetHealth() const;
-    // Asignar generador de proyectiles
-    void SetProjectile();
+    int GetEnergy() const;
+  
     string GetType() const override { return "Player"; }
     // Métodos de juego
     void TakeDamage(int damage);
@@ -53,8 +53,7 @@ public:
 
     Solid* Clone() const override {
         Player* clone = new Player(*this);
-        if (this->model3D) clone->model3D = new Model(*this->model3D); // Copia profunda
-        if (this->proyectil) clone->proyectil = new Projectile(*this->proyectil); // Copia profunda
+        if (this->model3D) clone->model3D = new Model(*this->model3D); // Copia profundo
         return clone;
     }
 

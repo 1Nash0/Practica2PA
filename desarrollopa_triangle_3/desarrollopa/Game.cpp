@@ -75,8 +75,8 @@ void Game::Init()
 	scene2->AddGameObject(Meteorite2);
 
 	Satellite* Satellite1 = new Satellite();
-	Satellite1->SetPosition(Vector3D(9.0, 4.0, 0.0));
-	Satellite1->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
+	Satellite1->SetPosition(Vector3D(15.0, 4.0, 0.0));
+	Satellite1->SetOrientationSpeed(Vector3D(1.0, 0.0, 0.0));
 	Satellite1->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	scene2->AddGameObject(Satellite1);
 
@@ -146,13 +146,13 @@ void Game::Init()
 
 
 	ModelLoader* loader5 = new ModelLoader();
-	loader5->SetScale(1.0f);
-	loader5->LoadModel("..\\3dModels\\Bolt.obj");
+	loader5->SetScale(0.04f);
+	loader5->LoadModel("..\\3dModels\\Lowamogus.obj");
 	Model* satelliteModel = new Model();
 	*satelliteModel = loader5->GetModel();
 	Satellite1->SetModel3D(satelliteModel);
 	satelliteModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
-	satelliteModel->SetColor(Color(1.0f, 1.0f, 0.0f, 1.0f));
+	satelliteModel->SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f));
 
 	ModelLoader* loader6 = new ModelLoader();
 	loader6->SetScale(1.0f);
@@ -245,6 +245,10 @@ void Game::OnCollision(Solid* a, Solid* b) {
 		else if (a->GetType() == "Player" && b->GetType() == "Heart") {
 			static_cast<Player*>(a)->CollectResource("Heart");  // Aumenta vida del jugador con el corazón
 			std::cout << "Vida aumentada. Vida restante: " << static_cast<Player*>(a)->GetHealth() << std::endl;
+		}
+		else if (a->GetType() == "Player" && b->GetType() == "Battery") {
+			static_cast<Player*>(a)->CollectResource("Battery");  // Aumenta vida del jugador con el corazón
+			std::cout << "Energía aumentada. Energía disponible: " << static_cast<Player*>(a)->GetEnergy() << std::endl;
 		}
 		else if (a->GetType() == "Heart" && b->GetType() == "Player") {
 			static_cast<Player*>(b)->CollectResource("Heart");  // Aumenta vida del jugador con el corazón

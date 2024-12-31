@@ -21,6 +21,10 @@ void Player::Render() {
     healthText.SetPosition(Vector3D(3.0f, 12.0f, 0.0f)); // Posición fija
     healthText.SetColor(Color(1.0f, 0.5f, 0.5f, 1.0f));
     healthText.Render();
+    batteryText.SetText("Energia: " + std::to_string(batteryCount));
+    batteryText.SetPosition(Vector3D(8.0f, 12.0f, 0.0f)); // Posición fija
+    batteryText.SetColor(Color(1.0f, 0.0f, 0.5f, 1.0f));
+    batteryText.Render();
     glPopMatrix();
 }
 
@@ -70,9 +74,12 @@ void Player::CollectResource(const std::string& resourceType) {
         }
     }
     else if (resourceType == "Battery") {
-        if (batteryCount < 3) {
+        if (batteryCount < 10) {
             batteryCount++;
             std::cout << "Batería recogida: " << batteryCount << std::endl;
+            if (batteryCount == 10) {
+                batteryText.SetText("Victoria");
+            }
         }
     }
 }
@@ -92,5 +99,9 @@ bool Player::isKeyPressed(char key) {
 // En Player.cpp
 int Player::GetHealth() const {
     return health;  // Retorna la salud actual del jugador
+}
+
+int Player::GetEnergy() const {
+    return batteryCount;
 }
 
