@@ -23,8 +23,9 @@ using namespace std::chrono;
 class Game
 {
 private:
-	const double TIME_INCREMENT = 1.0; //ms tiempo en el juego
-	const long UPDATE_PERIOD = 10.0;  //ms timepo real en la partida
+	const double TIME_INCREMENT = 0.4;  // 50 ms por actualización, en el juego
+	const long UPDATE_PERIOD = 10;  // 32 ms para la actualización en tiempo real
+
 
 	milliseconds initialMilliseconds;
 	long lastUpdateTime;

@@ -2,7 +2,8 @@
 #include "Solid.h"
 #include "Text.h"
 #include "Color.h"
-#include "Meteorite.h"  // Asegúrate de incluir la clase Meteorite
+#include "Meteorite.h" 
+#include <iostream>
 
 void Player::Render() {
     glPushMatrix();
@@ -32,18 +33,18 @@ void Player::Render() {
 void Player::Update(const float& time) {
     Vector3D currentPosition = this->GetPosition();
     if (isKeyPressed('W')) {
-        this->SetPosition(Vector3D(currentPosition.GetX(), currentPosition.GetY() + 0.1f * time, currentPosition.GetZ())); // Mover hacia arriba
+        this->SetPosition(Vector3D(currentPosition.GetX(), currentPosition.GetY() + 0.5f * time, currentPosition.GetZ())); // Mover hacia arriba
     }
     if (isKeyPressed('S')) {
-        this->SetPosition(Vector3D(currentPosition.GetX(), currentPosition.GetY() - 0.1f * time, currentPosition.GetZ())); // Mover hacia abajo
+        this->SetPosition(Vector3D(currentPosition.GetX(), currentPosition.GetY() - 0.5f * time, currentPosition.GetZ())); // Mover hacia abajo
     }
     if (isKeyPressed('A')) {
-        this->SetPosition(Vector3D(currentPosition.GetX() - 0.1f * time, currentPosition.GetY(), currentPosition.GetZ())); // Mover hacia la izquierda
+        this->SetPosition(Vector3D(currentPosition.GetX() - 0.5f * time, currentPosition.GetY(), currentPosition.GetZ())); // Mover hacia la izquierda
     }
     if (isKeyPressed('D')) {
-        this->SetPosition(Vector3D(currentPosition.GetX() + 0.1f * time, currentPosition.GetY(), currentPosition.GetZ())); // Mover hacia la derecha
+        this->SetPosition(Vector3D(currentPosition.GetX() + 0.5f * time, currentPosition.GetY(), currentPosition.GetZ())); // Mover hacia la derecha
     }
-
+    
 
 }
 
@@ -83,7 +84,25 @@ void Player::CollectResource(const std::string& resourceType) {
         }
     }
 }
-
+void Player::OnCollision(Solid* other) {
+    // Colisión con un meteorito
+    if (Meteorite* meteorite = dynamic_cast<Meteorite*>(other)) {
+        TakeDamage(1); // Reduce la vida del jugador
+        meteorite->MarkForDeletion(); // Marca el meteorito para eliminación
+    }
+    // Colisión con un corazón
+    else if (Heart* heart = dynamic_cast<Heart*>(other)) {
+        if (health < 5) { // Solo recoge corazones si no tiene vida completa
+            CollectResource("Heart");
+            heart->MarkForDeletion(); // Marca el corazón para eliminación
+        }
+    }
+    // Colisión con una batería
+    else if (Battery* battery = dynamic_cast<Battery*>(other)) {
+        CollectResource("Battery"); // Incrementa la energía del jugador
+        battery->MarkForDeletion(); // Marca la batería para eliminación
+    }
+}
 
     bool Player::CheckCollision(Solid * other) {
         if (other == nullptr) { // Validar puntero nulo

@@ -70,6 +70,7 @@ void Game::Init()
 	Meteorite* Meteorite2 = new Meteorite();
 	Meteorite2->SetPosition(Vector3D(9.0, 4.0, 0.0));
 	Meteorite2->SetCollisionRadius(1.0f);
+
 	Meteorite2->SetOrientationSpeed(Vector3D(1.0, 0.0, 0.0));
 	Meteorite2->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	scene2->AddGameObject(Meteorite2);
@@ -210,6 +211,7 @@ void Game::Render()
 }
 
 void Game::Update(const float& time) {
+	// Actualizar el tiempo
 	milliseconds currentTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch());
 
 	if ((currentTime.count() - this->initialMilliseconds.count()) - this->lastUpdateTime > UPDATE_PERIOD) {
@@ -226,44 +228,21 @@ void Game::Update(const float& time) {
 		}
 	}
 
-	// Procesar colisiones
-	for (size_t i = 0; i < gameObjects.size(); i++) {
-		for (size_t j = i + 1; j < gameObjects.size(); ++j) {
-			if (gameObjects[i]->CheckCollision(gameObjects[j])) {
-				OnCollision(gameObjects[i], gameObjects[j]);
-			}
+	// Procesar colisiones delegando la responsabilidad a cada objeto
+	for (auto* object : gameObjects) {
+		if (object) {
+			object->ProcessCollisions(gameObjects); // Cada objeto revisa sus colisiones
 		}
 	}
 
-	// Eliminar objetos marcados
+	// Eliminar objetos marcados para eliminación
 	for (auto it = gameObjects.begin(); it != gameObjects.end(); ) {
 		if ((*it)->IsMarkedForDeletion()) {
-			delete* it;
-			it = gameObjects.erase(it);
+			delete* it; // Libera memoria
+			it = gameObjects.erase(it); // Elimina el puntero de la lista
 		}
 		else {
 			++it;
-		}
-	}
-}
-
-
-void Game::OnCollision(Solid* a, Solid* b) {
-	if (a && b) {
-		if (a->GetType() == "Player" && b->GetType() == "Meteorite") {
-			static_cast<Player*>(a)->TakeDamage(1);  // Reduce vida del jugador por meteorito
-			b->MarkForDeletion();
-		}
-		else if (a->GetType() == "Player" && b->GetType() == "Heart") {
-			Heart* heart = static_cast<Heart*>(b);
-			if (static_cast<Player*>(a)->GetHealth() < 5) {
-				static_cast<Player*>(a)->CollectResource("Heart");  // Aumenta vida del jugador
-				heart->MarkForDeletion();
-			}
-		}
-		else if (a->GetType() == "Player" && b->GetType() == "Battery") {
-			static_cast<Player*>(a)->CollectResource("Battery");  // Incrementar energía
-			b->MarkForDeletion();
 		}
 	}
 }

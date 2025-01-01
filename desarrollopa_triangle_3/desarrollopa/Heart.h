@@ -37,9 +37,7 @@ public:
     
     void sumarVidas(int cantidad);
 
-    bool getIsVisible() const;
 
-    void setIsVisible(bool visible);
 
     void mostrarVidas() const;
 

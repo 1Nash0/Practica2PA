@@ -16,8 +16,13 @@ public:
 	Meteorite() : model3D(nullptr), Solid()
 	{
 		this->size = 0.5;
+		this->SetAffectedByGravity(true); // Habilitar gravedad para meteoritos
+		this->SetCollisionRadius(1.0f);   // Define un radio de colisión si es necesario
+		this->SetSpeed(Vector3D(-0.000002f, 0.0f, 0.0f));
 	}
 
+
+	void Update(const float& time) override; // Sobrescribir Update si es necesario
 	inline float GetSize() { return this->size; }
 	void SetSize(float sizeToSet) { this->size = sizeToSet; }
 	string GetType() const override { return "Meteorite"; }

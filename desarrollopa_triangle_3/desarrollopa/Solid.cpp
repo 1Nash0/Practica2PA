@@ -7,41 +7,40 @@ void Solid::Update( const float& time)
 	this->SetPosition(this->GetPosition() + this->GetSpeed() * time);
 	this->SetOrientation( this->GetOrientation() + this->GetOrientationSpeed() * time);
 
-	/*if (this->GetIsAffectedByGravity())
-	{
-		this->SetSpeed(Vector3D(this->GetSpeed() + gravity * time));
-	}*/
+    if (isAffectedByGravity) {
+        Vector3D currentSpeed = this->GetSpeed();
+        this->SetSpeed(currentSpeed + gravity * time);
+    }
 }
 
-//bool Solid::CheckCollision(Solid* other) {
-//	Vector3D diff = this->GetPosition() - other->GetPosition();
-//	return diff.Length() < 0.5;
-//}
-//bool Solid::CheckBoundingBoxCollision(const Solid* other) const {
-//    // Supongamos un tamaño de caja ajustado al radio de colisión
-//    float halfSizeA = this->GetCollisionRadius() / 2.0f;
-//    float halfSizeB = other->GetCollisionRadius() / 2.0f;
-//
-//    Vector3D minA = this->GetPosition() - Vector3D(halfSizeA, halfSizeA, halfSizeA);
-//    Vector3D maxA = this->GetPosition() + Vector3D(halfSizeA, halfSizeA, halfSizeA);
-//
-//    Vector3D minB = other->GetPosition() - Vector3D(halfSizeB, halfSizeB, halfSizeB);
-//    Vector3D maxB = other->GetPosition() + Vector3D(halfSizeB, halfSizeB, halfSizeB);
-//
-//    // Comprobación de intersección en los ejes X, Y, y Z
-//    return (minA.GetX() <= maxB.GetX() && maxA.GetX() >= minB.GetX()) &&
-//        (minA.GetY() <= maxB.GetY() && maxA.GetY() >= minB.GetY()) &&
-//        (minA.GetZ() <= maxB.GetZ() && maxA.GetZ() >= minB.GetZ());
-//
-//
-//}
+
+void Solid::ProcessCollisions(const std::vector<Solid*>& objects) {
+    for (Solid* other : objects) {
+        if (other != this && CheckCollision(other)) {
+            OnCollision(other); // Llama al manejo de colisión
+        }
+    }
+}
+void Solid::SetAffectedByGravity(bool affected) {
+    isAffectedByGravity = affected;
+}
+
+bool Solid::GetIsAffectedByGravity() const {
+    return isAffectedByGravity;
+}
+void Solid::OnCollision(Solid* other) {
+    
+}
 
 bool Solid::CheckCollision(const Solid* other) const {
-	if (other == nullptr) return false;
+    if (other == nullptr) return false;
 
-	float distance = (this->GetPosition() - other->GetPosition()).Length();
-	float sumRadii = this->GetCollisionRadius() + other->GetCollisionRadius();
+    // Distancia entre los centros de los objetos
+    float distance = (this->GetPosition() - other->GetPosition()).Length();
 
+    // Suma de los radios de colisión
+    float sumRadii = this->GetCollisionRadius() + other->GetCollisionRadius();
 
-	return distance <= sumRadii;
+    // Verifica si las esferas de colisión están superpuestas
+    return distance <= sumRadii;
 }

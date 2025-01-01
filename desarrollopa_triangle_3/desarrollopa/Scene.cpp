@@ -28,7 +28,7 @@ void Scene::Update(const float& time) {
 			object->Update(time);
 		}
 	}
-	this->checkBoundary();
+	//this->checkBoundary();
 }
 
 

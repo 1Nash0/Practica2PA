@@ -3,7 +3,7 @@
 #include "Color.h"
 #include <iostream>
 #include <string>
-#include <iostream>
+#include <vector>
 #include <cmath>
 
 class Solid {
@@ -16,9 +16,9 @@ private:
     Color color;
     float collisionRadius; // Radio para detección de colisiones esféricas
     bool wired;
-    bool isAffectedByGravity;
     bool isMarkedForDeletion = false;
-
+    bool isAffectedByGravity = false; // Indica si el objeto está afectado por gravedad
+    Vector3D gravity = Vector3D(-0.005f, 0.0, 0.0f); // Gravedad estándar
 public:
     Solid(
         Color colorArgument = Color(),
@@ -38,6 +38,8 @@ public:
         isAffectedByGravity(false) {}
     virtual ~Solid() {}
 
+    void SetAffectedByGravity(bool affected);
+    bool GetIsAffectedByGravity() const;
     void MarkForDeletion() { isMarkedForDeletion = true; }
     bool IsMarkedForDeletion() const { return isMarkedForDeletion; }
     // Métodos Getter
@@ -48,7 +50,7 @@ public:
     inline Vector3D GetOrientationSpeed() const { return orientationSpeed; }
     inline Color GetColor() const { return color; }
     inline bool GetWired() const { return wired; }
-    inline bool GetIsAffectedByGravity() const { return isAffectedByGravity; }
+ 
     inline float GetCollisionRadius() const { return collisionRadius; }
 
     // Métodos Setter
@@ -59,13 +61,13 @@ public:
     inline void SetVelocity(const Vector3D& velocityToSet) { velocity = velocityToSet; }
     virtual void SetColor(const Color& colorToSet) { color = colorToSet; }
     inline void SetWired(bool wiredToSet) { wired = wiredToSet; }
-    inline void SetIsAffectedByGravity(bool isAffectedByGravityToSet) { isAffectedByGravity = isAffectedByGravityToSet; }
     inline void SetCollisionRadius(float collisionRadiusToSet) { collisionRadius = collisionRadiusToSet; }
 
     // Métodos para detección de colisiones
     virtual bool CheckCollision(const Solid* other) const;
 
-
+    virtual void ProcessCollisions(const std::vector<Solid*>& objects); // Nuevo método
+    virtual void OnCollision(Solid* other); // Nuevo método
    // bool CheckBoundingBoxCollision(const Solid* other) const;
     // Métodos virtuales para sobrecargar
     virtual void Render() = 0;

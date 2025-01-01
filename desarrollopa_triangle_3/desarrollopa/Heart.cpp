@@ -3,16 +3,9 @@
 #include "Solid.h"
 #include "Color.h"
 
-bool Heart::getIsVisible() const {
-    return isVisible;
-}
-
-void Heart::setIsVisible(bool visible) {
-    isVisible = visible;
-}
 
 void Heart::Render() {
-    if (!isVisible) return; // Salir inmediatamente si no es visible
+    // Salir inmediatamente si no es visible
 
     glPushMatrix();
     glTranslatef(this->GetPosition().GetX(), this->GetPosition().GetY(), this->GetPosition().GetZ());
@@ -32,32 +25,7 @@ void Heart::Render() {
 }
 
 
-bool Heart::CheckCollision(Solid* other) {
-    if (other == nullptr) { // Validar puntero nulo
-        return false;
-    }
- 
-    if (Solid::CheckCollision(other)) {
-        if (other->GetType() == "Player") {
-            setIsVisible(false); // Cambiar visibilidad
-            std::cout << "El corazón ha sido recogido por el jugador." << std::endl;
-            return true;
-        }
-    }
-    return false;
-}
 
-int Heart::getVidas() const {
-    return vidas;
-}
-
-void Heart::sumarVidas(int cantidad) {
-    vidas += cantidad;
-}
-
-void Heart::mostrarVidas() const {
-    std::cout << "Vidas: " << vidas << std::endl;
-}
 
 void Heart::SetModel3D(Model* model) {
     if (model) {
