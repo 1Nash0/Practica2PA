@@ -3,6 +3,7 @@
 #include "Solid.h"
 #include "Camera.h"
 #include "Cuboid.h"
+#include "Player.h"
 
 using namespace std;
 

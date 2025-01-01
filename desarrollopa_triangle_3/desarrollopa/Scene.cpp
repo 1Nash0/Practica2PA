@@ -28,7 +28,7 @@ void Scene::Update(const float& time) {
 			object->Update(time);
 		}
 	}
-	//this->checkBoundary();
+	this->checkBoundary();
 }
 
 
@@ -40,11 +40,8 @@ void Scene::ProcessMouseClicked(int button, int state, int x, int y) {}
 
 void Scene::checkBoundary()
 {
-	for (int idx = 0; idx < this->gameObjects.size(); idx++)
-	{
-		this->checkBoundary(this->gameObjects[idx]);
+			this->checkBoundary(this->gameObjects[0]);
 
-	}
 }
 
 void Scene::checkBoundary(Solid* element)
