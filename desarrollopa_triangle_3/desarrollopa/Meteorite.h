@@ -19,6 +19,7 @@ public:
 		this->SetAffectedByGravity(true); // Habilitar gravedad para meteoritos
 		this->SetCollisionRadius(1.0f);   // Define un radio de colisión si es necesario
 		this->SetSpeed(Vector3D(-0.000002f, 0.0f, 0.0f));
+		this->SetOrientationSpeed(Vector3D(1.0, 0.0, 0.0));
 	}
 
 

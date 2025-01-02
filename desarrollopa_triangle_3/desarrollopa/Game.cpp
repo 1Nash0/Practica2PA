@@ -43,49 +43,32 @@ void Game::Init()
 	scene2->AddGameObject(text1);
 
 	Heart* heart1 = new Heart();
-	heart1->SetCollisionRadius(0.4f);
 	heart1->SetPosition(Vector3D(2.0, 5.0, 0.0));
-	heart1->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
 	scene2->AddGameObject(heart1);
 
 	Heart* heart2 = new Heart();
 	heart2->SetPosition(Vector3D(9.0, 5.0, 0.0));
-	heart2->SetCollisionRadius(0.4f);
-	heart2->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
 	scene2->AddGameObject(heart2);
 
 	Heart* heart3 = new Heart();
 	heart3->SetPosition(Vector3D(4.0, 5.0, 0.0));
-	heart3->SetCollisionRadius(0.4f);
-	heart3->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
 	scene2->AddGameObject(heart3);
 
 	Meteorite* Meteorite1 = new Meteorite();
 	Meteorite1->SetPosition(Vector3D(7.0, 2.0, 0.0));
-	Meteorite1->SetCollisionRadius(1.0f);
-	Meteorite1->SetOrientationSpeed(Vector3D(1.0, 0.0, 0.0));
-	Meteorite1->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	scene2->AddGameObject(Meteorite1);
 
 	Meteorite* Meteorite2 = new Meteorite();
 	Meteorite2->SetPosition(Vector3D(9.0, 4.0, 0.0));
-	Meteorite2->SetCollisionRadius(1.0f);
-
-	Meteorite2->SetOrientationSpeed(Vector3D(1.0, 0.0, 0.0));
-	Meteorite2->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	scene2->AddGameObject(Meteorite2);
 
 	Satellite* Satellite1 = new Satellite();
 	Satellite1->SetPosition(Vector3D(15.0, 4.0, 0.0));
 	Satellite1->SetOrientationSpeed(Vector3D(1.0, 0.0, 0.0));
-	Satellite1->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	scene2->AddGameObject(Satellite1);
 
 	Battery* Battery1 = new Battery();
 	Battery1->SetPosition(Vector3D(9.0, 6.0, 0.0));
-	Battery1->SetCollisionRadius(0.7f);
-	Battery1->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
-	Battery1->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	scene2->AddGameObject(Battery1);
 
 	//Instanciamos un loader para leer el archivo obj
@@ -128,7 +111,6 @@ void Game::Init()
 	heart1->SetModel3D(heartModel);
 	heart2->SetModel3D(heartModel2);
 	heart3->SetModel3D(heartModel3);
-	heartModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	heartModel->SetColor(Color(1.0, 0.0, 0.0, 1.0));
 	heartModel2->SetColor(Color(1.0, 1.0, 1.0, 1.0));
 	heartModel3->SetColor(Color(1.0, 0.0, 0.8, 1.0));
@@ -180,6 +162,9 @@ void Game::Init()
 	Emmiter* emisor = new Emmiter(Config);
 	menuScene->AddGameObject(emisor);
 	scene1->AddGameObject(emisor);
+	EmmiterConfiguration Config2(numParticulas, tiempoEmision, meteoriteModel);
+	Emmiter* emisor2 = new Emmiter(Config2);
+
 
 
 	AddGameObject(player1);
@@ -189,6 +174,7 @@ void Game::Init()
 	AddGameObject(Meteorite1);
 	AddGameObject(Meteorite2);
 	AddGameObject(Battery1);
+
 	//Sobre el resultado:
 	// �por qu� no gira sobre s� mismo sino con un desplazamiento?
 	// �qu� pasa con el color?

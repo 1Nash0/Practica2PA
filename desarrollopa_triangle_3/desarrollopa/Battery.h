@@ -7,7 +7,6 @@ class Battery : public Solid
 {
 private:
 
-	float size;
 	Model* model3D;
 
 public:
@@ -15,11 +14,11 @@ public:
 
 	Battery() : model3D(nullptr), Solid()
 	{
-		this->size = 0.5;
+
+		this->SetCollisionRadius(0.7f);
+		this->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
 	}
 
-	inline float GetSize() { return this->size; }
-	void SetSize(float sizeToSet) { this->size = sizeToSet; }
 
 	void SetModel3D(Model* model);
 	bool CheckCollision(Solid* other);

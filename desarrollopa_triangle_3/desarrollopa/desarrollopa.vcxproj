@@ -148,7 +148,6 @@
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Satellite.cpp" />
     <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="Score.cpp" />
     <ClCompile Include="Solid.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Star.cpp" />
@@ -177,7 +176,6 @@
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="Satellite.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="Score.h" />
     <ClInclude Include="Solid.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="Star.h" />

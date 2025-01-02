@@ -46,7 +46,6 @@ public:
 	
 	void Init();
 	void Render();
-	void OnCollision(Solid* a, Solid* b);
 	void AddGameObject(Solid* object);
 	void Update(const float& time);
 	void ProcessKeyPressed(unsigned char key, int px, int py);
