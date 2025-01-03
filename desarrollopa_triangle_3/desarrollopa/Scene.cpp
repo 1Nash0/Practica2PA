@@ -26,9 +26,9 @@ void Scene::Update(const float& time) {
 	if (this->player) {
 		// Actualiza la posición de la cámara para que siga al jugador, pero con desplazamiento.
 		this->camera.SetPosition(Vector3D(
-			player->GetPosition().GetX() ,  // Cámara un poco atrás en X
-			this->camera.GetPosition().GetY(),   // Cámara un poco más arriba en Y
-			this->camera.GetPosition().GetZ()      // Mantener Z constante
+			player->GetPosition().GetX() * time ,  // Cámara un poco atrás en X
+			this->camera.GetPosition().GetY() * time,   
+			this->camera.GetPosition().GetZ() * time     // Mantener Z constante
 		));
 	}
 

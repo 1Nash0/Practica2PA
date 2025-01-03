@@ -18,7 +18,7 @@ private:
     bool wired;
     bool isMarkedForDeletion = false;
     bool isAffectedByGravity = false; // Indica si el objeto está afectado por gravedad
-    Vector3D gravity = Vector3D(-0.0005f, 0.0, 0.0f); // Gravedad estándar
+    Vector3D gravity = Vector3D(-0.001f, 0.0, 0.0f); // Gravedad estándar
 public:
     Solid(
         Color colorArgument = Color(),

@@ -31,7 +31,7 @@ void Game::Init()
 
 	Player* player1 = new Player(); 
 	player1->SetCollisionRadius(0.8f);
-	player1->SetPosition(Vector3D(3.0, 2.0, 0.0));
+	player1->SetPosition(Vector3D(5.0, 5.0, 0.0));
 	player1->SetOrientationSpeed(Vector3D(0.0, 0.0, 0.1));
 	scene2->AddGameObject(player1);
 	
@@ -71,24 +71,6 @@ void Game::Init()
 	Battery1->SetPosition(Vector3D(9.0, 6.0, 0.0));
 	scene2->AddGameObject(Battery1);
 
-	//Instanciamos un loader para leer el archivo obj
-	//ModelLoader* loader = new ModelLoader();
-	////fijamos la escala a 2 para que el objeto sea de un tama�o mayor
-	//loader->SetScale(1.0);
-	//loader->LoadModel("..\\3dModels\\heart.obj");
-	////una vez cargado el modelo, instanciamos un Model usando memoria din�mica
-	//Model* heart = new Model();
-	////Asignamos el modelo del loader a lo apuntado por el puntero llamado bolt
-	//*heart = loader->GetModel();
-	////lo colocamos m�s cerca del centro de la escena
-	//heart->SetPosition(Vector3D(4, 4, 0));
-	////le damos velocidad de orientaci�n...
-	//heart->SetOrientationSpeed(Vector3D(0, 0.2, 0));
-
-	//heart->SetColor(Color(1.0, 0.0, 0.0, 1.0));
-
-	////aqu� a�adimos el modelo a la escena
-	//scene2->AddGameObject(heart);
 
 	ModelLoader* loader = new ModelLoader();
 	loader->SetScale(0.8f);
@@ -115,17 +97,20 @@ void Game::Init()
 	heartModel2->SetColor(Color(1.0, 1.0, 1.0, 1.0));
 	heartModel3->SetColor(Color(1.0, 0.0, 0.8, 1.0));
 
-
-	ModelLoader* loader3 = new ModelLoader();
-	loader3->SetScale(0.5f);
-	loader3->LoadModel("..\\3dModels\\rock_001.obj");
-	Model* meteoriteModel = new Model();
-	*meteoriteModel = loader3->GetModel();
-	Meteorite1->SetModel3D(meteoriteModel);
-	meteoriteModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
-	meteoriteModel->SetColor(Color(1.0, 1.0, 1.0, 1.0));
-	Meteorite2->SetModel3D(meteoriteModel);
-	
+	for (int i = 1; i < 100; i++) {
+		Meteorite* Meteorite2 = new Meteorite();
+        Meteorite2->SetPosition(Vector3D(9.0 * i, (rand() % 11 ), 0.0));
+		scene2->AddGameObject(Meteorite2);
+		ModelLoader* loader3 = new ModelLoader();
+		loader3->SetScale(0.5f);
+		loader3->LoadModel("..\\3dModels\\rock_001.obj");
+		Model* meteoriteModel = new Model();
+		*meteoriteModel = loader3->GetModel();
+		Meteorite1->SetModel3D(meteoriteModel);
+		meteoriteModel->SetColor(Color(1.0, 1.0, 1.0, 1.0));
+		Meteorite2->SetModel3D(meteoriteModel);
+		AddGameObject(Meteorite2);
+	}
 
 
 	ModelLoader* loader5 = new ModelLoader();
@@ -162,8 +147,8 @@ void Game::Init()
 	Emmiter* emisor = new Emmiter(Config);
 	menuScene->AddGameObject(emisor);
 	scene1->AddGameObject(emisor);
-	EmmiterConfiguration Config2(numParticulas, tiempoEmision, meteoriteModel);
-	Emmiter* emisor2 = new Emmiter(Config2);
+	//EmmiterConfiguration Config2(numParticulas, tiempoEmision, meteoriteModel);
+	//Emmiter* emisor2 = new Emmiter(Config2);
 
 
 
@@ -172,7 +157,6 @@ void Game::Init()
 	AddGameObject(heart2);
 	AddGameObject(heart3);
 	AddGameObject(Meteorite1);
-	AddGameObject(Meteorite2);
 	AddGameObject(Battery1);
 
 	//Sobre el resultado:

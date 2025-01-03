@@ -32,8 +32,6 @@ public:
 	Scene(Vector3D boundaryArgument = Vector3D(19, 11, 4)) : boundary(boundaryArgument)
 	{
 		this->drawBoundary = true;
-	
-
 		this->camera.SetPosition(Vector3D(boundary.GetX() / 2, boundary.GetY() / 2, boundary.GetZ() * 3.5));
 	}
 
