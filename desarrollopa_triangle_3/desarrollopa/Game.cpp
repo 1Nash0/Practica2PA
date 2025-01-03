@@ -97,20 +97,34 @@ void Game::Init()
 	heartModel2->SetColor(Color(1.0, 1.0, 1.0, 1.0));
 	heartModel3->SetColor(Color(1.0, 0.0, 0.8, 1.0));
 
-	for (int i = 1; i < 100; i++) {
-		Meteorite* Meteorite2 = new Meteorite();
-        Meteorite2->SetPosition(Vector3D(9.0 * i, (rand() % 11 ), 0.0));
-		scene2->AddGameObject(Meteorite2);
-		ModelLoader* loader3 = new ModelLoader();
-		loader3->SetScale(0.5f);
-		loader3->LoadModel("..\\3dModels\\rock_001.obj");
-		Model* meteoriteModel = new Model();
-		*meteoriteModel = loader3->GetModel();
-		Meteorite1->SetModel3D(meteoriteModel);
-		meteoriteModel->SetColor(Color(1.0, 1.0, 1.0, 1.0));
-		Meteorite2->SetModel3D(meteoriteModel);
-		AddGameObject(Meteorite2);
-	}
+for (int i = 1; i < 100; i++) {
+    // Crear una nueva instancia de Meteorite
+    Meteorite* Meteorite2 = new Meteorite();
+    // Establecer la posición del meteorito
+    Meteorite2->SetPosition(Vector3D(9.0 * i, (rand() % 11), 0.0));
+    // Añadir el meteorito a la escena
+    scene2->AddGameObject(Meteorite2);
+
+    // Cargar el modelo del meteorito
+    ModelLoader* loader3 = new ModelLoader();
+    loader3->SetScale(0.5f);
+    loader3->LoadModel("..\\3dModels\\rock_001.obj");
+
+    // Crear una nueva instancia de Model y asignarle el modelo cargado
+    Model* meteoriteModel = new Model();
+    *meteoriteModel = loader3->GetModel();
+    // Establecer el color del modelo
+    meteoriteModel->SetColor(Color(1.0, 1.0, 1.0, 1.0));
+
+    // Asignar el modelo 3D al meteorito
+    Meteorite2->SetModel3D(meteoriteModel);
+
+    // Añadir el meteorito al juego
+    AddGameObject(Meteorite2);
+
+    // Liberar recursos del loader
+    delete loader3;
+}
 
 
 	ModelLoader* loader5 = new ModelLoader();

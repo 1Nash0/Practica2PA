@@ -3,7 +3,12 @@
 #include "Text.h"
 #include "Color.h"
 #include "Meteorite.h" 
+#include "Heart.h"    // Asegúrate de incluir las cabeceras necesarias
+#include "Battery.h"  // Asegúrate de incluir las cabeceras necesarias
 #include <iostream>
+#include <GL/gl.h>    // Asegúrate de incluir OpenGL
+#include <GL/glu.h>   // Asegúrate de incluir OpenGL
+#include <windows.h>  // Para GetAsyncKeyState
 
 void Player::Render() {
     glPushMatrix();
@@ -17,18 +22,19 @@ void Player::Render() {
         std::cout << "[Player] No model set for rendering!" << std::endl;
     }
     glPopMatrix();
+
     glPushMatrix();
     healthText.SetText("Vidas: " + std::to_string(health));
     healthText.SetPosition(Vector3D(3.0f, 12.0f, 0.0f)); // Posición fija
     healthText.SetColor(Color(1.0f, 0.5f, 0.5f, 1.0f));
     healthText.Render();
+
     batteryText.SetText("Energia: " + std::to_string(batteryCount));
     batteryText.SetPosition(Vector3D(8.0f, 12.0f, 0.0f)); // Posición fija
     batteryText.SetColor(Color(1.0f, 0.0f, 0.5f, 1.0f));
     batteryText.Render();
     glPopMatrix();
 }
-
 
 void Player::Update(const float& time) {
     Vector3D currentPosition = this->GetPosition();
@@ -44,8 +50,6 @@ void Player::Update(const float& time) {
     if (isKeyPressed('D')) {
         this->SetPosition(Vector3D(currentPosition.GetX() + 0.5f * time, currentPosition.GetY(), currentPosition.GetZ())); // Mover hacia la derecha
     }
-    
-
 }
 
 void Player::SetModel3D(Model* model) {
@@ -59,12 +63,12 @@ void Player::SetModel3D(Model* model) {
 
 void Player::TakeDamage(int damage) {
     if (health > 0) {
-    health -= damage;
-    if (health <= 0) {
-        std::cout << "¡GAME OVER!\n";
-        // Aquí puedes agregar lógica adicional para detener el juego o reiniciarlo.
+        health -= damage;
+        if (health <= 0) {
+            std::cout << "¡GAME OVER!\n";
+            // Aquí puedes agregar lógica adicional para detener el juego o reiniciarlo.
+        }
     }
-}
 }
 
 void Player::CollectResource(const std::string& resourceType) {
@@ -84,38 +88,36 @@ void Player::CollectResource(const std::string& resourceType) {
         }
     }
 }
+
 void Player::OnCollision(Solid* other) {
-    // Colisión con un meteorito
     if (Meteorite* meteorite = dynamic_cast<Meteorite*>(other)) {
         TakeDamage(1); // Reduce la vida del jugador
         meteorite->MarkForDeletion(); // Marca el meteorito para eliminación
     }
-    // Colisión con un corazón
     else if (Heart* heart = dynamic_cast<Heart*>(other)) {
         if (health < 5) { // Solo recoge corazones si no tiene vida completa
             CollectResource("Heart");
             heart->MarkForDeletion(); // Marca el corazón para eliminación
         }
     }
-    // Colisión con una batería
     else if (Battery* battery = dynamic_cast<Battery*>(other)) {
         CollectResource("Battery"); // Incrementa la energía del jugador
         battery->MarkForDeletion(); // Marca la batería para eliminación
     }
 }
 
-    bool Player::CheckCollision(Solid * other) {
-        if (other == nullptr) { // Validar puntero nulo
-            return false;
-        }
+bool Player::CheckCollision(Solid* other) {
+    if (other == nullptr) { // Validar puntero nulo
         return false;
     }
-
+    // Aquí puedes agregar la lógica de colisión real
+    return false;
+}
 
 bool Player::isKeyPressed(char key) {
     return (GetAsyncKeyState(key) & 0x8000) != 0;
 }
-// En Player.cpp
+
 int Player::GetHealth() const {
     return health;  // Retorna la salud actual del jugador
 }
@@ -123,4 +125,3 @@ int Player::GetHealth() const {
 int Player::GetEnergy() const {
     return batteryCount;
 }
-
