@@ -182,7 +182,7 @@ void Game::Init()
 	this->scenes.push_back(scene1);
 	this->scenes.push_back(scene2);
 	this->activeScene = menuScene;
-
+	scene2->SetPlayer(player1);
 
 }
 

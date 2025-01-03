@@ -48,7 +48,6 @@ public:
     void CollectResource(const std::string& resourceType);
 
     bool isKeyPressed(char key);
-
     void Update(const float& time);
     void OnCollision(Solid* other) override; // Sobrescritura para manejar colisiones específicas
     bool CheckCollision(Solid* other);

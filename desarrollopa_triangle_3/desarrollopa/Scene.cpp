@@ -23,6 +23,16 @@ void Scene::Render() {
 }
 
 void Scene::Update(const float& time) {
+	if (this->player) {
+		// Actualiza la posición de la cámara para que siga al jugador, pero con desplazamiento.
+		this->camera.SetPosition(Vector3D(
+			player->GetPosition().GetX() ,  // Cámara un poco atrás en X
+			this->camera.GetPosition().GetY(),   // Cámara un poco más arriba en Y
+			this->camera.GetPosition().GetZ()      // Mantener Z constante
+		));
+	}
+
+	// Resto de la actualización de la escena
 	for (auto* object : gameObjects) {
 		if (object && !object->IsMarkedForDeletion()) {
 			object->Update(time);
@@ -46,11 +56,11 @@ void Scene::checkBoundary()
 
 void Scene::checkBoundary(Solid* element)
 {
-	if (element->GetPosition().GetX() > this->boundary.GetX())
+	/*if (element->GetPosition().GetX() > this->boundary.GetX())
 	{
 		element->SetPosition(Vector3D(this->boundary.GetX(), element->GetPosition().GetY(), element->GetPosition().GetZ()));
 		element->SetSpeed(Vector3D(-1 * element->GetSpeed().GetX(), element->GetSpeed().GetY(), element->GetSpeed().GetZ()));
-	}
+	}*/
 
 	if (element->GetPosition().GetX() < 0)
 	{

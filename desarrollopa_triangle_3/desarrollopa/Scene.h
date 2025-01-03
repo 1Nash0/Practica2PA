@@ -12,7 +12,7 @@ class Scene
 private:
 	vector<Solid*> gameObjects;
 	Camera camera;
-	
+	Player* player;  // Puntero al jugador
 	Vector3D boundary;
 	Vector3D gravity;
 	bool drawBoundary;
@@ -32,6 +32,8 @@ public:
 	Scene(Vector3D boundaryArgument = Vector3D(19, 11, 4)) : boundary(boundaryArgument)
 	{
 		this->drawBoundary = true;
+	
+
 		this->camera.SetPosition(Vector3D(boundary.GetX() / 2, boundary.GetY() / 2, boundary.GetZ() * 3.5));
 	}
 
@@ -42,7 +44,7 @@ public:
 	void SetGravity(Vector3D gravityToSet) { this->gravity = gravityToSet; }
 
 	void AddGameObject(Solid* gameObject);
-
+	void SetPlayer(Player* playerToSet) { this->player = playerToSet; }
 	void Init();
 	void Render();
 	void Update(const float& time);
