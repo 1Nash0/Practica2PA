@@ -18,12 +18,12 @@ public:
 		this->size = 0.5;
 		this->SetAffectedByGravity(true); // Habilitar gravedad para meteoritos
 		this->SetCollisionRadius(1.0f);   // Define un radio de colisión si es necesario
-		this->SetSpeed(Vector3D(-0.001f, 0.0f, 0.0f));
-		this->SetOrientationSpeed(Vector3D(1.0, 0.0, 0.0));
+		this->SetSpeed(Vector3D(-0.01, 0.0f, 0.0f));
+		this->SetOrientationSpeed(Vector3D(2.0, 0.0, 0.0));
 	}
 
 
-	void Update(const float& time) override; // Sobrescribir Update si es necesario
+	
 	inline float GetSize() { return this->size; }
 	void SetSize(float sizeToSet) { this->size = sizeToSet; }
 	string GetType() const override { return "Meteorite"; }

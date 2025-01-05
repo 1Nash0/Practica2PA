@@ -54,18 +54,6 @@ void Game::Init()
 	heart3->SetPosition(Vector3D(4.0, 5.0, 0.0));
 	scene2->AddGameObject(heart3);
 
-	Meteorite* Meteorite1 = new Meteorite();
-	Meteorite1->SetPosition(Vector3D(7.0, 2.0, 0.0));
-	scene2->AddGameObject(Meteorite1);
-
-	Meteorite* Meteorite2 = new Meteorite();
-	Meteorite2->SetPosition(Vector3D(9.0, 4.0, 0.0));
-	scene2->AddGameObject(Meteorite2);
-
-	Satellite* Satellite1 = new Satellite();
-	Satellite1->SetPosition(Vector3D(15.0, 4.0, 0.0));
-	Satellite1->SetOrientationSpeed(Vector3D(1.0, 0.0, 0.0));
-	scene2->AddGameObject(Satellite1);
 
 	Battery* Battery1 = new Battery();
 	Battery1->SetPosition(Vector3D(9.0, 6.0, 0.0));
@@ -99,11 +87,11 @@ void Game::Init()
 
 for (int i = 1; i < 100; i++) {
     // Crear una nueva instancia de Meteorite
-    Meteorite* Meteorite2 = new Meteorite();
+    Meteorite* Meteorite1 = new Meteorite();
     // Establecer la posición del meteorito
-    Meteorite2->SetPosition(Vector3D(9.0 * i, (rand() % 11), 0.0));
+    Meteorite1->SetPosition(Vector3D(15.0 * i, (rand() % 12), 0.0));
     // Añadir el meteorito a la escena
-    scene2->AddGameObject(Meteorite2);
+    scene2->AddGameObject(Meteorite1);
 
     // Cargar el modelo del meteorito
     ModelLoader* loader3 = new ModelLoader();
@@ -117,24 +105,14 @@ for (int i = 1; i < 100; i++) {
     meteoriteModel->SetColor(Color(1.0, 1.0, 1.0, 1.0));
 
     // Asignar el modelo 3D al meteorito
-    Meteorite2->SetModel3D(meteoriteModel);
+    Meteorite1->SetModel3D(meteoriteModel);
 
     // Añadir el meteorito al juego
-    AddGameObject(Meteorite2);
+    AddGameObject(Meteorite1);
 
     // Liberar recursos del loader
     delete loader3;
 }
-
-
-	ModelLoader* loader5 = new ModelLoader();
-	loader5->SetScale(0.04f);
-	loader5->LoadModel("..\\3dModels\\Lowamogus.obj");
-	Model* satelliteModel = new Model();
-	*satelliteModel = loader5->GetModel();
-	Satellite1->SetModel3D(satelliteModel);
-	satelliteModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
-	satelliteModel->SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f));
 
 	ModelLoader* loader6 = new ModelLoader();
 	loader6->SetScale(1.0f);
@@ -170,7 +148,6 @@ for (int i = 1; i < 100; i++) {
 	AddGameObject(heart1);
 	AddGameObject(heart2);
 	AddGameObject(heart3);
-	AddGameObject(Meteorite1);
 	AddGameObject(Battery1);
 
 	//Sobre el resultado:

@@ -26,7 +26,7 @@ public:
     Heart()
         :  size(1.0), vidas(5), model3D(nullptr), isVisible(true) 
     {
-        this->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
+        this->SetOrientationSpeed(Vector3D(0.0, 3.0, 0.0));
         this->SetCollisionRadius(0.4f);
     }
 

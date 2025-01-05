@@ -2,14 +2,14 @@
 #include <cmath>
 
 
-void Solid::Update( const float& deltaTime)
+void Solid::Update( const float& time)
 {
-	this->SetPosition(this->GetPosition() + this->GetSpeed() * deltaTime);
-	this->SetOrientation( this->GetOrientation() + this->GetOrientationSpeed() * deltaTime);
+	this->SetPosition(this->GetPosition() + this->GetSpeed() * time);
+	this->SetOrientation( this->GetOrientation() + this->GetOrientationSpeed() * time);
 
     if (isAffectedByGravity) {
         Vector3D currentSpeed = this->GetSpeed();
-        this->SetSpeed(currentSpeed + gravity * deltaTime);
+        this->SetSpeed(currentSpeed + gravity * time);
     }
 }
 

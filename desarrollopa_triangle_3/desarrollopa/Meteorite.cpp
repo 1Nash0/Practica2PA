@@ -18,13 +18,6 @@ void Meteorite::Render()
 	}
 	glPopMatrix();
 }
-void Meteorite::Update(const float& time) {
-	// Llama a la implementación base para la lógica estándar
-	Solid::Update(time);
-
-	// Agrega lógica personalizada del meteorito si es necesario
-	// Por ejemplo, cambiar el color o efectos al acercarse al jugador
-}
 
 void Meteorite::SetModel3D(Model* model) {
 	if (model) {
