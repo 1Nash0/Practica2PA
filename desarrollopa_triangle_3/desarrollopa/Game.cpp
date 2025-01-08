@@ -42,24 +42,6 @@ void Game::Init()
 	text1->SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f));
 	scene2->AddGameObject(text1);
 
-	Heart* heart1 = new Heart();
-	heart1->SetPosition(Vector3D(2.0, 5.0, 0.0));
-	scene2->AddGameObject(heart1);
-
-	Heart* heart2 = new Heart();
-	heart2->SetPosition(Vector3D(9.0, 5.0, 0.0));
-	scene2->AddGameObject(heart2);
-
-	Heart* heart3 = new Heart();
-	heart3->SetPosition(Vector3D(4.0, 5.0, 0.0));
-	scene2->AddGameObject(heart3);
-
-
-	Battery* Battery1 = new Battery();
-	Battery1->SetPosition(Vector3D(9.0, 6.0, 0.0));
-	scene2->AddGameObject(Battery1);
-
-
 	ModelLoader* loader = new ModelLoader();
 	loader->SetScale(0.8f);
 	loader->LoadModel("..\\3dModels\\Spaceship4.obj");
@@ -69,59 +51,55 @@ void Game::Init()
 	playerModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
 	playerModel->SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f)); 
 
-	ModelLoader* loader2 = new ModelLoader();
-	loader2->SetScale(0.5f);
-	loader2->LoadModel("..\\3dModels\\heart.obj");
-	Model* heartModel = new Model();
-	Model* heartModel2 = new Model();
-	Model* heartModel3 = new Model();
-	*heartModel = loader2->GetModel();
-	*heartModel2 = loader2->GetModel();
-	*heartModel3 = loader2->GetModel();
-	heart1->SetModel3D(heartModel);
-	heart2->SetModel3D(heartModel2);
-	heart3->SetModel3D(heartModel3);
-	heartModel->SetColor(Color(1.0, 0.0, 0.0, 1.0));
-	heartModel2->SetColor(Color(1.0, 1.0, 1.0, 1.0));
-	heartModel3->SetColor(Color(1.0, 0.0, 0.8, 1.0));
+	for (int i = 1; i < 20; i++) {
 
+		Battery* battery1 = new Battery();
+		battery1->SetPosition(Vector3D(9.0 * 3 * i, (rand() % 12), 0.0));
+		scene2->AddGameObject(battery1);
+		ModelLoader* loader6 = new ModelLoader();
+		loader6->SetScale(1.0f);
+		loader6->LoadModel("..\\3dModels\\Bolt.obj");
+		Model* baterryModel = new Model();
+		*baterryModel = loader6->GetModel();
+		baterryModel->SetColor(Color(1.0f, 1.0f, 0.0f, 1.0f));
+		battery1->SetModel3D(baterryModel);
+		AddGameObject(battery1);
+		delete loader6;
+	}
+	
+
+	for (int i = 1; i < 20; i++) {
+		Heart* heart1 = new Heart();
+		heart1->SetPosition(Vector3D(9.0 * 2*i, (rand() % 12), 0.0));
+		scene2->AddGameObject(heart1);
+		ModelLoader* loader2 = new ModelLoader();
+		loader2->SetScale(0.5f);
+		loader2->LoadModel("..\\3dModels\\heart.obj");
+		Model* heartModel = new Model();
+		*heartModel = loader2->GetModel();
+		heartModel->SetColor(Color(1.0, 0.0, 0.0, 1.0));
+		heart1->SetModel3D(heartModel);
+		AddGameObject(heart1);
+		delete loader2;
+	}
 for (int i = 1; i < 100; i++) {
-    // Crear una nueva instancia de Meteorite
-    Meteorite* Meteorite1 = new Meteorite();
-    // Establecer la posición del meteorito
-    Meteorite1->SetPosition(Vector3D(15.0 * i, (rand() % 12), 0.0));
-    // Añadir el meteorito a la escena
-    scene2->AddGameObject(Meteorite1);
 
-    // Cargar el modelo del meteorito
+    Meteorite* Meteorite1 = new Meteorite();
+    Meteorite1->SetPosition(Vector3D(9.0 * i, (rand() % 12), 0.0));
+    scene2->AddGameObject(Meteorite1);
     ModelLoader* loader3 = new ModelLoader();
     loader3->SetScale(0.5f);
     loader3->LoadModel("..\\3dModels\\rock_001.obj");
-
-    // Crear una nueva instancia de Model y asignarle el modelo cargado
     Model* meteoriteModel = new Model();
     *meteoriteModel = loader3->GetModel();
-    // Establecer el color del modelo
     meteoriteModel->SetColor(Color(1.0, 1.0, 1.0, 1.0));
-
-    // Asignar el modelo 3D al meteorito
     Meteorite1->SetModel3D(meteoriteModel);
-
-    // Añadir el meteorito al juego
     AddGameObject(Meteorite1);
-
-    // Liberar recursos del loader
     delete loader3;
 }
 
-	ModelLoader* loader6 = new ModelLoader();
-	loader6->SetScale(1.0f);
-	loader6->LoadModel("..\\3dModels\\Bolt.obj");
-	Model* baterryModel = new Model();
-	*baterryModel = loader6->GetModel();
-	Battery1->SetModel3D(baterryModel);
-	baterryModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
-	baterryModel->SetColor(Color(1.0f, 1.0f, 0.0f, 1.0f));
+
+	
 
 	Star* star1 = new Star();
 	ModelLoader* loader7 = new ModelLoader();
@@ -145,10 +123,6 @@ for (int i = 1; i < 100; i++) {
 
 
 	AddGameObject(player1);
-	AddGameObject(heart1);
-	AddGameObject(heart2);
-	AddGameObject(heart3);
-	AddGameObject(Battery1);
 
 	//Sobre el resultado:
 	// �por qu� no gira sobre s� mismo sino con un desplazamiento?
@@ -184,7 +158,7 @@ void Game::Update(const float& time) {
 
 	// Actualizar todos los objetos
 	for (auto* object : gameObjects) {
-		if (object) {
+		if (object && !object->IsMarkedForDeletion()) {
 			object->Update(time);
 		}
 	}

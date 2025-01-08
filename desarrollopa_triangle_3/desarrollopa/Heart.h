@@ -1,13 +1,8 @@
-#include "Solid.h"
-#include "Model.h"
-#include "Player.h"
-#include "Color.h"
-#include <GL/glut.h>
-#include <string>
-#include <iostream>
 
-#ifndef HEART_H
-#define HEART_H
+#pragma once
+#include <GL/glut.h>
+#include "Model.h"
+#include "Solid.h"
 
 
 using namespace std;
@@ -15,22 +10,23 @@ using namespace std;
 class Heart : public Solid {
 private:
 
-    int vidas;
     float size;
     Model* model3D;
-    bool isVisible;
 
 
 public:
 
-    Heart()
-        :  size(1.0), vidas(5), model3D(nullptr), isVisible(true) 
+    Heart() : model3D(nullptr), Solid()
     {
-        this->SetOrientationSpeed(Vector3D(0.0, 3.0, 0.0));
-        this->SetCollisionRadius(0.4f);
+        this->size = 0.5;
+        this->SetAffectedByGravity(true); // Habilitar gravedad para meteoritos
+        this->SetCollisionRadius(0.8f);   // Define un radio de colisión si es necesario
+        this->SetSpeed(Vector3D(-0.1, 0.0f, 0.0f));
+        this->SetOrientationSpeed(Vector3D(0.0, 4.0, 0.0));
     }
 
-    int getVidas() const;
+
+
 
     string GetType() const override { return "Heart"; }
 
@@ -38,12 +34,8 @@ public:
     inline float GetSize() const { return this->size; }
     void SetSize(float sizeToSet) { this->size = sizeToSet; }
 
-    
-    void sumarVidas(int cantidad);
+   
 
-
-
-    void mostrarVidas() const;
 
     Solid* Clone() const override;
 
@@ -53,10 +45,9 @@ public:
 
     void SetModel3D(Model* model);
 
-    void Render() override;
+    void Render();
 };
 
-#endif // HEART_H
 
 
 

@@ -24,7 +24,7 @@ class Game
 {
 private:
 	const double TIME_INCREMENT = 0.5;  // 50 ms por actualización, en el juego
-	const long UPDATE_PERIOD = 10;  // 32 ms para la actualización en tiempo real
+	const long UPDATE_PERIOD = 5;  // 32 ms para la actualización en tiempo real
 
 
 	milliseconds initialMilliseconds;
@@ -35,6 +35,7 @@ private:
 	Player* player1;
 	Meteorite* meteorite1;
 	Heart* heart1;
+	Battery* battery1;
 	Text* text1;
 	Scene* activeScene;
 	Menu* menuScene;

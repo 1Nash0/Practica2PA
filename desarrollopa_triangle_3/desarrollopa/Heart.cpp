@@ -1,7 +1,5 @@
 #include "Heart.h"
-#include <iostream>
-#include "Solid.h"
-#include "Color.h"
+
 
 
 void Heart::Render() {
