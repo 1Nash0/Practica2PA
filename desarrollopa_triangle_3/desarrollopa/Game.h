@@ -12,8 +12,9 @@
 #include "Text.h"
 #include "Emmiter.h"
 #include "Meteorite.h"
-#include "Satellite.h"
 #include "Menu.h"
+#include "WinScene.h"
+#include "DefeatScene.h"
 #include "Battery.h"
 #include "Star.h"
 #include <chrono>
@@ -39,15 +40,18 @@ private:
 	Text* text1;
 	Scene* activeScene;
 	Menu* menuScene;
+	WinScene* winScene;
+	DefeatScene* defeatScene;
 	vector<Scene*> scenes;
 
 public:
 
-	Game():activeScene(nullptr), player1(new Player()), heart1(nullptr), menuScene(nullptr),text1(nullptr), initialMilliseconds(duration_cast<milliseconds>(system_clock::now().time_since_epoch())), lastUpdateTime(0) {}
+	Game():activeScene(nullptr), player1(new Player()), heart1(nullptr), menuScene(nullptr),text1(nullptr), winScene(nullptr), defeatScene(nullptr), initialMilliseconds(duration_cast<milliseconds>(system_clock::now().time_since_epoch())), lastUpdateTime(0) {}
 	
 	void Init();
 	void Render();
 	void AddGameObject(Solid* object);
+	void RestartGame();
 	void Update(const float& time);
 	void ProcessKeyPressed(unsigned char key, int px, int py);
 	void ProcessMouseMovement(int x, int y);

@@ -6,17 +6,17 @@
 #include <string>
 #include <iostream>
 
-
 using namespace std;
+
 class Text : public Solid {
 private:
-    string text;
-    // Atributo que contiene el texto a mostrar
+    string text; // Atributo que contiene el texto a mostrar
+
 public:
     // Constructor por defecto
     Text() : text("") {}
 
-    // Constructor con texto inicial
+    // Constructor con texto y escala inicial
     Text(const string& initialText, float initialScale)
         : text(initialText) {}
 
@@ -28,12 +28,14 @@ public:
         return text;
     }
 
-   
+
+
     Solid* Clone() const override {
         return new Text(*this);  // Constructor copia para clonar
     }
+
     // Sobrescribe el método Render
-    void Render();
+    void Render() override;
 };
 
 

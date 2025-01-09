@@ -134,6 +134,7 @@
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="Cuboid.cpp" />
     <ClCompile Include="Cylinder.cpp" />
+    <ClCompile Include="DefeatScene.cpp" />
     <ClCompile Include="desarrollopa.cpp" />
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Emmiter.cpp" />
@@ -147,7 +148,6 @@
     <ClCompile Include="ModelLoader.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Projectile.cpp" />
-    <ClCompile Include="Satellite.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Solid.cpp" />
     <ClCompile Include="Sphere.cpp" />
@@ -156,6 +156,7 @@
     <ClCompile Include="Torus.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Vector3D.cpp" />
+    <ClCompile Include="WinScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Battery.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Cuboid.h" />
     <ClInclude Include="Cylinder.h" />
     <ClInclude Include="Background.h" />
+    <ClInclude Include="DefeatScene.h" />
     <ClInclude Include="Emmiter.h" />
     <ClInclude Include="EmmiterConfiguration.h" />
     <ClInclude Include="Game.h" />
@@ -176,7 +178,6 @@
     <ClInclude Include="ModelLoader.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Projectile.h" />
-    <ClInclude Include="Satellite.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Solid.h" />
     <ClInclude Include="Sphere.h" />
@@ -185,6 +186,7 @@
     <ClInclude Include="Torus.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="Vector3D.h" />
+    <ClInclude Include="WinScene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
