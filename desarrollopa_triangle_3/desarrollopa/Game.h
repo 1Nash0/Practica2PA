@@ -15,9 +15,13 @@
 #include "Menu.h"
 #include "WinScene.h"
 #include "DefeatScene.h"
+#include "levelScene.h"
 #include "Battery.h"
 #include "Star.h"
 #include <chrono>
+#include <iostream>
+
+
 
 using namespace std::chrono;
 
@@ -39,6 +43,7 @@ private:
 	Battery* battery1;
 	Text* text1;
 	Scene* activeScene;
+	levelScene* gameScene;
 	Menu* menuScene;
 	WinScene* winScene;
 	DefeatScene* defeatScene;
@@ -46,7 +51,7 @@ private:
 
 public:
 
-	Game():activeScene(nullptr), player1(new Player()), heart1(nullptr), menuScene(nullptr),text1(nullptr), winScene(nullptr), defeatScene(nullptr), initialMilliseconds(duration_cast<milliseconds>(system_clock::now().time_since_epoch())), lastUpdateTime(0) {}
+	Game():activeScene(nullptr), player1(new Player()), heart1(nullptr), gameScene(nullptr), menuScene(nullptr),text1(nullptr), winScene(nullptr), defeatScene(nullptr), initialMilliseconds(duration_cast<milliseconds>(system_clock::now().time_since_epoch())), lastUpdateTime(0) {}
 	
 	void Init();
 	void Render();

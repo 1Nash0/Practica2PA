@@ -1,5 +1,5 @@
 #include "DefeatScene.h"
-#include "Text.h"
+
 
 void DefeatScene::Init() {
     // Configura la cámara
@@ -9,19 +9,18 @@ void DefeatScene::Init() {
         AddGameObject(camara); // Registra la cámara como un GameObject
     }
 
-    // Texto del título del menú
     Text* titleText = new Text();
-    titleText->SetPosition(Vector3D(7, 7, -1)); // Posición relativa
+    titleText->SetPosition(Vector3D(8, 7, 0)); 
     titleText->SetText("DERROTA");
-    titleText->SetColor(Color(1.0f, 0.0f, 5.0f, 1.0f));
+    titleText->SetColor(Color(4.0f, 0.0f, 0.0f, 1.0f));
     textos.push_back(titleText);
     AddGameObject(titleText);
 
     // Texto de instrucciones
     Text* instructionText = new Text();
-    instructionText->SetPosition(Vector3D(3, -0.2, -1)); // Posición relativa
-    instructionText->SetText("Presiona 'P' para reiniciar el juego");
-    instructionText->SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f));
+    instructionText->SetPosition(Vector3D(4, 3, 0)); // Posición relativa
+    instructionText->SetText("Presiona la tecla 'P' para reiniciar el juego");
+    instructionText->SetColor(Color(8.0f, 0.0f, 0.0f, 1.0f)); 
     textos.push_back(instructionText);
     AddGameObject(instructionText);
 }

@@ -15,9 +15,9 @@ const int WINDOW_POSITION_X = 300;
 const int WINDOW_POSITION_Y = 100;
 const char TITLE[] = "PARTE 2";
 
-const GLclampf RED = 0.1;
-const GLclampf GREEN = 0.1;
-const GLclampf BLUE = 0.2;
+const GLclampf RED = 0.0;
+const GLclampf GREEN = 0.0;
+const GLclampf BLUE = 0.0;
 const GLclampf ALPHA = 1.0;
 
 

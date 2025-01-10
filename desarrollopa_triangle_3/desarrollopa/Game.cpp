@@ -1,20 +1,5 @@
-#include <iostream>
-#include <chrono>
-#include <vector>
-#include <memory>
 #include "Game.h"
-#include "Scene.h"
-#include "Menu.h"
-#include "WinScene.h"
-#include "DefeatScene.h"
-#include "Player.h"
-#include "Solid.h"
-#include "ModelLoader.h"
-#include "Battery.h"
-#include "Heart.h"
-#include "Meteorite.h"
-#include "Star.h"
-#include "Emmiter.h"
+
 
 using namespace std;
 using namespace std::chrono;
@@ -28,6 +13,9 @@ void Game::Init() {
 
     defeatScene = new DefeatScene();
     defeatScene->Init();
+
+    gameScene = new levelScene();
+    gameScene->Init();
 
     activeScene = menuScene;
 
@@ -43,13 +31,8 @@ void Game::Init() {
     player1->SetCollisionRadius(0.8f);
     player1->SetPosition(Vector3D(5.0, 5.0, 0.0));
     player1->SetOrientationSpeed(Vector3D(0.0, 0.0, 0.1));
-    scene2->AddGameObject(player1);
+    gameScene->AddGameObject(player1);
 
-    Text* text1 = new Text();
-    text1->SetText("Nas > 2024");
-    text1->SetPosition(Vector3D(-15.0, 15.0, -6.0));
-    text1->SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f));
-    scene2->AddGameObject(text1);
 
     ModelLoader* loader = new ModelLoader();
     loader->SetScale(0.8f);
@@ -58,12 +41,12 @@ void Game::Init() {
     *playerModel = loader->GetModel();
     player1->SetModel3D(playerModel);
     playerModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
-    playerModel->SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f));
+    playerModel->SetColor(Color(0.5f, 0.5f, 0.5f, 1.0f)); // Gris metálico
 
     for (int i = 1; i < 20; i++) {
         Battery* battery1 = new Battery();
         battery1->SetPosition(Vector3D(9.0 * 3 * i, (rand() % 12), 0.0));
-        scene2->AddGameObject(battery1);
+        gameScene->AddGameObject(battery1);
         ModelLoader* loader6 = new ModelLoader();
         loader6->SetScale(1.0f);
         loader6->LoadModel("..\\3dModels\\Bolt.obj");
@@ -78,7 +61,7 @@ void Game::Init() {
     for (int i = 1; i < 20; i++) {
         Heart* heart1 = new Heart();
         heart1->SetPosition(Vector3D(9.0 * 2 * i, (rand() % 12), 0.0));
-        scene2->AddGameObject(heart1);
+        gameScene->AddGameObject(heart1);
         ModelLoader* loader2 = new ModelLoader();
         loader2->SetScale(0.5f);
         loader2->LoadModel("..\\3dModels\\heart.obj");
@@ -92,14 +75,14 @@ void Game::Init() {
 
     for (int i = 1; i < 100; i++) {
         Meteorite* Meteorite1 = new Meteorite();
-        Meteorite1->SetPosition(Vector3D(9.0 * i, (rand() % 12), 0.0));
-        scene2->AddGameObject(Meteorite1);
+        Meteorite1->SetPosition(Vector3D(9.0 * i -2, (rand() % 12), 0.0));
+        gameScene->AddGameObject(Meteorite1);
         ModelLoader* loader3 = new ModelLoader();
         loader3->SetScale(0.5f);
         loader3->LoadModel("..\\3dModels\\rock_001.obj");
         Model* meteoriteModel = new Model();
-        *meteoriteModel = loader3->GetModel();
-        meteoriteModel->SetColor(Color(1.0f, 1.0f, 1.0f, 1.0f));
+        *meteoriteModel = loader3->GetModel(); 
+        meteoriteModel->SetColor(Color(0.3f, 0.3f, 0.3f, 1.0f)); // Gris oscuro
         Meteorite1->SetModel3D(meteoriteModel);
         AddGameObject(Meteorite1);
         delete loader3;
@@ -112,9 +95,7 @@ void Game::Init() {
     Model* starModel = new Model();
     *starModel = loader7->GetModel();
     star1->SetModel3D(starModel);
-    starModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
-    starModel->SetColor(Color(0.9f, 0.9f, 0.0f, 1.0f));
-
+    starModel->SetColor(Color(1.0f, 1.0f, 0.6f, 0.8f)); // Amarillo blanquecino
     EmmiterConfiguration Config(numParticulas, tiempoEmision, starModel);
     Emmiter* emisor = new Emmiter(Config);
     menuScene->AddGameObject(emisor);
@@ -126,7 +107,7 @@ void Game::Init() {
     this->scenes.push_back(scene1);
     this->scenes.push_back(scene2);
     this->activeScene = menuScene;
-    scene2->SetPlayer(player1);
+    gameScene->SetPlayer(player1);
 }
 
 void Game::Render() {
@@ -172,15 +153,15 @@ void Game::Update(const float& time) {
     }
     
     // Verificar y cambiar de escena si es necesario
-    if (activeScene == scenes[1]) {
+    if (activeScene == gameScene) {
         if (player1->GetHealth() == 0) {
             activeScene = defeatScene;  // Cambia a la escena del menú
             std::cout << "Escena cambiada a menuScene" << std::endl;
             
         }
     }
-    if (activeScene == scenes[1]) {
-        if (player1->GetEnergy() == 5) {
+    if (activeScene == gameScene) {
+        if (player1->GetEnergy() == 10) {
             activeScene = winScene;  // Cambia a la escena del menú
             std::cout << "Escena cambiada a menuScene" << std::endl;
 
@@ -202,7 +183,7 @@ void Game::RestartGame() {
 
     // Reejecutar el método Init para reiniciar todo
     Init();
-    activeScene = scenes[1];
+    activeScene = gameScene;
 }
 
 void Game::AddGameObject(Solid* object) {
@@ -223,16 +204,16 @@ void Game::ProcessKeyPressed(unsigned char key, int px, int py) {
         // Cambiar de la escena del menú a la escena 2 al presionar 'P'
         if (activeScene == menuScene && (key == 'P' || key == 'p')) {
             std::cout << "Iniciando el juego jeje..." << std::endl;
-            activeScene = scenes[1]; // Cambia a la escena 2
+            activeScene = gameScene; // Cambia a la escena 2
         }
         if (activeScene == defeatScene && (key == 'P' || key == 'p')) {
             std::cout << "Iniciando el juego jeje..." << std::endl;
-            activeScene = scenes[1];
+            activeScene = gameScene;
             RestartGame();
         }
         if (activeScene == winScene && (key == 'P' || key == 'p')) {
             std::cout << "Iniciando el juego jeje..." << std::endl;
-            activeScene = scenes[1];
+            activeScene = gameScene;
             RestartGame();
         }
     }

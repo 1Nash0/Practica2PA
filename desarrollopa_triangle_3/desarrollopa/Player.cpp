@@ -12,7 +12,6 @@
 
 void Player::Render() {
     glPushMatrix();
-    glColor4f(0.0f, 0.0f, 1.0f, 1.0f); // Cambiar color a azul
     glTranslatef(this->GetPosition().GetX(), this->GetPosition().GetY(), this->GetPosition().GetZ());
     glRotatef(90.0f, 0.0f, 1.0f, 0.0f); // Rotar 90 grados para mirar a la derecha
     if (model3D) {
@@ -25,13 +24,13 @@ void Player::Render() {
 
     glPushMatrix();
     healthText.SetText("Vidas: " + std::to_string(health));
-    healthText.SetPosition(Vector3D(3.0f, 12.0f, 0.0f)); // Posición fija
-    healthText.SetColor(Color(1.0f, 0.5f, 0.5f, 1.0f));
+    healthText.SetPosition(Vector3D(1.0f, 12.0f, 0.0f)); // Posición fija
+    healthText.SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f));
     healthText.Render();
 
-    batteryText.SetText("Energia: " + std::to_string(batteryCount));
-    batteryText.SetPosition(Vector3D(8.0f, 12.0f, 0.0f)); // Posición fija
-    batteryText.SetColor(Color(1.0f, 0.0f, 0.5f, 1.0f));
+    batteryText.SetText("Baterias: " + std::to_string(batteryCount) +"/10");
+    batteryText.SetPosition(Vector3D(5.0f, 12.0f, 0.0f)); // Posición fija
+    batteryText.SetColor(Color(1.0f, 1.0f, 0.1f, 1.0f));
     batteryText.Render();
     glPopMatrix();
 }

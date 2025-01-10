@@ -1,5 +1,7 @@
 #pragma once
 #include "Scene.h"
+#include "Text.h"
+
 class DefeatScene : public Scene
     
 {

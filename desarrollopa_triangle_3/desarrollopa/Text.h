@@ -12,6 +12,7 @@ class Text : public Solid {
 private:
     string text; // Atributo que contiene el texto a mostrar
 
+
 public:
     // Constructor por defecto
     Text() : text("") {}
