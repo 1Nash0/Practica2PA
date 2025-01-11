@@ -24,13 +24,17 @@ void Scene::Render() {
 
 void Scene::Update(const float& time) {
 	if (this->player) {
-		
+		// Update player logic here
 	}
 
-	
-	for (auto* object : gameObjects) {
+	for (auto it = gameObjects.begin(); it != gameObjects.end(); ) {
+		auto* object = *it;
 		if (object && !object->IsMarkedForDeletion()) {
 			object->Update(time);
+			++it;
+		}
+		else {
+			it = gameObjects.erase(it);
 		}
 	}
 	this->checkBoundary();
