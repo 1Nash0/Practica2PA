@@ -12,10 +12,6 @@ void Meteorite::Render()
 	if (model3D) {
 		model3D->Render();
 	}
-	else {
-		// Si no hay modelo, dibuja una representación básica o lanza un error
-		std::cout << "[Meteorite] No model set for rendering!" << std::endl;
-	}
 	glPopMatrix();
 }
 
@@ -24,12 +20,13 @@ void Meteorite::SetModel3D(Model* model) {
 		this->model3D = model;
 	}
 	else {
-		std::cerr << "[Meteorite::SetModel3D] Modelo nulo pasado como argumento." << std::endl;
+		std::cerr << "Modelo nulo pasado como argumento." << std::endl;
 	}
 }
+
 bool Meteorite::CheckCollision(Solid* other) {
-	if (other == nullptr) { // Validar puntero nulo
+	if (other == nullptr) {
 		return false;
 	}
-	return Solid::CheckCollision(other); // Usar el método base
+	return Solid::CheckCollision(other);
 }

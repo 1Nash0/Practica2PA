@@ -9,6 +9,7 @@ class WinScene : public Scene
 private:
 	Camera* camara;
 	vector <Text*> textos;
+
 public:
 	WinScene() : camara() {}
 
@@ -18,6 +19,6 @@ public:
 
 	void SetCameraPosition(Vector3D position);
 	void Init();
-	void Update();
+
 
 };

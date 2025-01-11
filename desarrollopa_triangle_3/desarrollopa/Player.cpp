@@ -1,41 +1,32 @@
 #include "Player.h"
-#include "Solid.h"
-#include "Text.h"
-#include "Color.h"
-#include "Meteorite.h" 
-#include "Heart.h"    // Asegúrate de incluir las cabeceras necesarias
-#include "Battery.h"  // Asegúrate de incluir las cabeceras necesarias
-#include <iostream>
-#include <GL/gl.h>    // Asegúrate de incluir OpenGL
-#include <GL/glu.h>   // Asegúrate de incluir OpenGL
-#include <windows.h>  // Para GetAsyncKeyState
+
+
 
 void Player::Render() {
+
     glPushMatrix();
     glTranslatef(this->GetPosition().GetX(), this->GetPosition().GetY(), this->GetPosition().GetZ());
     glRotatef(90.0f, 0.0f, 1.0f, 0.0f); // Rotar 90 grados para mirar a la derecha
     if (model3D) {
         model3D->Render();
     }
-    else {
-        std::cout << "[Player] No model set for rendering!" << std::endl;
-    }
     glPopMatrix();
 
     glPushMatrix();
     healthText.SetText("Vidas: " + std::to_string(health));
-    healthText.SetPosition(Vector3D(1.0f, 12.0f, 0.0f)); // Posición fija
+    healthText.SetPosition(Vector3D(1.0f, 12.0f, 0.0f)); 
     healthText.SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f));
     healthText.Render();
 
     batteryText.SetText("Baterias: " + std::to_string(batteryCount) +"/10");
-    batteryText.SetPosition(Vector3D(5.0f, 12.0f, 0.0f)); // Posición fija
+    batteryText.SetPosition(Vector3D(5.0f, 12.0f, 0.0f)); 
     batteryText.SetColor(Color(1.0f, 1.0f, 0.1f, 1.0f));
     batteryText.Render();
     glPopMatrix();
 }
 
 void Player::Update(const float& time) {
+
     Vector3D currentPosition = this->GetPosition();
     if (isKeyPressed('W')) {
         this->SetPosition(Vector3D(currentPosition.GetX(), currentPosition.GetY() + 0.5f * time, currentPosition.GetZ())); // Mover hacia arriba
@@ -56,17 +47,13 @@ void Player::SetModel3D(Model* model) {
         this->model3D = model;
     }
     else {
-        std::cerr << "[Player::SetModel3D] Modelo nulo pasado como argumento." << std::endl;
+        std::cerr << "Modelo nulo pasado como argumento." << std::endl;
     }
 }
 
 void Player::TakeDamage(int damage) {
     if (health > 0) {
         health -= damage;
-        if (health <= 0) {
-            std::cout << "¡GAME OVER!\n";
-            // Aquí puedes agregar lógica adicional para detener el juego o reiniciarlo.
-        }
     }
 }
 
@@ -74,16 +61,11 @@ void Player::CollectResource(const std::string& resourceType) {
     if (resourceType == "Heart") {
         if (health < 5) {
             health++;
-            std::cout << "Vida aumentada: " << health << std::endl;
         }
     }
     else if (resourceType == "Battery") {
         if (batteryCount < 10) {
             batteryCount++;
-            std::cout << "Batería recogida: " << batteryCount << std::endl;
-            if (batteryCount == 10) {
-                batteryText.SetText("Victoria");
-            }
         }
     }
 }
@@ -106,21 +88,14 @@ void Player::OnCollision(Solid* other) {
 }
 
 bool Player::CheckCollision(Solid* other) {
-    if (other == nullptr) { // Validar puntero nulo
+    if (other == nullptr) { 
         return false;
     }
-    // Aquí puedes agregar la lógica de colisión real
-    return false;
 }
 
 bool Player::isKeyPressed(char key) {
     return (GetAsyncKeyState(key) & 0x8000) != 0;
 }
 
-int Player::GetHealth() const {
-    return health;  // Retorna la salud actual del jugador
-}
 
-int Player::GetEnergy() const {
-    return batteryCount;
-}
+

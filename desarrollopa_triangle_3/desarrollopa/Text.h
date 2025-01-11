@@ -12,7 +12,6 @@ class Text : public Solid {
 private:
     string text; // Atributo que contiene el texto a mostrar
 
-
 public:
     // Constructor por defecto
     Text() : text("") {}
@@ -23,19 +22,12 @@ public:
 
     // Establece el texto
     void SetText(const string& newText);
-
-    // Obtener texto
-    const string& GetText() const {
-        return text;
-    }
-
-
+    const string& GetText() const { return text; }
 
     Solid* Clone() const override {
         return new Text(*this);  // Constructor copia para clonar
     }
 
-    // Sobrescribe el método Render
     void Render() override;
 };
 

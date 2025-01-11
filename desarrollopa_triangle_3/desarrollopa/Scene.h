@@ -14,7 +14,7 @@ private:
 	Camera camera;
 	Player* player;  // Puntero al jugador
 	Vector3D boundary;
-	Vector3D gravity;
+
 	bool drawBoundary;
 	void checkBoundary();
 	void renderBoundary();
@@ -37,9 +37,9 @@ public:
 
 	inline Vector3D GetBoundary() { return this->boundary; }
 	inline bool GetDrawBoundary() { return this->drawBoundary; }
-	inline Vector3D GetGravity() { return this->gravity; }
+
 	inline void SetDrawBoundary(bool drawBoundaryToSet) { this->drawBoundary = drawBoundaryToSet; }
-	void SetGravity(Vector3D gravityToSet) { this->gravity = gravityToSet; }
+
 
 	void AddGameObject(Solid* gameObject);
 	void SetPlayer(Player* playerToSet) { this->player = playerToSet; }

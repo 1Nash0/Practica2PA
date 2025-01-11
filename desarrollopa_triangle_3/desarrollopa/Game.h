@@ -1,7 +1,6 @@
 #pragma once
 #include "Cube.h"
 #include "Sphere.h"
-#include "Torus.h"
 #include "Cylinder.h"
 #include "Scene.h"
 #include "Triangle.h"

@@ -17,6 +17,6 @@ public:
 
 	void SetCameraPosition(Vector3D position);
 	void Init();
-	void Update();
+
 };
 

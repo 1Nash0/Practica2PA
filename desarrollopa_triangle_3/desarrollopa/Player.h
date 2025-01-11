@@ -9,6 +9,11 @@
 #include <GL/glut.h>
 #include <string>
 #include <iostream>
+#include "Meteorite.h" 
+#include "Heart.h"    // Asegúrate de incluir las cabeceras necesarias
+#include "Battery.h"  // Asegúrate de incluir las cabeceras necesarias
+#include <GL/glu.h>   // Asegúrate de incluir OpenGL
+
 
 using namespace std;
 
@@ -29,7 +34,14 @@ public:
     // Constructor
     Player()
         :  size(1.0), health(5), batteryCount(0), score(0),
-        model3D(nullptr), proyectil(nullptr) {}
+        model3D(nullptr), proyectil(nullptr) 
+    {   
+        this->SetSize(1.0);
+        this->SetCollisionRadius(0.8f);
+        this->SetPosition(Vector3D(5.0, 5.0, 0.0));
+        this->SetOrientationSpeed(Vector3D(0.0, 0.0, 0.1));
+    
+    }
 
 
     // Getters y Setters
@@ -39,8 +51,8 @@ public:
 
     // Asignar modelo 3D
     void SetModel3D(Model* model);
-    int GetHealth() const;
-    int GetEnergy() const;
+    int GetHealth() const { return health; }
+    int GetEnergy() const { return batteryCount; }
   
     string GetType() const override { return "Player"; }
     // Métodos de juego

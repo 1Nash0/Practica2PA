@@ -5,6 +5,7 @@ using namespace std;
 using namespace std::chrono;
 
 void Game::Init() {
+
     menuScene = new Menu();
     menuScene->Init();
 
@@ -20,17 +21,13 @@ void Game::Init() {
     activeScene = menuScene;
 
     cout << "[GAME] Init..." << endl;
-    Scene* scene1 = new Scene();
-    Scene* scene2 = new Scene();
+ 
 
     // Configuramos el emisor
     int numParticulas = 1000;
     int tiempoEmision = 10;
 
     player1 = new Player();
-    player1->SetCollisionRadius(0.8f);
-    player1->SetPosition(Vector3D(5.0, 5.0, 0.0));
-    player1->SetOrientationSpeed(Vector3D(0.0, 0.0, 0.1));
     gameScene->AddGameObject(player1);
 
 
@@ -96,6 +93,8 @@ void Game::Init() {
     *starModel = loader7->GetModel();
     star1->SetModel3D(starModel);
     starModel->SetColor(Color(1.0f, 1.0f, 0.6f, 0.8f)); // Amarillo blanquecino
+
+
     EmmiterConfiguration Config(numParticulas, tiempoEmision, starModel);
     Emmiter* emisor = new Emmiter(Config);
     menuScene->AddGameObject(emisor);
@@ -104,8 +103,6 @@ void Game::Init() {
 
     AddGameObject(player1);
 
-    this->scenes.push_back(scene1);
-    this->scenes.push_back(scene2);
     this->activeScene = menuScene;
     gameScene->SetPlayer(player1);
 }
@@ -193,10 +190,10 @@ void Game::AddGameObject(Solid* object) {
 void Game::ProcessKeyPressed(unsigned char key, int px, int py) {
     cout << "tecla pulsada: " << key << endl;
 
-    if (key >= '1' && key <= '0' + scenes.size()) {
+    /*if (key >= '1' && key <= '0' + scenes.size()) {
         int index = (key - '0') - 1;
         this->activeScene = this->scenes[index];
-    }
+    }*/
 
     if (activeScene) {
         activeScene->ProcessKeyPressed(key, px, py);

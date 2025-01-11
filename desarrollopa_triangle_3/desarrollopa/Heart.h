@@ -13,7 +13,6 @@ private:
     float size;
     Model* model3D;
 
-
 public:
 
     Heart() : model3D(nullptr), Solid()
@@ -25,25 +24,17 @@ public:
         this->SetOrientationSpeed(Vector3D(0.0, 4.0, 0.0));
     }
 
-
-
-
     string GetType() const override { return "Heart"; }
 
     // Getters y Setters
     inline float GetSize() const { return this->size; }
     void SetSize(float sizeToSet) { this->size = sizeToSet; }
 
-   
-
-
     Solid* Clone() const override;
 
-    //void HandleCollision();
-
-    bool CheckCollision(Solid* other);
 
     void SetModel3D(Model* model);
+    bool CheckCollision(Solid* other);
 
     void Render();
 };

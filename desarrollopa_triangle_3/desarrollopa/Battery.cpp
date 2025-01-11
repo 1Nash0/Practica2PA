@@ -28,8 +28,8 @@ void Battery::SetModel3D(Model* model) {
 	}
 }
 bool Battery::CheckCollision(Solid* other) {
-	if (other == nullptr) { // Validar puntero nulo
+	if (other == nullptr) { 
 		return false;
 	}
-	return Solid::CheckCollision(other); // Usar el método base
+	return Solid::CheckCollision(other); 
 }

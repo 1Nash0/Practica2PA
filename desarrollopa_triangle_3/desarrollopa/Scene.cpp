@@ -10,7 +10,6 @@ void Scene::Init()
 }
 
 
-
 void Scene::Render() {
 	this->camera.Render();
 	if (this->GetDrawBoundary()) { this->renderBoundary(); }

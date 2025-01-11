@@ -11,12 +11,11 @@ void Star::Render()
 	if (model3D) {
 		model3D->Render();
 	}
-	else {
-		std::cout << "No model set for rendering!" << std::endl;
-	}
 	glPopMatrix();
 }
+
 void Star::SetModel3D(Model* model) {
+
 	if (model) {
 		this->model3D = model;
 	}

@@ -21,16 +21,10 @@ void Solid::ProcessCollisions(const std::vector<Solid*>& objects) {
         }
     }
 }
-void Solid::SetAffectedByGravity(bool affected) {
-    isAffectedByGravity = affected;
-}
 
-bool Solid::GetIsAffectedByGravity() const {
-    return isAffectedByGravity;
-}
-void Solid::OnCollision(Solid* other) {
-    
-}
+
+
+void Solid::OnCollision(Solid* other) {}
 
 bool Solid::CheckCollision(const Solid* other) const {
     if (other == nullptr) return false;

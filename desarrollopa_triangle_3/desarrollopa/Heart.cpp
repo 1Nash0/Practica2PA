@@ -3,7 +3,6 @@
 
 
 void Heart::Render() {
-    // Salir inmediatamente si no es visible
 
     glPushMatrix();
     glTranslatef(this->GetPosition().GetX(), this->GetPosition().GetY(), this->GetPosition().GetZ());
@@ -22,18 +21,22 @@ void Heart::Render() {
     glPopMatrix();
 }
 
-
-
-
 void Heart::SetModel3D(Model* model) {
     if (model) {
         model3D = model;
     }
     else {
-        std::cerr << "[Heart::SetModel3D] Modelo nulo pasado como argumento." << std::endl;
+        std::cerr << " Modelo nulo pasado como argumento." << std::endl;
     }
 }
 
 Solid* Heart::Clone() const {
     return new Heart(*this);
+}
+
+bool Heart::CheckCollision(Solid* other) {
+    if (other == nullptr) {
+        return false;
+    }
+    return Solid::CheckCollision(other);
 }

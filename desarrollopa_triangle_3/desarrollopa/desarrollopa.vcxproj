@@ -153,7 +153,6 @@
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Star.cpp" />
     <ClCompile Include="Text.cpp" />
-    <ClCompile Include="Torus.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Vector3D.cpp" />
     <ClCompile Include="WinScene.cpp" />
@@ -183,7 +182,6 @@
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="Text.h" />
-    <ClInclude Include="Torus.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="Vector3D.h" />
     <ClInclude Include="WinScene.h" />
