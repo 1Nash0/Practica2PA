@@ -136,7 +136,6 @@
     <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="DefeatScene.cpp" />
     <ClCompile Include="desarrollopa.cpp" />
-    <ClCompile Include="Background.cpp" />
     <ClCompile Include="Emmiter.cpp" />
     <ClCompile Include="EmmiterConfiguration.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -164,7 +163,6 @@
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Cuboid.h" />
     <ClInclude Include="Cylinder.h" />
-    <ClInclude Include="Background.h" />
     <ClInclude Include="DefeatScene.h" />
     <ClInclude Include="Emmiter.h" />
     <ClInclude Include="EmmiterConfiguration.h" />
