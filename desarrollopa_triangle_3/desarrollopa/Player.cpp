@@ -13,7 +13,7 @@ void Player::Render() {
     glPopMatrix();
 
     glPushMatrix();
-    healthText.SetText("Vidas: " + std::to_string(health));
+    healthText.SetText("Vidas: " + std::to_string(health) + "/5");
     healthText.SetPosition(Vector3D(1.0f, 12.0f, 0.0f)); 
     healthText.SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f));
     healthText.Render();

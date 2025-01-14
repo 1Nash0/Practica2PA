@@ -1,10 +1,8 @@
-
 #pragma once
 #include <GL/glut.h>
 #include "Recogible.h"
 
 
-using namespace std;
 
 class Heart : public Recogible {
 private:

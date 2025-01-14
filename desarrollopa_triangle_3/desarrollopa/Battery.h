@@ -1,6 +1,5 @@
 #pragma once
 #include <GL/glut.h>
-#include "Model.h"
 #include "Recogible.h"
 
 class Battery : public Recogible
