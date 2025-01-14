@@ -14,10 +14,6 @@ void Heart::Render() {
     if (model3D) {
         model3D->Render(); // Renderizar modelo 3D
     }
-    else {
-        glColor3f(1.0f, 0.0f, 0.0f); // Color rojo
-        glutSolidSphere(size, 50, 50); // Esfera como placeholder
-    }
     glPopMatrix();
 }
 
@@ -30,13 +26,3 @@ void Heart::SetModel3D(Model* model) {
     }
 }
 
-Solid* Heart::Clone() const {
-    return new Heart(*this);
-}
-
-bool Heart::CheckCollision(Solid* other) {
-    if (other == nullptr) {
-        return false;
-    }
-    return Solid::CheckCollision(other);
-}

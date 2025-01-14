@@ -55,7 +55,7 @@ void Game::Init() {
         delete loader6;
     }
 
-    for (int i = 1; i < 20; i++) {
+    for (int i = 1; i < 30; i++) {
         Heart* heart1 = new Heart();
         heart1->SetPosition(Vector3D(9.0 * 2 * i, (rand() % 12), 0.0));
         gameScene->AddGameObject(heart1);

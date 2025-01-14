@@ -16,6 +16,8 @@
 #include "DefeatScene.h"
 #include "levelScene.h"
 #include "Battery.h"
+#include "Obstaculo.h"
+#include "Recogible.h"
 #include "Star.h"
 #include <chrono>
 #include <iostream>
