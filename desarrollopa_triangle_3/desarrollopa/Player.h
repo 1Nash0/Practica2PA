@@ -48,7 +48,7 @@ public:
 
     void SetModel3D(Model* model);
     int GetHealth() const { return health; }
-    int GetEnergy() const { return battery; }
+    int GetBattery() const { return battery; }
   
     string GetType() const override { return "Player"; }
     // Métodos de juego

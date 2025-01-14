@@ -19,6 +19,7 @@ void Scene::Render() {
 			object->Render();
 		}
 	}
+	
 }
 
 void Scene::Update(const float& time) {

@@ -159,7 +159,7 @@ void Game::Update(const float& time) {
         }
     }
     if (activeScene == gameScene) {
-        if (player1->GetEnergy() == 10) {
+        if (player1->GetBattery() == 10) {
             activeScene = winScene;  // Cambia a la escena del menú
             std::cout << "Escena cambiada a menuScene" << std::endl;
 

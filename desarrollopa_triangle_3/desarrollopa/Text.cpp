@@ -10,6 +10,7 @@ void Text::Render() {
     for (char c : text)
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, c);
     glPopMatrix();
+
     }
 
 
