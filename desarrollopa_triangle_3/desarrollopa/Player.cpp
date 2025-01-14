@@ -18,7 +18,7 @@ void Player::Render() {
     healthText.SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f));
     healthText.Render();
 
-    batteryText.SetText("Baterias: " + std::to_string(batteryCount) +"/10");
+    batteryText.SetText("Baterias: " + std::to_string(battery) +"/10");
     batteryText.SetPosition(Vector3D(5.0f, 12.0f, 0.0f)); 
     batteryText.SetColor(Color(1.0f, 1.0f, 0.1f, 1.0f));
     batteryText.Render();
@@ -27,6 +27,10 @@ void Player::Render() {
 
 void Player::Update(const float& time) {
 
+    PlayerMovement(time);
+}
+
+void Player::PlayerMovement(const float& time) {
     Vector3D currentPosition = this->GetPosition();
     if (isKeyPressed('W')) {
         this->SetPosition(Vector3D(currentPosition.GetX(), currentPosition.GetY() + 0.5f * time, currentPosition.GetZ())); // Mover hacia arriba
@@ -64,8 +68,8 @@ void Player::CollectResource(const std::string& resourceType) {
         }
     }
     else if (resourceType == "Battery") {
-        if (batteryCount < 10) {
-            batteryCount++;
+        if (battery < 10) {
+            battery++;
         }
     }
 }
