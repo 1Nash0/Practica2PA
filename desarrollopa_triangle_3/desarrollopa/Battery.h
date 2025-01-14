@@ -1,8 +1,8 @@
 #pragma once
 #include <GL/glut.h>
-#include "Recogible.h"
+#include "Resource.h"
 
-class Battery : public Recogible
+class Battery : public Resource
 {
 private:
 
@@ -11,9 +11,8 @@ private:
 public:
 	/*bool CheckCollision(const Solid& other);*/
 
-	Battery() : model3D(nullptr), Recogible() {}
+	Battery() : model3D(nullptr), Resource() {}
 	
-
 
 	string GetType() const override { return "Battery"; }
 

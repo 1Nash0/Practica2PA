@@ -79,10 +79,10 @@ void reshape(GLsizei width, GLsizei height)
     {
         static time_t lastTime = time(nullptr); // Guardar el tiempo de la última actualización
         time_t currentTime = time(nullptr); // Obtener el tiempo actual
-        float time = static_cast<float>(currentTime - lastTime); // Calcular el tiempo transcurrido
+        float deltaTime = static_cast<float>(currentTime - lastTime); // Calcular el tiempo transcurrido
         lastTime = currentTime; // Actualizar el tiempo de la última actualización
 
-        game.Update(time); // Pasar el tiempo transcurrido a la función Update
+        game.Update(deltaTime); // Pasar el tiempo transcurrido a la función Update
         glutPostRedisplay();
     }
    

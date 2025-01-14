@@ -1,14 +1,14 @@
-#include "Recogible.h"
+#include "Resource.h"
 
 
-bool Recogible::CheckCollision(Solid* other) {
+bool Resource::CheckCollision(Solid* other) {
 	if (other == nullptr) {
 		return false;
 	}
 	return Solid::CheckCollision(other);
 }
 
-void Recogible::SetModel3D(Model* model) {
+void Resource::SetModel3D(Model* model) {
 	if (model) {
 		this->model3D = model;
 	}

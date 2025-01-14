@@ -123,7 +123,7 @@
     <ClCompile Include="DefeatScene.cpp">
       <Filter>Archivos de origen\Clases</Filter>
     </ClCompile>
-    <ClCompile Include="Recogible.cpp">
+    <ClCompile Include="Resource.cpp">
       <Filter>Archivos de origen\Clases</Filter>
     </ClCompile>
     <ClCompile Include="Obstaculo.cpp">
@@ -206,7 +206,7 @@
     <ClInclude Include="DefeatScene.h">
       <Filter>Archivos de encabezado\Clases</Filter>
     </ClInclude>
-    <ClInclude Include="Recogible.h">
+    <ClInclude Include="Resource.h">
       <Filter>Archivos de encabezado\Clases</Filter>
     </ClInclude>
     <ClInclude Include="Obstaculo.h">

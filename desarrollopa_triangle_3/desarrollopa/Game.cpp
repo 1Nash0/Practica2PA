@@ -124,6 +124,7 @@ void Game::Update(const float& time) {
         this->lastUpdateTime = currentTime.count() - this->initialMilliseconds.count();
     }
 
+
     // Actualizar todos los objetos
     for (auto* object : gameObjects) {
         if (object && !object->IsMarkedForDeletion()) {
@@ -202,7 +203,7 @@ void Game::ProcessKeyPressed(unsigned char key, int px, int py) {
         if (activeScene == menuScene && (key == 'P' || key == 'p')) {
             std::cout << "Iniciando el juego jeje..." << std::endl;
             activeScene = gameScene; // Cambia a la escena 2
-            RestartGame();
+
         }
         if (activeScene == defeatScene && (key == 'P' || key == 'p')) {
             std::cout << "Iniciando el juego jeje..." << std::endl;

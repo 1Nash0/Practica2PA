@@ -147,7 +147,7 @@
     <ClCompile Include="ModelLoader.cpp" />
     <ClCompile Include="Obstaculo.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Recogible.cpp" />
+    <ClCompile Include="Resource.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Solid.cpp" />
     <ClCompile Include="Sphere.cpp" />
@@ -176,7 +176,7 @@
     <ClInclude Include="ModelLoader.h" />
     <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Recogible.h" />
+    <ClInclude Include="Resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Solid.h" />
     <ClInclude Include="Sphere.h" />

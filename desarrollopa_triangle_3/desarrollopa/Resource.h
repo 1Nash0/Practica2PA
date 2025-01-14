@@ -3,20 +3,20 @@
 #include "Model.h"
 
 
-class Recogible : public Solid
+class Resource : public Solid
 {
 private:
 	float size;
 	Model* model3D;
 public:
 
-	Recogible() : model3D(nullptr) {
+	Resource() : model3D(nullptr) {
 
 		this->SetSize(1.0);
 		this->SetAffectedByGravity(true);
 		this->SetCollisionRadius(0.5f);
 		this->SetSpeed(Vector3D(-0.01, 0.0f, 0.0f));
-		this->SetOrientationSpeed(Vector3D(0.0, 1.0, 0.0));
+		this->SetOrientationSpeed(Vector3D(0.0, 2.0, 0.0));
 
 	}
 
