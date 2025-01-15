@@ -15,13 +15,13 @@ void Meteorite::Render()
 	glPopMatrix();
 }
 
-	void Meteorite::SetModel3D(Model* model) {
-		if (model) {
+void Meteorite::SetModel3D(Model* model) {
+	if (model){
 			this->model3D = model;
-		}
-		else {
-			std::cerr << "Modelo nulo pasado como argumento." << std::endl;
-		}
 	}
+	else{
+			std::cerr << "Modelo nulo pasado como argumento." << std::endl;
+	}
+}
 
 

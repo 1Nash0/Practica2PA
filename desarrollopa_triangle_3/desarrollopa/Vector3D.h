@@ -1,17 +1,16 @@
 // Vector3D.h
 
-#ifndef VECTOR3D_H
-#define VECTOR3D_H
+
 
 class Vector3D
 {
 private:
 
-public:
     float x, y, z;
 
-    Vector3D() : x(0.0f), y(0.0f), z(0.0f) {}
+public:
 
+    Vector3D() : x(0.0f), y(0.0f), z(0.0f) {}
     Vector3D(float xArgument, float yArgument, float zArgument)
         : x(xArgument), y(yArgument), z(zArgument) {}
 
@@ -32,4 +31,3 @@ public:
     float Length() const;
 };
 
-#endif // VECTOR3D_H

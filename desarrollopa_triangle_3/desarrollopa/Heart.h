@@ -1,5 +1,4 @@
 #pragma once
-#include <GL/glut.h>
 #include "Resource.h"
 
 
@@ -19,7 +18,6 @@ public:
     }
 
     string GetType() const override { return "Heart"; }
-
 
     Solid* Clone() const {
         return new Heart(*this);

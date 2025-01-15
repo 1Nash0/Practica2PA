@@ -1,15 +1,14 @@
-#include "Obstaculo.h"
+#include "Obstacle.h"
 
 
-
-bool Obstaculo::CheckCollision(Solid* other) {
+bool Obstacle::CheckCollision(Solid* other) {
 	if (other == nullptr) {
 		return false;
 	}
 	return Solid::CheckCollision(other);
 }
 
-void Obstaculo::SetModel3D(Model* model) {
+void Obstacle::SetModel3D(Model* model) {
 	if (model) {
 		this->model3D = model;
 	}

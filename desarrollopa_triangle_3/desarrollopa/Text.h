@@ -1,10 +1,8 @@
 #pragma once
 #include "Solid.h"
 #include "Model.h"
-#include "Color.h"
 #include <GL/glut.h>
-#include <string>
-#include <iostream>
+
 
 using namespace std;
 

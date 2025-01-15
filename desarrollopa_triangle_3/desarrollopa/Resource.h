@@ -6,9 +6,11 @@
 class Resource : public Solid
 {
 private:
+
 	float size;
 	float point;
 	Model* model3D;
+
 public:
 
 	Resource() : model3D(nullptr), point(1.0) {
@@ -21,11 +23,11 @@ public:
 
 	}
 
-	void SetModel3D(Model* model);
 	inline float GetPoint() const { return this->point; }
-
 	inline float GetSize() const { return this->size; }
 	void SetSize(float sizeToSet) { this->size = sizeToSet; }
+
+	void SetModel3D(Model* model);
 
 	bool CheckCollision(Solid* other);
 };

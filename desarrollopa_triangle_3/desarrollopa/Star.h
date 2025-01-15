@@ -14,10 +14,10 @@ public:
 	Star() : model3D(nullptr), Solid() {}
 	
 	void SetModel3D(Model* model);
+
 	Solid* Clone() const override {
 		return new Star(*this);  // Constructor copia para clonar
 	}
-
 	void Render();
 
 };

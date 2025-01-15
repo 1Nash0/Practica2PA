@@ -1,36 +1,22 @@
 #include "Game.h"
 
 
-using namespace std;
-using namespace std::chrono;
-
 void Game::Init() {
 
     menuScene = new Menu();
     menuScene->Init();
-
     winScene = new WinScene();
     winScene->Init();
-
     defeatScene = new DefeatScene();
     defeatScene->Init();
-
     gameScene = new levelScene();
     gameScene->Init();
 
     activeScene = menuScene;
-
     cout << "[GAME] Init..." << endl;
- 
-
-    // Configuramos el emisor
-    int numParticulas = 1000;
-    int tiempoEmision = 10;
 
     player1 = new Player();
     gameScene->AddGameObject(player1);
-
-
 
     ModelLoader* loader = new ModelLoader();
     loader->SetScale(0.8f);
@@ -95,6 +81,9 @@ void Game::Init() {
     star1->SetModel3D(starModel);
     starModel->SetColor(Color(1.0f, 1.0f, 0.6f, 0.8f)); // Amarillo blanquecino
 
+    // Emisor de partículas
+    int numParticulas = 1000;
+    int tiempoEmision = 10;
 
     EmmiterConfiguration Config(numParticulas, tiempoEmision, starModel);
     Emmiter* emisor = new Emmiter(Config);
@@ -115,8 +104,6 @@ void Game::Render() {
     if (activeScene == gameScene) {
         gameScene->Render();
     }
-   
-
 }
 
 void Game::Update(const float& time) {
@@ -129,22 +116,18 @@ void Game::Update(const float& time) {
         }
         this->lastUpdateTime = currentTime.count() - this->initialMilliseconds.count();
     }
-
-
     // Actualizar todos los objetos
     for (auto* object : gameObjects) {
         if (object && !object->IsMarkedForDeletion()) {
             object->Update(time);
         }
     }
-
     // Procesar colisiones delegando la responsabilidad a cada objeto
     for (auto* object : gameObjects) {
         if (object) {
             object->ProcessCollisions(gameObjects); // Cada objeto revisa sus colisiones
         }
     }
-
     // Eliminar objetos marcados para eliminación
     for (auto it = gameObjects.begin(); it != gameObjects.end(); ) {
         if ((*it)->IsMarkedForDeletion()) {
@@ -154,8 +137,7 @@ void Game::Update(const float& time) {
         else {
             ++it;
         }
-    }
-    
+    } 
     // Verificar y cambiar de escena si es necesario
     if (activeScene == gameScene) {
         if (player1->GetHealth() == 0) {
@@ -178,13 +160,11 @@ void Game::RestartGame() {
         delete object;
     }
     gameObjects.clear();
-
     // Limpiar y reinicializar las escenas
     for (auto* scene : scenes) {
         delete scene;
     }
     scenes.clear();
-
     // Reejecutar el método Init para reiniciar todo
     Init();
     activeScene = gameScene;
@@ -197,27 +177,22 @@ void Game::AddGameObject(Solid* object) {
 void Game::ProcessKeyPressed(unsigned char key, int px, int py) {
     cout << "tecla pulsada: " << key << endl;
 
-    /*if (key >= '1' && key <= '0' + scenes.size()) {
-        int index = (key - '0') - 1;
-        this->activeScene = this->scenes[index];
-    }*/
-
     if (activeScene) {
         activeScene->ProcessKeyPressed(key, px, py);
 
         // Cambiar de la escena del menú a la escena 2 al presionar 'P'
         if (activeScene == menuScene && (key == 'P' || key == 'p')) {
-            std::cout << "Iniciando el juego jeje..." << std::endl;
-            activeScene = gameScene; // Cambia a la escena 2
+            std::cout << "Iniciando el juego" << std::endl;
+            activeScene = gameScene; 
 
         }
         if (activeScene == defeatScene && (key == 'P' || key == 'p')) {
-            std::cout << "Iniciando el juego jeje..." << std::endl;
+            std::cout << "Iniciando el juego" << std::endl;
             activeScene = gameScene;
             RestartGame();
         }
         if (activeScene == winScene && (key == 'P' || key == 'p')) {
-            std::cout << "Iniciando el juego jeje..." << std::endl;
+            std::cout << "Iniciando el juego" << std::endl;
             activeScene = gameScene;
             RestartGame();
         }

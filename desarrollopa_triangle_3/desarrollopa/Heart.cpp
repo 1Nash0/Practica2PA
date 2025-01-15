@@ -1,7 +1,6 @@
 #include "Heart.h"
 
 
-
 void Heart::Render() {
 
     glPushMatrix();

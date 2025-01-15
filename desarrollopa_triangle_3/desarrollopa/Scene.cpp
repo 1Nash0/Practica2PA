@@ -1,15 +1,12 @@
 #include "Scene.h"
 
+
 void Scene::AddGameObject(Solid* gameObjectToAdd)
 {
 	this->gameObjects.push_back(gameObjectToAdd);
 }
 
-void Scene::Init() 
-{
-
-}
-
+void Scene::Init() {}
 
 void Scene::Render() {
 	this->camera.Render();
@@ -20,7 +17,6 @@ void Scene::Render() {
 			object->Render();
 		}
 	}
-	
 }
 
 void Scene::Update(const float& time) {
@@ -39,17 +35,13 @@ void Scene::Update(const float& time) {
 	this->checkBoundary();
 }
 
-
 void Scene::ProcessKeyPressed(unsigned char key, int px, int py) {}
-
 void Scene::ProcessMouseMovement(int x, int y) {}
-
 void Scene::ProcessMouseClicked(int button, int state, int x, int y) {}
 
 void Scene::checkBoundary()
 {
-			this->checkBoundary(this->gameObjects[0]);
-
+	this->checkBoundary(this->gameObjects[0]);
 }
 
 void Scene::checkBoundary(Solid* element)

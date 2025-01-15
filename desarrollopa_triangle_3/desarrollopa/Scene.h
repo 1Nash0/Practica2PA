@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Solid.h"
+#include "Text.h"
 #include "Camera.h"
 #include "Cuboid.h"
 #include "Player.h"
@@ -10,10 +11,10 @@ using namespace std;
 class Scene
 {
 private:
+
 	vector<Solid*> gameObjects;
 	Camera camera;
 	Vector3D boundary;
-
 	bool drawBoundary;
 	void checkBoundary();
 	void renderBoundary();

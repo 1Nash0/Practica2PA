@@ -3,6 +3,7 @@
 
 class EmmiterConfiguration {
 private:
+
     int numParticulas;            // Número máximo de partículas
     int tiempoEmision;            // Intervalo de tiempo de emisión en milisegundos
     Solid* particulaRef;          // Partícula de referencia

@@ -21,9 +21,6 @@ const GLclampf BLUE = 0.0;
 const GLclampf ALPHA = 1.0;
 
 
-
-
-
 bool fullScreenMode = false;
 
 /////////////////////////////////////////////////////////////////
@@ -70,10 +67,6 @@ void reshape(GLsizei width, GLsizei height)
     glMatrixMode(GL_MODELVIEW);
 }
 
-
-
-
-    // ...
 
     void idle()
     {

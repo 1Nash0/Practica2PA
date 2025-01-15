@@ -3,15 +3,16 @@
 #include "Model.h"
 
 
-class Obstaculo : public Solid
+class Obstacle : public Solid
 {
 private:
+
 	float size;
 	Model* model3D;
 
 public:
 
-	Obstaculo() : model3D(nullptr)  {
+	Obstacle() : model3D(nullptr)  {
 		this->size = 1.0;
 		this->SetAffectedByGravity(true); // Habilitar gravedad para meteoritos
 		this->SetCollisionRadius(1.0f);   // Define un radio de colisión si es necesario
@@ -19,10 +20,10 @@ public:
 		this->SetOrientationSpeed(Vector3D(rand() % 10 - 9, rand() % 10 - 9, 0.0));
 	}
 
-	void SetModel3D(Model* model) ;
-
 	inline float GetSize() const { return this->size; }
 	void SetSize(float sizeToSet) { this->size = sizeToSet; }
+
+	void SetModel3D(Model* model);
 
 	bool CheckCollision(Solid* other);
 

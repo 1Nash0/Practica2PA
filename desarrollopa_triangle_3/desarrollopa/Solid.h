@@ -21,6 +21,7 @@ private:
     bool isMarkedForDeletion = false;
     bool isAffectedByGravity = false; // Indica si el objeto está afectado por gravedad
     Vector3D gravity = Vector3D(-0.001f, 0.0, 0.0f); // Gravedad estándar
+
 public:
     Solid(
         Color colorArgument = Color(),
@@ -39,11 +40,6 @@ public:
         wired(false),
         isAffectedByGravity(false) {}
    
-
-    
-    
-    void MarkForDeletion() { isMarkedForDeletion = true; }
-    bool IsMarkedForDeletion() const { return isMarkedForDeletion; }
 
     // Métodos Getter
     inline Vector3D GetPosition() const { return position; }
@@ -67,16 +63,17 @@ public:
     inline void SetCollisionRadius(float collisionRadiusToSet) { collisionRadius = collisionRadiusToSet; }
     inline void SetAffectedByGravity(bool affected) { isAffectedByGravity = affected; }
 
+
+    void MarkForDeletion() { isMarkedForDeletion = true; }
+    bool IsMarkedForDeletion() const { return isMarkedForDeletion; }
+
     // Métodos para detección de colisiones
     virtual bool CheckCollision(const Solid* other) const;
     virtual void ProcessCollisions(const vector<Solid*>& objects); 
     virtual void OnCollision(Solid* other); 
 
-
     virtual void Render() = 0;
     virtual void Update(const float& deltaTime);
-  
-
   
     virtual string GetType() const { return "Unknown"; }
     virtual Solid* Clone() const = 0;

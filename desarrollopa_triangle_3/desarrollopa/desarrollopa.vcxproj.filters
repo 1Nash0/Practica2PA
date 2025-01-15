@@ -43,8 +43,11 @@
     <Filter Include="Archivos de origen\Clases">
       <UniqueIdentifier>{fcc8ca4b-410f-40f1-98ed-026533040c40}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de encabezado\Core\Scenes">
+    <Filter Include="Archivos de encabezado\Scenes">
       <UniqueIdentifier>{97d5931b-e4b6-4bba-a51c-31ea8a30c89a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\Scenes">
+      <UniqueIdentifier>{a23aad0f-468d-42dc-920b-928eb1104c03}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -71,9 +74,6 @@
     </ClCompile>
     <ClCompile Include="ModelLoader.cpp">
       <Filter>Archivos de origen\Models</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Archivos de origen\Core</Filter>
     </ClCompile>
     <ClCompile Include="Triangle.cpp">
       <Filter>Archivos de origen\Models</Filter>
@@ -105,23 +105,26 @@
     <ClCompile Include="EmmiterConfiguration.cpp">
       <Filter>Archivos de origen\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Menu.cpp">
-      <Filter>Archivos de origen\Clases</Filter>
-    </ClCompile>
-    <ClCompile Include="levelScene.cpp">
-      <Filter>Archivos de origen\Clases</Filter>
-    </ClCompile>
-    <ClCompile Include="WinScene.cpp">
-      <Filter>Archivos de origen\Clases</Filter>
-    </ClCompile>
-    <ClCompile Include="DefeatScene.cpp">
-      <Filter>Archivos de origen\Clases</Filter>
-    </ClCompile>
     <ClCompile Include="Resource.cpp">
       <Filter>Archivos de origen\Clases</Filter>
     </ClCompile>
-    <ClCompile Include="Obstaculo.cpp">
+    <ClCompile Include="Obstacle.cpp">
       <Filter>Archivos de origen\Clases</Filter>
+    </ClCompile>
+    <ClCompile Include="levelScene.cpp">
+      <Filter>Archivos de origen\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="DefeatScene.cpp">
+      <Filter>Archivos de origen\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Archivos de origen\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="WinScene.cpp">
+      <Filter>Archivos de origen\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Archivos de origen\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -179,23 +182,23 @@
     <ClInclude Include="Resource.h">
       <Filter>Archivos de encabezado\Clases</Filter>
     </ClInclude>
-    <ClInclude Include="Obstaculo.h">
+    <ClInclude Include="Obstacle.h">
       <Filter>Archivos de encabezado\Clases</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>Archivos de encabezado\Core\Scenes</Filter>
+      <Filter>Archivos de encabezado\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="levelScene.h">
-      <Filter>Archivos de encabezado\Core\Scenes</Filter>
+      <Filter>Archivos de encabezado\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="DefeatScene.h">
-      <Filter>Archivos de encabezado\Core\Scenes</Filter>
+      <Filter>Archivos de encabezado\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="WinScene.h">
-      <Filter>Archivos de encabezado\Core\Scenes</Filter>
+      <Filter>Archivos de encabezado\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Menu.h">
-      <Filter>Archivos de encabezado\Core\Scenes</Filter>
+      <Filter>Archivos de encabezado\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

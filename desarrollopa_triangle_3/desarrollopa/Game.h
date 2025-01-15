@@ -14,7 +14,7 @@
 #include <iostream>
 
 
-
+using namespace std;
 using namespace std::chrono;
 
 class Game
@@ -24,17 +24,13 @@ private:
 	const double TIME_INCREMENT = 0.6;  // 50 ms por actualización, en el juego
 	const long UPDATE_PERIOD = 5;  // 32 ms para la actualización en tiempo real
 
-
 	milliseconds initialMilliseconds;
 	long lastUpdateTime;
-
 	vector<Solid*> gameObjects;
-
 	Player* player1;
 	Meteorite* meteorite1;
 	Heart* heart1;
 	Battery* battery1;
-	Text* text1;
 	Scene* activeScene;
 	levelScene* gameScene;
 	Menu* menuScene;
@@ -44,7 +40,9 @@ private:
 
 public:
 
-	Game():activeScene(nullptr), player1(new Player()), battery1(nullptr), meteorite1(nullptr), heart1(nullptr), gameScene(nullptr), menuScene(nullptr),text1(nullptr), winScene(nullptr), defeatScene(nullptr), initialMilliseconds(duration_cast<milliseconds>(system_clock::now().time_since_epoch())), lastUpdateTime(0) {}
+	Game():activeScene(nullptr), player1(new Player()), battery1(nullptr), meteorite1(nullptr), heart1(nullptr), gameScene(nullptr), 
+		menuScene(nullptr), winScene(nullptr), defeatScene(nullptr), 
+		initialMilliseconds(duration_cast<milliseconds>(system_clock::now().time_since_epoch())), lastUpdateTime(0) {}
 	
 	void Init();
 	void Render();

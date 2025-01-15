@@ -1,9 +1,6 @@
 #include "Player.h"
 
-
-
 void Player::Render() {
-
     glPushMatrix();
     glTranslatef(this->GetPosition().GetX(), this->GetPosition().GetY(), this->GetPosition().GetZ());
     glRotatef(90.0f, 0.0f, 1.0f, 0.0f); // Rotar 90 grados para mirar a la derecha
@@ -16,6 +13,10 @@ void Player::Render() {
 void Player::Update(const float& time) {
 
     PlayerMovement(time);
+}
+
+bool Player::isKeyPressed(char key) {
+    return (GetAsyncKeyState(key) & 0x8000) != 0;
 }
 
 void Player::PlayerMovement(const float& time) {
@@ -88,9 +89,6 @@ bool Player::CheckCollision(Solid* other) {
     }
 }
 
-bool Player::isKeyPressed(char key) {
-    return (GetAsyncKeyState(key) & 0x8000) != 0;
-}
 
 
 
