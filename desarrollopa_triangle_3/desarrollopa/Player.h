@@ -3,6 +3,7 @@
 #include "Model.h"
 #include "Heart.h"
 #include "Battery.h"
+#include "Resource.h"
 #include "Text.h"
 #include <GL/glut.h>
 #include <string>
@@ -49,7 +50,7 @@ public:
     string GetType() const override { return "Player"; }
 
     // Métodos de juego
-    void TakeDamage(int damage);
+    void TakeDamage();
     void CollectResource(const std::string& resourceType);
     void PlayerMovement(const float& time);
     bool isKeyPressed(char key);

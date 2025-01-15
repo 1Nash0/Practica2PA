@@ -12,7 +12,6 @@ class Scene
 private:
 	vector<Solid*> gameObjects;
 	Camera camera;
-	Player* player;  // Puntero al jugador
 	Vector3D boundary;
 
 	bool drawBoundary;
@@ -42,7 +41,6 @@ public:
 
 
 	void AddGameObject(Solid* gameObject);
-	void SetPlayer(Player* playerToSet) { this->player = playerToSet; }
 	void Init();
 	void Render();
 	void Update(const float& time);

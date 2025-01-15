@@ -1,5 +1,4 @@
 #pragma once
-#include "Scene.h"
 #include "Triangle.h"
 #include "Model.h"
 #include "ModelLoader.h"
@@ -10,8 +9,6 @@
 #include "WinScene.h"
 #include "DefeatScene.h"
 #include "levelScene.h"
-#include "Obstaculo.h"
-#include "Resource.h"
 #include "Star.h"
 #include <chrono>
 #include <iostream>

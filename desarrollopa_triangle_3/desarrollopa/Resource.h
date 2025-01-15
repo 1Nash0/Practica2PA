@@ -7,10 +7,11 @@ class Resource : public Solid
 {
 private:
 	float size;
+	float point;
 	Model* model3D;
 public:
 
-	Resource() : model3D(nullptr) {
+	Resource() : model3D(nullptr), point(1.0) {
 
 		this->SetSize(1.0);
 		this->SetAffectedByGravity(true);
@@ -21,6 +22,7 @@ public:
 	}
 
 	void SetModel3D(Model* model);
+	inline float GetPoint() const { return this->point; }
 
 	inline float GetSize() const { return this->size; }
 	void SetSize(float sizeToSet) { this->size = sizeToSet; }

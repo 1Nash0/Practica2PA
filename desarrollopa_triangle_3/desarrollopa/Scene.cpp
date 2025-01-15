@@ -24,9 +24,7 @@ void Scene::Render() {
 }
 
 void Scene::Update(const float& time) {
-	if (this->player) {
-		// Update player logic here
-	}
+
 
 	for (auto it = gameObjects.begin(); it != gameObjects.end(); ) {
 		auto* object = *it;
