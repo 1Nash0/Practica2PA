@@ -31,6 +31,7 @@ void Game::Init() {
     gameScene->AddGameObject(player1);
 
 
+
     ModelLoader* loader = new ModelLoader();
     loader->SetScale(0.8f);
     loader->LoadModel("..\\3dModels\\Spaceship4.obj");
@@ -111,6 +112,10 @@ void Game::Render() {
     if (activeScene) {
         activeScene->Render();  // Renderiza la escena activa (ya sea el menú o la escena 2)
     }
+    if (activeScene == gameScene) {
+        gameScene->Render();
+    }
+   
 
 }
 

@@ -18,8 +18,7 @@ private:
     int health;                 // Vida restante
     int battery;           // Baterías disponibles            // Puntos acumulados
     Model* model3D;             // Modelo 3D del jugador  // Generador de projectiles
-    Text healthText;
-    Text batteryText;
+
 
 
 

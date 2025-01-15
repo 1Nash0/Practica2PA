@@ -7,6 +7,7 @@ void Scene::AddGameObject(Solid* gameObjectToAdd)
 
 void Scene::Init() 
 {
+
 }
 
 

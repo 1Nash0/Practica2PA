@@ -11,18 +11,6 @@ void Player::Render() {
         model3D->Render();
     }
     glPopMatrix();
-
-    glPushMatrix();
-    healthText.SetText("Vidas: " + std::to_string(health) + "/5");
-    healthText.SetPosition(Vector3D(1.0f, 12.0f, 0.0f)); 
-    healthText.SetColor(Color(1.0f, 0.0f, 0.0f, 1.0f));
-    healthText.Render();
-
-    batteryText.SetText("Baterias: " + std::to_string(battery) +"/10");
-    batteryText.SetPosition(Vector3D(5.0f, 12.0f, 0.0f)); 
-    batteryText.SetColor(Color(1.0f, 1.0f, 0.1f, 1.0f));
-    batteryText.Render();
-    glPopMatrix();
 }
 
 void Player::Update(const float& time) {

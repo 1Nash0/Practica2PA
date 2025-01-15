@@ -15,7 +15,8 @@ private:
 
 	Player* player;
 	Vector3D gravity;
-	Text texto1;
+	Text healthText;
+	Text batteryText;
 
 public:
 
@@ -23,9 +24,10 @@ public:
 
 	inline Vector3D GetGravity() { return this->gravity; }
 	void SetGravity(Vector3D gravityToSet) { this->gravity = gravityToSet; }
-
-
-
-
+	void SetPlayer(Player* p);
+	void RenderHUD();
+	void Render();
+	void Init();
+	//void Init() ;
 };
 
