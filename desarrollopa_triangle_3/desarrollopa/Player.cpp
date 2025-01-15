@@ -3,7 +3,7 @@
 void Player::Render() {
     glPushMatrix();
     glTranslatef(this->GetPosition().GetX(), this->GetPosition().GetY(), this->GetPosition().GetZ());
-    glRotatef(90.0f, 0.0f, 1.0f, 0.0f); // Rotar 90 grados para mirar a la derecha
+    glRotatef(90.0f, 0.0f, 1.0f, 0.0f); 
     if (model3D) {
         model3D->Render();
     }
@@ -66,28 +66,30 @@ void Player::CollectResource(const string& resourceType) {
     }
 }
 
-void Player::OnCollision(Solid* other) {
-    if (Meteorite* meteorite = dynamic_cast<Meteorite*>(other)) {
-        TakeDamage(); // Reduce la vida del jugador
-        meteorite->MarkForDeletion(); // Marca el meteorito para eliminación
-    }
-    else if (Heart* heart = dynamic_cast<Heart*>(other)) {
-        if (health < 5) { // Solo recoge corazones si no tiene vida completa
-            CollectResource("Heart");
-            heart->MarkForDeletion(); // Marca el corazón para eliminación
-        }
-    }
-    else if (Battery* battery = dynamic_cast<Battery*>(other)) {
-        CollectResource("Battery"); // Incrementa la energía del jugador
-        battery->MarkForDeletion(); // Marca la batería para eliminación
-    }
-}
-
 bool Player::CheckCollision(Solid* other) {
-    if (other == nullptr) { 
+    if (other == nullptr) {
         return false;
     }
 }
+
+void Player::OnCollision(Solid* other) {
+    if (Meteorite* meteorite = dynamic_cast<Meteorite*>(other)) {
+        TakeDamage();  //Reduce la vida del jugador
+        meteorite->MarkForDeletion();  //Marca el meteorito para eliminación
+    }
+    else if (Heart* heart = dynamic_cast<Heart*>(other)) {
+        if (health < 5) { 
+            CollectResource("Heart");
+            heart->MarkForDeletion();  //Marca el corazón para eliminación
+        }
+    }
+    else if (Battery* battery = dynamic_cast<Battery*>(other)) {
+        CollectResource("Battery");  //Incrementa el número de baterías
+        battery->MarkForDeletion();  //Marca la batería para eliminación
+    }
+}
+
+
 
 
 

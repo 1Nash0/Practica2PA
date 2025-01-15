@@ -4,7 +4,7 @@
 void levelScene::Init() {
 
     healthText = Text();
-    batteryText = Text();// Configura la fuente y el tamaño
+    batteryText = Text();
     player = nullptr; 
 }
 
@@ -14,7 +14,6 @@ void levelScene::SetPlayer(Player* p) {
 
 void levelScene::RenderHUD() {
     if (player != nullptr) {
-        // Asigna el texto, posición, color y renderiza
 
         healthText.SetText("Vidas: " + to_string(player->GetHealth()) + "/5");
         healthText.SetPosition(Vector3D(1.0f, 12.0f, 0.0f));
@@ -27,11 +26,8 @@ void levelScene::RenderHUD() {
         batteryText.Render();
     }
 }
-
 void levelScene::Render() {
-    // Llama a RenderHUD para renderizar el HUD
     RenderHUD();
-
 }
 
 

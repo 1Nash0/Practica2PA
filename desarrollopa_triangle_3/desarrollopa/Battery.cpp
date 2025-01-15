@@ -12,10 +12,6 @@ void Battery::Render()
 	if (model3D) {
 		model3D->Render();
 	}
-	else {
-		// Si no hay modelo, dibuja una representación básica o lanza un error
-		std::cout << "No model set for rendering!" << std::endl;
-	}
 	glPopMatrix();
 }
 
@@ -24,6 +20,6 @@ void Battery::SetModel3D(Model* model) {
 		this->model3D = model;
 	}
 	else {
-		std::cerr << "[Meteorite::SetModel3D] Modelo nulo pasado como argumento." << std::endl;
+		std::cerr << "Modelo nulo pasado como argumento." << std::endl;
 	}
 }

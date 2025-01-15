@@ -16,7 +16,7 @@ public:
 	void SetModel3D(Model* model);
 
 	Solid* Clone() const override {
-		return new Star(*this);  // Constructor copia para clonar
+		return new Star(*this);  
 	}
 	void Render();
 

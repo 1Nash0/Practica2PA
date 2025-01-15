@@ -15,13 +15,13 @@ using namespace std;
 class Player : public Solid {
 private:
 
-    float size;                 // Tamaño del jugador
-    int health;                 // Vida restante
-    int battery;           // Baterías disponibles            // Puntos acumulados
-    Model* model3D;             // Modelo 3D del jugador  // Generador de projectiles
+    float size;                
+    int health;                 
+    int battery;           
+    Model* model3D;             
 
 public:
-    // Constructor
+
     Player()
         :  size(1.0), health(5), battery(0),  model3D(nullptr)
     {   
@@ -41,19 +41,18 @@ public:
     void SetModel3D(Model* model);
 
 
-    // Métodos de juego
     void TakeDamage();
     void CollectResource(const std::string& resourceType);
     void PlayerMovement(const float& time);
     void Update(const float& time);
-    void OnCollision(Solid* other) override; // Sobrescritura para manejar colisiones específicas
+    void OnCollision(Solid* other) override;
     bool CheckCollision(Solid* other);
     bool isKeyPressed(char key);
     void Render();
 
     Solid* Clone() const override {
         Player* clone = new Player(*this);
-        if (this->model3D) clone->model3D = new Model(*this->model3D); // Copia profundo
+        if (this->model3D) clone->model3D = new Model(*this->model3D); 
         return clone;
     }
 };

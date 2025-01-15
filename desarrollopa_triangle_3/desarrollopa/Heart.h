@@ -12,7 +12,7 @@ public:
 
     Heart() : model3D(nullptr), Resource()
     {
-        this->SetCollisionRadius(0.8f);   // Define un radio de colisión si es necesario
+        this->SetCollisionRadius(0.8f);   
         this->SetSpeed(Vector3D(-0.2, 0.0f, 0.0f));
         this->SetOrientationSpeed(Vector3D(0.0, 4.0, 0.0));
     }

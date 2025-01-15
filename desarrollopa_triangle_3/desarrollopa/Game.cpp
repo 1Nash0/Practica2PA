@@ -25,7 +25,7 @@ void Game::Init() {
     *playerModel = loader->GetModel();
     player1->SetModel3D(playerModel);
     playerModel->SetSpeed(Vector3D(0.0, 0.0, 0.0));
-    playerModel->SetColor(Color(0.5f, 0.5f, 0.5f, 1.0f)); // Gris metálico
+    playerModel->SetColor(Color(0.5f, 0.5f, 0.5f, 1.0f)); 
 
     for (int i = 1; i < 20; i++) {
         Battery* battery1 = new Battery();
@@ -66,7 +66,7 @@ void Game::Init() {
         loader3->LoadModel("..\\3dModels\\rock_001.obj");
         Model* meteoriteModel = new Model();
         *meteoriteModel = loader3->GetModel(); 
-        meteoriteModel->SetColor(Color(0.3f, 0.3f, 0.3f, 1.0f)); // Gris oscuro
+        meteoriteModel->SetColor(Color(0.3f, 0.3f, 0.3f, 1.0f)); 
         Meteorite1->SetModel3D(meteoriteModel);
         AddGameObject(Meteorite1);
         delete loader3;
@@ -79,7 +79,7 @@ void Game::Init() {
     Model* starModel = new Model();
     *starModel = loader7->GetModel();
     star1->SetModel3D(starModel);
-    starModel->SetColor(Color(1.0f, 1.0f, 0.6f, 0.8f)); // Amarillo blanquecino
+    starModel->SetColor(Color(1.0f, 1.0f, 0.6f, 0.8f)); 
 
     // Emisor de partículas
     int numParticulas = 1000;
@@ -97,9 +97,13 @@ void Game::Init() {
     gameScene->SetPlayer(player1);
 }
 
+void Game::AddGameObject(Solid* object) {
+    gameObjects.push_back(object);
+}
+
 void Game::Render() {
     if (activeScene) {
-        activeScene->Render();  // Renderiza la escena activa (ya sea el menú o la escena 2)
+        activeScene->Render();  // Renderiza la escena activa
     }
     if (activeScene == gameScene) {
         gameScene->Render();
@@ -122,23 +126,23 @@ void Game::Update(const float& time) {
             object->Update(time);
         }
     }
-    // Procesar colisiones delegando la responsabilidad a cada objeto
+
     for (auto* object : gameObjects) {
         if (object) {
-            object->ProcessCollisions(gameObjects); // Cada objeto revisa sus colisiones
+            object->ProcessCollisions(gameObjects); 
         }
     }
     // Eliminar objetos marcados para eliminación
     for (auto it = gameObjects.begin(); it != gameObjects.end(); ) {
         if ((*it)->IsMarkedForDeletion()) {
-            delete* it; // Libera memoria
-            it = gameObjects.erase(it); // Elimina el puntero de la lista
+            delete* it; 
+            it = gameObjects.erase(it); 
         }
         else {
             ++it;
         }
     } 
-    // Verificar y cambiar de escena si es necesario
+
     if (activeScene == gameScene) {
         if (player1->GetHealth() == 0) {
             activeScene = defeatScene;  // Cambia a la escena del menú
@@ -155,7 +159,7 @@ void Game::Update(const float& time) {
     }
 }
 void Game::RestartGame() {
-    // Limpiar todos los objetos del juego
+
     for (auto* object : gameObjects) {
         delete object;
     }
@@ -170,9 +174,6 @@ void Game::RestartGame() {
     activeScene = gameScene;
 }
 
-void Game::AddGameObject(Solid* object) {
-    gameObjects.push_back(object);
-}
 
 void Game::ProcessKeyPressed(unsigned char key, int px, int py) {
     cout << "tecla pulsada: " << key << endl;
@@ -180,7 +181,6 @@ void Game::ProcessKeyPressed(unsigned char key, int px, int py) {
     if (activeScene) {
         activeScene->ProcessKeyPressed(key, px, py);
 
-        // Cambiar de la escena del menú a la escena 2 al presionar 'P'
         if (activeScene == menuScene && (key == 'P' || key == 'p')) {
             std::cout << "Iniciando el juego" << std::endl;
             activeScene = gameScene; 

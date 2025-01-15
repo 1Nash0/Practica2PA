@@ -14,8 +14,8 @@ public:
 
 	Obstacle() : model3D(nullptr)  {
 		this->size = 1.0;
-		this->SetAffectedByGravity(true); // Habilitar gravedad para meteoritos
-		this->SetCollisionRadius(1.0f);   // Define un radio de colisión si es necesario
+		this->SetAffectedByGravity(true); 
+		this->SetCollisionRadius(1.0f);   
 		this->SetSpeed(Vector3D(-0.01, 0.0f, 0.0f));
 		this->SetOrientationSpeed(Vector3D(rand() % 10 - 9, rand() % 10 - 9, 0.0));
 	}

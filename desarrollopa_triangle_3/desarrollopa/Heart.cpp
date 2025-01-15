@@ -11,7 +11,7 @@ void Heart::Render() {
     glRotatef(this->GetOrientation().GetZ(), 0.0, 0.0, 1.0);
 
     if (model3D) {
-        model3D->Render(); // Renderizar modelo 3D
+        model3D->Render(); 
     }
     glPopMatrix();
 }

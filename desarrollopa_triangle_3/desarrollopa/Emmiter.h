@@ -9,12 +9,13 @@ using namespace std::chrono;
 class Emmiter : public Solid {
 private:
 
-    EmmiterConfiguration config;          // Configuración del emisor
-    vector<Solid*> particulas;            // Vector de partículas generadas
-    milliseconds initialMilliseconds;     // Tiempo de inicio de la ejecución
-    long lastUpdateTime;                  // Último tiempo de emisión
+    EmmiterConfiguration config;         
+    vector<Solid*> particulas;           
+    milliseconds initialMilliseconds;     
+    long lastUpdateTime;                  
 
 public:
+
     // Constructor
     Emmiter(const EmmiterConfiguration& config);
 

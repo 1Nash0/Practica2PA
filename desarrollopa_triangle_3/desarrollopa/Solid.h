@@ -16,11 +16,11 @@ private:
     Vector3D orientationSpeed;
     Vector3D velocity;
     Color color;
-    float collisionRadius; // Radio para detección de colisiones esféricas
+    float collisionRadius; 
     bool wired;
     bool isMarkedForDeletion = false;
-    bool isAffectedByGravity = false; // Indica si el objeto está afectado por gravedad
-    Vector3D gravity = Vector3D(-0.001f, 0.0, 0.0f); // Gravedad estándar
+    bool isAffectedByGravity = false; 
+    Vector3D gravity = Vector3D(-0.001f, 0.0, 0.0f); 
 
 public:
     Solid(
