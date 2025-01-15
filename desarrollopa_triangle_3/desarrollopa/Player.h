@@ -1,16 +1,13 @@
 #pragma once
 #include "Solid.h"
 #include "Model.h"
-#include "Color.h"
 #include "Heart.h"
 #include "Battery.h"
 #include "Text.h"
 #include <GL/glut.h>
 #include <string>
-#include <iostream>
 #include "Meteorite.h" 
-#include "Heart.h"    // Asegúrate de incluir las cabeceras necesarias
-#include "Battery.h"  // Asegúrate de incluir las cabeceras necesarias
+
 
 
 using namespace std;
@@ -51,6 +48,7 @@ public:
     int GetBattery() const { return battery; }
   
     string GetType() const override { return "Player"; }
+
     // Métodos de juego
     void TakeDamage(int damage);
     void CollectResource(const std::string& resourceType);

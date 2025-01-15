@@ -131,9 +131,7 @@
     <ClCompile Include="Battery.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Color.cpp" />
-    <ClCompile Include="Cube.cpp" />
     <ClCompile Include="Cuboid.cpp" />
-    <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="DefeatScene.cpp" />
     <ClCompile Include="desarrollopa.cpp" />
     <ClCompile Include="Emmiter.cpp" />
@@ -150,7 +148,6 @@
     <ClCompile Include="Resource.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Solid.cpp" />
-    <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Star.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Triangle.cpp" />
@@ -161,9 +158,7 @@
     <ClInclude Include="Battery.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Color.h" />
-    <ClInclude Include="Cube.h" />
     <ClInclude Include="Cuboid.h" />
-    <ClInclude Include="Cylinder.h" />
     <ClInclude Include="DefeatScene.h" />
     <ClInclude Include="Emmiter.h" />
     <ClInclude Include="EmmiterConfiguration.h" />
@@ -179,7 +174,6 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Solid.h" />
-    <ClInclude Include="Sphere.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="Text.h" />
     <ClInclude Include="Triangle.h" />

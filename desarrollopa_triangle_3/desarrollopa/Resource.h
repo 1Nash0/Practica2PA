@@ -14,7 +14,7 @@ public:
 
 		this->SetSize(1.0);
 		this->SetAffectedByGravity(true);
-		this->SetCollisionRadius(0.5f);
+		this->SetCollisionRadius(0.7f);
 		this->SetSpeed(Vector3D(-0.01, 0.0f, 0.0f));
 		this->SetOrientationSpeed(Vector3D(0.0, 2.0, 0.0));
 

@@ -24,7 +24,7 @@ public:
 	inline Vector3D GetGravity() { return this->gravity; }
 	void SetGravity(Vector3D gravityToSet) { this->gravity = gravityToSet; }
 
-	void Render();
+
 
 
 };

@@ -43,21 +43,15 @@
     <Filter Include="Archivos de origen\Clases">
       <UniqueIdentifier>{fcc8ca4b-410f-40f1-98ed-026533040c40}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\Core\Scenes">
+      <UniqueIdentifier>{97d5931b-e4b6-4bba-a51c-31ea8a30c89a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="desarrollopa.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Sphere.cpp">
-      <Filter>Archivos de origen\Elements</Filter>
-    </ClCompile>
-    <ClCompile Include="Cylinder.cpp">
-      <Filter>Archivos de origen\Elements</Filter>
-    </ClCompile>
     <ClCompile Include="Cuboid.cpp">
-      <Filter>Archivos de origen\Elements</Filter>
-    </ClCompile>
-    <ClCompile Include="Cube.cpp">
       <Filter>Archivos de origen\Elements</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
@@ -131,16 +125,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cube.h">
-      <Filter>Archivos de encabezado\Elements</Filter>
-    </ClInclude>
     <ClInclude Include="Cuboid.h">
-      <Filter>Archivos de encabezado\Elements</Filter>
-    </ClInclude>
-    <ClInclude Include="Cylinder.h">
-      <Filter>Archivos de encabezado\Elements</Filter>
-    </ClInclude>
-    <ClInclude Include="Sphere.h">
       <Filter>Archivos de encabezado\Elements</Filter>
     </ClInclude>
     <ClInclude Include="Model.h">
@@ -156,9 +141,6 @@
       <Filter>Archivos de encabezado\Core</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Archivos de encabezado\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
       <Filter>Archivos de encabezado\Core</Filter>
     </ClInclude>
     <ClInclude Include="Solid.h">
@@ -194,23 +176,26 @@
     <ClInclude Include="EmmiterConfiguration.h">
       <Filter>Archivos de encabezado\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Menu.h">
-      <Filter>Archivos de encabezado\Clases</Filter>
-    </ClInclude>
-    <ClInclude Include="levelScene.h">
-      <Filter>Archivos de encabezado\Clases</Filter>
-    </ClInclude>
-    <ClInclude Include="WinScene.h">
-      <Filter>Archivos de encabezado\Clases</Filter>
-    </ClInclude>
-    <ClInclude Include="DefeatScene.h">
-      <Filter>Archivos de encabezado\Clases</Filter>
-    </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>Archivos de encabezado\Clases</Filter>
     </ClInclude>
     <ClInclude Include="Obstaculo.h">
       <Filter>Archivos de encabezado\Clases</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Archivos de encabezado\Core\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="levelScene.h">
+      <Filter>Archivos de encabezado\Core\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="DefeatScene.h">
+      <Filter>Archivos de encabezado\Core\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="WinScene.h">
+      <Filter>Archivos de encabezado\Core\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Archivos de encabezado\Core\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -111,6 +111,7 @@ void Game::Render() {
     if (activeScene) {
         activeScene->Render();  // Renderiza la escena activa (ya sea el menú o la escena 2)
     }
+
 }
 
 void Game::Update(const float& time) {
